@@ -69,11 +69,24 @@
     border-color: var(--border);
   }
 
+  html {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  #root {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /* Typography Rules according to bionoraDevUI.jpeg */

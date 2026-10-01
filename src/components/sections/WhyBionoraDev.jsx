@@ -10,7 +10,7 @@ export function WhyBionoraDev({ t }) {
   const numbers = ["01", "02", "03", "04", "05"];
 
   return (
-    <section id="why" className="py-20 sm:py-28 bg-surface-muted/20 relative scroll-mt-16">
+    <section id="why" className="py-20 sm:py-28 bg-surface-muted/20 relative scroll-mt-16 overflow-hidden">
       <Container className="relative z-10">
         <div ref={revealRef} className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Studio Philosophy & Manifesto */}

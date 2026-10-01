@@ -8,7 +8,7 @@ export function Testimonials({ t }) {
   const revealRef = useReveal();
 
   return (
-    <section className="py-20 sm:py-28 bg-surface-muted/30 relative">
+    <section className="py-20 sm:py-28 bg-surface-muted/30 relative overflow-hidden">
       <Container>
         <SectionHeading
           badge={t.testimonials.badge}

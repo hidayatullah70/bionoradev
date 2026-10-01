@@ -30,7 +30,7 @@ export function Portfolio({ locale, t }) {
       );
 
   return (
-    <section id="portfolio" className="py-20 sm:py-28 relative scroll-mt-16">
+    <section id="portfolio" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       <Container className="relative z-10">
         <SectionHeading
           badge={t.portfolio.badge}

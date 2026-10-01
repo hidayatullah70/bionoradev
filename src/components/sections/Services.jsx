@@ -18,7 +18,7 @@ export function Services({ locale, t }) {
   };
 
   return (
-    <section id="services" className="py-20 sm:py-28 relative scroll-mt-16">
+    <section id="services" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       {/* Subtle background glow */}
       <div className="glow-ambient-cyan w-96 h-96 top-1/2 -left-48" />
 

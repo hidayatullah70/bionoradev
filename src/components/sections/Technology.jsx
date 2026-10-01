@@ -17,7 +17,7 @@ export function Technology({ t }) {
   ];
 
   return (
-    <section className="py-20 sm:py-28 relative">
+    <section className="py-20 sm:py-28 relative overflow-hidden">
       <Container>
         <SectionHeading
           badge={t.technology.badge}

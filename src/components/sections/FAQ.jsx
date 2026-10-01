@@ -24,7 +24,7 @@ export function FAQ({ locale, t }) {
   });
 
   return (
-    <section id="faq" className="py-20 sm:py-28 relative scroll-mt-16">
+    <section id="faq" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       <Container className="max-w-4xl">
         <SectionHeading
           badge={t.faq.badge}

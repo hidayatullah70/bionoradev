@@ -36,7 +36,7 @@ export function FloatingWhatsApp({ locale, t }) {
   return (
     <aside
       aria-label={locale === 'id' ? 'Aksi Cepat Mengambang' : 'Floating Quick Actions'}
-      className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3 select-none pointer-events-none"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5 sm:gap-3 select-none pointer-events-none"
     >
       {/* 1. Tombol CTA WhatsApp */}
       <div

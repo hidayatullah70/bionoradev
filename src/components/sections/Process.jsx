@@ -16,7 +16,7 @@ export function Process({ t }) {
   ];
 
   return (
-    <section id="process" className="py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16">
+    <section id="process" className="py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden">
       <Container className="relative z-10">
         <SectionHeading
           badge={t.process.badge}

@@ -93,13 +93,13 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
   const whatsAppUrl = buildWhatsAppUrl({ locale });
 
   return (
-    <header className="fixed top-3 sm:top-4 md:top-5 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300">
+    <header className="fixed top-2.5 sm:top-4 md:top-5 left-0 right-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-none transition-all duration-300 w-full">
       {/* Floating Pill Navbar Dock */}
       <nav
         aria-label="Main Navigation"
         className={cn(
-          "pointer-events-auto rounded-full border transition-all duration-300 flex items-center justify-between gap-1.5 sm:gap-2.5 lg:gap-3 p-1.5 sm:p-2",
-          "w-full max-w-fit shadow-xl backdrop-blur-xl",
+          "pointer-events-auto rounded-full border transition-all duration-300 flex items-center justify-between gap-1 sm:gap-2.5 lg:gap-3 p-1 sm:p-2",
+          "w-full max-w-[calc(100vw-1rem)] lg:max-w-fit shadow-xl backdrop-blur-xl",
           // Dark mode glassmorphism
           "dark:bg-brand-ink/85 dark:border-white/10 dark:shadow-[0_12px_36px_-6px_rgba(0,0,0,0.7)] dark:ring-1 dark:ring-white/5",
           // Light mode glassmorphism
@@ -116,7 +116,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             setActiveSection('');
           }}
           className={cn(
-            "flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full pl-1.5 pr-2.5 py-1 transition-all border",
+            "flex items-center gap-1.5 sm:gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full pl-1 sm:pl-1.5 pr-2 sm:pr-2.5 py-0.5 sm:py-1 transition-all border shrink-0 min-w-0",
             activeSection === ''
               ? "bg-surface-muted/90 dark:bg-brand-blue/20 shadow-sm border-border/50 dark:border-brand-blue"
               : "hover:border-brand-blue hover:bg-surface-muted/50 dark:hover:border-brand-blue dark:hover:bg-white/5 border-transparent"
@@ -128,9 +128,9 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             alt="BionoraDev Logo"
             width="32"
             height="32"
-            className="w-7 h-7 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200"
+            className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200"
           />
-          <div className="flex items-baseline font-brand tracking-wider text-base sm:text-lg font-bold whitespace-nowrap">
+          <div className="flex items-baseline font-brand tracking-wider text-xs sm:text-base md:text-lg font-bold whitespace-nowrap">
             <span className="text-txt transition-colors">{siteConfig.brand.wordmarkFirst}</span>
             <span className="text-brand-blue ml-0.5">{siteConfig.brand.wordmarkSecond}</span>
           </div>
@@ -168,8 +168,8 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           })}
         </div>
 
-        {/* Vertical Divider before Controls */}
-        <div className="h-4 w-px bg-border/70 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
+        {/* Vertical Divider before Controls (Desktop Only) */}
+        <div className="hidden lg:block h-4 w-px bg-border/70 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
 
         {/* Desktop Controls (Language, Theme, WhatsApp CTA) */}
         <div className="hidden lg:flex items-center gap-1.5 xl:gap-2">
@@ -214,11 +214,11 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         </div>
 
         {/* Mobile Controls (< lg) */}
-        <div className="flex lg:hidden items-center gap-1.5">
+        <div className="flex lg:hidden items-center gap-1 sm:gap-1.5 shrink-0">
           {/* Quick Language Toggle */}
           <button
             onClick={toggleLocale}
-            className="px-2 py-1 text-xs font-bold rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt uppercase hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all"
+            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[11px] sm:text-xs font-bold rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt uppercase hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all"
             aria-label={t.nav.langToggle}
           >
             {locale}
@@ -227,24 +227,24 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Quick Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1.5 sm:p-2 rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt hover:border-brand-blue hover:bg-brand-blue/10 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all"
+            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt hover:border-brand-blue hover:bg-brand-blue/10 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all"
             aria-label={t.nav.themeToggle}
           >
             {theme === 'dark' ? (
-              <Moon className="w-4 h-4 text-brand-cyan" />
+              <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-cyan" />
             ) : (
-              <Sun className="w-4 h-4 text-amber-500" />
+              <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500" />
             )}
           </button>
 
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 sm:p-2 rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt hover:border-brand-blue dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-brand-cyan/40 dark:border-brand-cyan/40 bg-brand-cyan/10 dark:bg-brand-cyan/15 text-brand-cyan hover:border-brand-blue dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-brand-cyan" />}
           </button>
         </div>
       </nav>

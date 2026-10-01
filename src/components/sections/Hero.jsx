@@ -152,7 +152,7 @@ export function Hero({ locale, t }) {
                       </button>
 
                       {/* 3 Pill Badges from bionoraDevUI.jpeg: Responsive, Performance, SEO Friendly */}
-                      <div className="flex items-center gap-1.5 text-[10px] text-txt-muted font-medium">
+                      <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-txt-muted font-medium">
                         <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-muted border border-border">
                           <Monitor className="w-3 h-3 text-brand-cyan" />
                           <span>Responsive</span>

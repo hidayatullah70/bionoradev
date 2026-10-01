@@ -14,7 +14,7 @@ export function CapabilityBar({ t }) {
   ];
 
   return (
-    <section className="py-12 border-y border-border bg-surface-muted/30 relative">
+    <section className="py-12 border-y border-border bg-surface-muted/30 relative overflow-hidden">
       <Container>
         <div ref={revealRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {t.capability.items.map((item, idx) => (

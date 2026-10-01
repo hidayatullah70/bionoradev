@@ -14,7 +14,7 @@ export function Pricing({ locale, t }) {
   const revealRef = useReveal();
 
   return (
-    <section id="pricing" className="py-20 sm:py-28 relative scroll-mt-16">
+    <section id="pricing" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       {/* Background glow */}
       <div className="glow-ambient-blue w-96 h-96 top-1/3 -right-48" />
 
