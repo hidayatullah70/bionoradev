@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Palette from bionoraDevUI.jpeg */
+    --color-brand-cyan: #00E5FF;       /* Cyan (Accent) */
+    --color-brand-blue: #00B4FF;       /* Primary Blue (Brand) */
+    --color-brand-deep: #0066FF;       /* Deep Blue (Brand) */
+    --color-brand-navy: #0B1220;       /* Dark Navy (Background) */
+    --color-brand-slate: #94A3B8;      /* Slate (Text/Secondary) */
+
+    /* Light Theme */
+    --color-bg: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-surface-raised: #FFFFFF;
+    --color-surface-muted: #F1F5F9;
+    --color-text: #0B1220;
+    --color-text-muted: #64748B;
+    --color-border: #E2E8F0;
+    --color-border-strong: #CBD5E1;
+
+    /* Semantic Mappings */
+    --bg: var(--color-bg);
+    --surface: var(--color-surface);
+    --surface-muted: var(--color-surface-muted);
+    --text: var(--color-text);
+    --text-muted: var(--color-text-muted);
+    --border: var(--color-border);
+    --accent: var(--color-brand-blue);
+    --accent-strong: var(--color-brand-deep);
+    --accent-soft: #E0F2FE;
+  }
+
+  .dark {
+    /* Brand Palette from bionoraDevUI.jpeg */
+    --color-brand-cyan: #00E5FF;       /* Cyan (Accent) */
+    --color-brand-blue: #00B4FF;       /* Primary Blue (Brand) */
+    --color-brand-deep: #0066FF;       /* Deep Blue (Brand) */
+    --color-brand-navy: #0B1220;       /* Dark Navy (Background) */
+    --color-brand-slate: #94A3B8;      /* Slate (Text/Secondary) */
+
+    /* Dark Theme */
+    --color-bg: #0B1220;               /* Dark Navy (#0B1220) */
+    --color-surface: #0E1726;          /* Clean Dark Navy Surface */
+    --color-surface-raised: #131F33;   /* Raised Dark Navy Surface */
+    --color-surface-muted: #131F33;    /* Muted Dark Navy Surface */
+    --color-text: #F8FAFC;             /* Light Slate / White text */
+    --color-text-muted: #94A3B8;       /* Slate (Text/Secondary) */
+    --color-border: #1E293B;           /* Dark Navy Border */
+    --color-border-strong: #334155;
+
+    /* Semantic Mappings */
+    --bg: var(--color-bg);
+    --surface: var(--color-surface);
+    --surface-muted: var(--color-surface-muted);
+    --text: var(--color-text);
+    --text-muted: var(--color-text-muted);
+    --border: var(--color-border);
+    --accent: var(--color-brand-cyan);
+    --accent-strong: var(--color-brand-blue);
+    --accent-soft: #08283A;
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Typography Rules according to bionoraDevUI.jpeg */
+  h1, h2, h3, h4, .heading, .subheading {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-weight: 800;
+  }
+
+  h2, h3 {
+    font-weight: 700;
+  }
+
+  h4 {
+    font-weight: 600;
+  }
+
+  p, .body-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+  }
+}
+
+/* Custom Typography & Utility Classes */
+.font-brand {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.heading {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.subheading {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.body-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.btn-primary {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.navbar-font {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.brand-gradient-text {
+  background: linear-gradient(135deg, #00E5FF 0%, #00B4FF 50%, #0066FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-gradient-bg {
+  background: linear-gradient(135deg, #00B4FF 0%, #0066FF 100%);
+}
+
+.glass-nav-light {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-nav-dark {
+  background: rgba(11, 18, 32, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(10, 16, 26, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+}
+
+.glow-ambient-cyan {
+  position: absolute;
+  filter: blur(100px);
+  background: radial-gradient(circle, rgba(0, 240, 240, 0.15) 0%, rgba(0, 128, 240, 0.05) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+.glow-ambient-blue {
+  position: absolute;
+  filter: blur(120px);
+  background: radial-gradient(circle, rgba(0, 128, 240, 0.12) 0%, rgba(0, 0, 240, 0.04) 70%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Scroll reveal utility classes (03-UI-GUIDELINE.md Section 9) */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Radar Sonar Wave Pulse Effect for Floating WhatsApp CTA */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(2.35);
+    opacity: 0;
+  }
+}
+
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-radar-1 {
+  animation: radar-pulse 3.2s cubic-bezier(0.1, 0.4, 0.2, 1) infinite;
+}
+
+.animate-radar-2 {
+  animation: radar-pulse 3.2s cubic-bezier(0.1, 0.4, 0.2, 1) infinite;
+  animation-delay: 1.05s;
+}
+
+.animate-radar-3 {
+  animation: radar-pulse 3.2s cubic-bezier(0.1, 0.4, 0.2, 1) infinite;
+  animation-delay: 2.1s;
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 5s linear infinite;
+}
+
+/* Accessibility: Respect Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
