@@ -43,28 +43,28 @@ export function Hero({ locale, t }) {
 
             {/* Single H1 for SEO with Brand Accent (bionoraDevUI.jpeg) */}
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-brand font-extrabold tracking-tight text-txt leading-[1.15]">
-              {locale === 'id' ? (
-                <>
-                  Membangun Pengalaman <br />
-                  <span className="brand-gradient-text">Digital yang Berdampak</span>
-                </>
-              ) : (
-                <>
-                  We Build <br />
-                  <span className="brand-gradient-text">Digital Experiences</span>
-                </>
-              )}
+              {t.hero.headlineLine1} <br />
+              <span className="brand-gradient-text">{t.hero.headlineLine2}</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="mt-6 text-base sm:text-lg lg:text-xl text-txt-muted leading-relaxed max-w-2xl">
+            <p className="mt-5 text-base sm:text-lg lg:text-xl text-txt-muted leading-relaxed max-w-2xl">
               {t.hero.subheadline}
             </p>
 
-            {/* Tagline Bullets */}
-            <div className="mt-4 inline-block px-3 py-1 rounded-lg bg-surface-muted/60 border border-border text-xs font-semibold text-accent">
-              {siteConfig.brand.taglineBullets}
-            </div>
+            {/* Checklist Selling Points */}
+            {t.hero.checklist && (
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
+                {t.hero.checklist.map((item, idx) => (
+                  <div key={idx} className="flex items-center gap-2.5 text-sm sm:text-base font-semibold text-txt">
+                    <div className="w-5 h-5 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                    </div>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Primary & Secondary CTAs */}
             <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
@@ -72,19 +72,20 @@ export function Hero({ locale, t }) {
                 href={whatsAppUrl}
                 variant="gradient"
                 size="lg"
-                className="gap-3 group"
+                className="gap-3 group font-bold shadow-lg shadow-brand-blue/20"
               >
                 <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 transition-transform" size={20} />
                 <span>{t.hero.ctaPrimary}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
 
               <Button
                 variant="secondary"
                 size="lg"
+                className="gap-2 group font-semibold"
                 onClick={() => scrollToSection('portfolio')}
               >
-                {t.hero.ctaSecondary}
+                <span>{t.hero.ctaSecondary}</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 
