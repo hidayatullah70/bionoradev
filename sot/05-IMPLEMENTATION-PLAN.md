@@ -97,9 +97,9 @@ Bangun:
 - capability bar
 - layanan (services)
 - solusi (solutions)
+- tech stack (technology)
 - proses (process)
 - mengapa BionoraDev (why BionoraDev)
-- teknologi (technology)
 
 Gunakan array berbasis data untuk kartu-kartu yang berulang.
 

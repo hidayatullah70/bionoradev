@@ -7,7 +7,7 @@ import { Portfolio } from '../components/sections/Portfolio';
 import { Process } from '../components/sections/Process';
 import { Pricing } from '../components/sections/Pricing';
 import { WhyBionoraDev } from '../components/sections/WhyBionoraDev';
-import { Technology } from '../components/sections/Technology';
+import { TechStack } from '../components/TechStack';
 import { Testimonials } from '../components/sections/Testimonials';
 import { FAQ } from '../components/sections/FAQ';
 import { FinalCTA } from '../components/sections/FinalCTA';
@@ -20,10 +20,10 @@ export function Home({ locale, t }) {
       <Services locale={locale} t={t} />
       <Solutions locale={locale} t={t} />
       <Portfolio locale={locale} t={t} />
+      <TechStack t={t} />
       <Process t={t} />
       <Pricing locale={locale} t={t} />
       <WhyBionoraDev t={t} />
-      <Technology t={t} />
       <Testimonials t={t} />
       <FAQ locale={locale} t={t} />
       <FinalCTA locale={locale} t={t} />

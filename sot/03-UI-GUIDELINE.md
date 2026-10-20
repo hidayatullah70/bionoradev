@@ -215,7 +215,7 @@ Skala spasi: `4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 120px`.
 Arsitektur halaman dibangun dari 15 komponen terstruktur:
 ```text
 Navbar → Hero → CapabilityBar → ServicesSection → SolutionsSection → PortfolioSection →
-ProcessSection → PricingSection → WhyBionoraDev → TechnologySection → TestimonialSection →
+TechStackSection → ProcessSection → PricingSection → WhyBionoraDev → TestimonialSection →
 FAQSection → FinalCTA → Footer → FloatingWhatsApp
 ```
 
@@ -286,7 +286,11 @@ Kolom kontrol mengambang vertikal di pojok kanan bawah (`fixed bottom-6 right-6 
 - Menyampaikan prinsip kerja, komitmen kualitas, performa kode, dan komunikasi transparan melalui tata letak editorial tipografis yang tegas, bukan sekadar 5 kotak ikon generik.
 
 ### 8.11 Tumpukan Teknologi (Technology Section)
-- Menyajikan badge teknologi modern pendukung (React, Vite, Tailwind CSS, JavaScript, Cloudflare, GitHub) secara proporsional sebagai pilar kredibilitas, bukan sebagai display kode yang berlebihan.
+- Menyajikan Tech Stack dalam section dark premium dengan glow halus di bagian atas.
+- Layout menggunakan grid 5 kolom pada desktop dan 1 kolom pada mobile.
+- Setiap kategori menggunakan card `#121212` dengan border putih 8% dan radius 20px.
+- Logo teknologi harus menggunakan ikon resmi berwarna brand melalui `react-icons/fa` dan `react-icons/si`.
+- Kategori: Frontend, Styling, Backend & API, Database, dan Deployment.
 
 ### 8.12 Testimoni (Testimonial Section)
 - Kebijakan autentisitas ketat: **dilarang memalsukan nama, ulasan, foto, atau rating klien**.

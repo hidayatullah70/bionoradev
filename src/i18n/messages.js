@@ -256,10 +256,16 @@ export const messages = {
       ],
     },
     technology: {
-      badge: "Fondasi Teknologi",
-      title: "Teknologi Modern & Andal",
-      subtitle: "Kami menggunakan perangkat dan framework standar industri untuk menghadirkan performa web kelas atas.",
-      copy: "Kami menggunakan teknologi web modern untuk membangun produk digital yang cepat, mudah dirawat, dan terukur.",
+      badge: "OUR TECH STACK",
+      title: "Dibangun dengan Teknologi Modern",
+      subtitle: "Stack yang cepat, scalable, dan siap pakai untuk skala UMKM sampai enterprise.",
+      categories: {
+        frontend: "Frontend",
+        styling: "Styling",
+        backend: "Backend & API",
+        database: "Database",
+        deployment: "Deployment",
+      },
     },
     testimonials: {
       badge: "Ulasan Klien",
@@ -549,10 +555,16 @@ export const messages = {
       ],
     },
     technology: {
-      badge: "Tech Foundation",
-      title: "Modern & Reliable Technologies",
-      subtitle: "We leverage industry-standard tools and frameworks to deliver top-tier web performance.",
-      copy: "We use modern web technologies to build fast, maintainable and scalable digital products.",
+      badge: "OUR TECH STACK",
+      title: "Built with Modern Technology",
+      subtitle: "A fast, scalable, ready-to-use stack for businesses from SMBs to enterprise.",
+      categories: {
+        frontend: "Frontend",
+        styling: "Styling",
+        backend: "Backend & API",
+        database: "Database",
+        deployment: "Deployment",
+      },
     },
     testimonials: {
       badge: "Client Feedback",

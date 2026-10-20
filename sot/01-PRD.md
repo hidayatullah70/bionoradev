@@ -54,10 +54,10 @@ Situs pemasaran satu halaman (single-page) dengan bagian-bagian ber-anchor:
 4. Layanan / Yang Kami Bangun (Services / What We Build)
 5. Solusi (Solutions)
 6. Portofolio / Karya Terpilih (Portfolio / Selected Work)
-7. Proses (Process)
-8. Harga (Pricing)
-9. Mengapa BionoraDev (Why BionoraDev)
-10. Teknologi (Technology)
+7. Teknologi (Tech Stack)
+8. Proses (Process)
+9. Harga (Pricing)
+10. Mengapa BionoraDev (Why BionoraDev)
 11. Placeholder Testimoni (Testimonials)
 12. FAQ
 13. CTA Akhir (Final CTA)
@@ -155,16 +155,15 @@ Lima kartu:
 Jangan menggunakan klaim "terbaik", "nomor satu", "termurah", "pasti sukses", atau klaim tanpa bukti lainnya.
 
 ### FR-09 Teknologi
-Lencana (Badges):
-- React
-- Vite
-- Tailwind CSS
-- JavaScript
-- Cloudflare
-- GitHub
+Section Tech Stack menampilkan lima kategori dengan logo teknologi resmi:
+- Frontend: React, Vite, JavaScript, HTML5
+- Styling: Tailwind CSS, CSS3
+- Backend & API: Node.js, Express.js, REST API
+- Database: MySQL, Railway
+- Deployment: Vercel, Netlify, GitHub Pages
 
-Copy pendukung:
-“Kami menggunakan teknologi web modern untuk membangun produk digital yang cepat, mudah dirawat, dan terukur.” / “We use modern web technologies to build fast, maintainable and scalable digital products.”
+Judul ID: “Dibangun dengan Teknologi Modern”
+Subjudul ID: “Stack yang cepat, scalable, dan siap pakai untuk skala UMKM sampai enterprise.”
 
 ### FR-10 Testimoni
 Tampilkan placeholder yang ditandai dengan jelas:
