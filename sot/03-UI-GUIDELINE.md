@@ -132,49 +132,44 @@ Gunakan gradien secara terukur untuk:
 
 ### 5.1 Definisi Font Family
 ```css
-/* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
-
-/* 1. Font Heading, Subheading, Button, & Navbar */
-font-family: 'Orbitron', sans-serif;
-
-/* 2. Font Isi Konten & Paragraf */
-font-family: 'Inter', sans-serif;
+/* Google Fonts are loaded from src/index.css with display=swap. */
+--font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+--font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 ```
 
 ### 5.2 Aturan Penggunaan Font Sesuai bionoraDevUI.jpeg
 1. **Heading / Judul Utama (H1 - H2):**
-   - `font-family: 'Orbitron', sans-serif;`
-   - `font-weight: 800;` (H1) / `700;` (H2)
+   - `font-family: var(--font-heading);`
+   - `font-weight: 600;`
    - `letter-spacing: -0.02em;`
 2. **Subheading / Judul Section & Card (H3 - H4):**
-   - `font-family: 'Orbitron', sans-serif;`
-   - `font-weight: 700;` (H3) / `600;` (H4)
+   - `font-family: var(--font-heading);`
+   - `font-weight: 600;`
    - `letter-spacing: -0.02em;`
 3. **Isi Konten / Paragraf:**
-   - `font-family: 'Inter', sans-serif;`
+   - `font-family: var(--font-body);`
    - `font-weight: 400;`
-   - `line-height: 1.7;`
+   - `line-height: 1.6;`
    - `color: var(--text-muted);`
 4. **Tombol (Button):**
-   - `font-family: 'Orbitron', sans-serif;`
+   - `font-family: var(--font-body);`
    - `font-weight: 700;`
    - `letter-spacing: 0.05em;`
 5. **Navbar / Menu:**
-   - `font-family: 'Orbitron', sans-serif;`
+   - `font-family: var(--font-body);`
    - `font-weight: 600;`
    - `letter-spacing: 0.03em;`
 
 ### 5.3 Skala Hirarki Tipografi Resmi (Typography Hierarchy)
 | Tingkatan | Elemen | Ukuran (Size) | Bobot (Weight) | Font Family | Keterangan |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **H1** | Heading Utama | 48px (Desktop) / 36px (Mobile) | 800 (ExtraBold) | Orbitron | Letter-spacing: -0.02em |
-| **H2** | Judul Section | 36px (Desktop) / 28px (Mobile) | 700 (Bold) | Orbitron | Letter-spacing: -0.02em |
-| **H3** | Sub Judul | 24px (Desktop) / 20px (Mobile) | 700 (Bold) | Orbitron | Letter-spacing: -0.02em |
-| **H4** | Judul Card | 20px (Desktop) / 18px (Mobile) | 600 (SemiBold) | Orbitron | Judul kartu layanan & solusi |
-| **Body** | Paragraf | 16px | 400 (Regular) | Inter | Line-height: 1.7 |
-| **Small** | Keterangan | 14px | 400 (Regular) | Inter | Deskripsi sekunder |
-| **Caption** | Label / Tag | 12px | 500 (Medium) | Inter / Orbitron | Chip status, tag kategori |
+| **H1** | Heading Utama | 48px (Desktop) / 36px (Mobile) | 600 (SemiBold) | Space Grotesk | Letter-spacing: -0.02em |
+| **H2** | Judul Section | 36px (Desktop) / 28px (Mobile) | 600 (SemiBold) | Space Grotesk | Letter-spacing: -0.02em |
+| **H3** | Sub Judul | 24px (Desktop) / 20px (Mobile) | 600 (SemiBold) | Space Grotesk | Letter-spacing: -0.02em |
+| **H4** | Judul Card | 20px (Desktop) / 18px (Mobile) | 600 (SemiBold) | Space Grotesk | Judul kartu layanan & solusi |
+| **Body** | Paragraf | 16px | 400 (Regular) | Plus Jakarta Sans | Line-height: 1.6 |
+| **Small** | Keterangan | 14px | 400 (Regular) | Plus Jakarta Sans | Deskripsi sekunder |
+| **Caption** | Label / Tag | 12px | 500 (Medium) | Plus Jakarta Sans | Chip status, tag kategori |
 
 ---
 
@@ -227,7 +222,7 @@ FAQSection → FinalCTA → Footer → FloatingWhatsApp
 ### 8.1 Navbar (Floating Pill Dock)
 - **Struktur:** Kapsul melayang (*floating pill dock*) berpusat di bagian atas viewport (`fixed top-3 sm:top-5 left-0 right-0 z-50 flex justify-center`).
 - **Glassmorphism:** `backdrop-blur-xl` dengan `bg-surface/85` (mode terang) dan `dark:bg-brand-ink/85 dark:border-white/10` (mode gelap).
-- **Brand Logo & Wordmark:** Logo resmi `/assets/logo/logoAja.png` dengan tipografi `Orbitron` Bold (700). Teks "Bionora" netral dan "Dev" berwarna biru brand.
+- **Brand Logo & Wordmark:** Logo resmi `/assets/logo/logoAja.png` dengan tipografi `Space Grotesk` SemiBold (600). Teks "Bionora" netral dan "Dev" berwarna biru brand.
 - **Nav Links (Segmented Pill Style):**
   - **Mode Gelap saat Hover:** Border berubah menjadi **`brand-blue`** (`dark:hover:border-brand-blue`), latar halus `dark:hover:bg-brand-blue/20`, teks putih, dan ikon sian (`dark:group-hover:text-brand-cyan`).
   - **Mode Terang saat Hover:** Border berubah menjadi **`brand-blue`** (`hover:border-brand-blue`), latar terisi biru **`bg-brand-blue`**, dan teks menu menjadi putih bersih **`text-brand-white`** serta ikon `group-hover:text-brand-white` untuk kontras maksimal.
@@ -249,7 +244,7 @@ Kolom kontrol mengambang vertikal di pojok kanan bawah (`fixed bottom-6 right-6 
 
 ### 8.3 Bagian Hero (Hero Section)
 - Komposisi desktop dua kolom asimetris:
-  - **Sisi Kiri:** Badge kategori, judul utama H1 tebal (`Inter`), deskripsi singkat bernilai bisnis tinggi, dua tombol CTA (Konsultasi WhatsApp dan Jelajahi Portofolio), serta mikro-metrik kapabilitas.
+  - **Sisi Kiri:** Badge kategori, judul utama H1 (`Space Grotesk` SemiBold), deskripsi singkat bernilai bisnis tinggi, dua tombol CTA (Konsultasi WhatsApp dan Jelajahi Portofolio), serta mikro-metrik kapabilitas.
   - **Sisi Kanan:** Pratinjau visual produk web/dasbor interaktif yang dirancang khusus: bingkai browser realistis (*window chrome dots*), kartu analitik mini, metrik status, dan aksen glow cyan/blue yang halus.
 - Dilarang menggunakan bola 3D generik, video autoplay berat, atau statistik fiktif.
 
@@ -305,7 +300,7 @@ Kolom kontrol mengambang vertikal di pojok kanan bawah (`fixed bottom-6 right-6 
 - Penutup halaman yang elegan dan meyakinkan: judul deklaratif kuat, penjelasan ringkas, tombol WhatsApp primer dengan efek glow, serta ruang kosong yang lapang.
 
 ### 8.15 Footer
-- Tata letak multi-kolom yang rapi: wordmark BionoraDev (`Orbitron` Bold dengan "Dev" biru), deskripsi misi, tautan navigasi cepat, kategori layanan, kontak email/WhatsApp terpusat, dan baris hak cipta tahun berjalan.
+- Tata letak multi-kolom yang rapi: wordmark BionoraDev (`Space Grotesk` SemiBold dengan "Dev" biru), deskripsi misi, tautan navigasi cepat, kategori layanan, kontak email/WhatsApp terpusat, dan baris hak cipta tahun berjalan.
 
 ---
 
@@ -484,8 +479,8 @@ Sebelum merilis atau menyelesaikan perubahan antarmuka, jalankan verifikasi beri
 ### 19.1 Visual & Estetika
 - [ ] Apakah tampilan mencerminkan studio teknologi modern yang profesional dan berkarakter?
 - [ ] Apakah proporsi aksen cyan/blue berada di rentang yang terkendali (5–10%) dan tidak mendominasi seluruh kanvas?
-- [ ] Apakah teks wordmark "BionoraDev" konsisten menggunakan font `Orbitron` Bold (700) dengan kata "Dev" berwarna biru?
-- [ ] Apakah seluruh judul section dan heading utama menggunakan font `Inter`?
+- [ ] Apakah teks wordmark "BionoraDev" konsisten menggunakan font `Space Grotesk` SemiBold (600) dengan kata "Dev" berwarna biru?
+- [ ] Apakah seluruh judul section dan heading utama menggunakan font `Space Grotesk`?
 - [ ] Apakah ritme vertikal dan ruang kosong terasa lapang dan nyaman?
 
 ### 19.2 Interaksi & Navigasi
@@ -511,7 +506,7 @@ Sebelum merilis atau menyelesaikan perubahan antarmuka, jalankan verifikasi beri
 Perubahan desain dan antarmuka pengguna dianggap **SELESAI (DONE)** hanya jika:
 1. Tampilan desktop dan mobile sama-sama terasa dirancang secara matang dan sengaja.
 2. Mode terang dan mode gelap memiliki kontras dan hierarki semantik yang teruji.
-3. Tipografi konsisten: khusus teks "BionoraDev" memakai `Orbitron` Bold 700; seluruh heading dan teks lainnya memakai `Inter`.
+3. Tipografi konsisten: heading dan wordmark memakai `Space Grotesk` SemiBold 600; body, navigasi, label, tombol, dan deskripsi memakai `Plus Jakarta Sans`.
 4. Aksen warna brand digunakan secara terukur dan presisi.
 5. Tombol floating WhatsApp 3D dan Back To Top 3D bekerja dinamis sesuai ketentuan scroll 1/3 layar.
 6. Tidak ada data palsu, testimoni karangan, atau klaim yang tidak berdasar.

@@ -130,7 +130,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             height="32"
             className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200"
           />
-          <div className="flex items-baseline font-brand tracking-wider text-xs sm:text-base md:text-lg font-bold whitespace-nowrap">
+          <div className="flex items-baseline font-heading tracking-wider text-xs sm:text-base md:text-lg font-semibold whitespace-nowrap">
             <span className="text-txt transition-colors">{siteConfig.brand.wordmarkFirst}</span>
             <span className="text-brand-blue ml-0.5">{siteConfig.brand.wordmarkSecond}</span>
           </div>
@@ -146,7 +146,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
                 className={cn(
-                  "group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs xl:text-sm font-brand font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue whitespace-nowrap border",
+                  "group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue whitespace-nowrap border",
                   isActive
                     ? "bg-brand-blue text-brand-white border-brand-blue shadow-sm shadow-brand-blue/25 font-bold dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white dark:shadow-[0_0_12px_rgba(0,180,255,0.35)]"
                     : "text-txt-muted border-transparent hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
@@ -270,7 +270,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                     key={link.id}
                     onClick={() => handleNavClick(link.id)}
                     className={cn(
-                      "group flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-brand font-semibold tracking-wide transition-all text-left border",
+                      "group flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all text-left border",
                       isActive
                         ? "bg-brand-blue text-brand-white border-brand-blue font-bold shadow-sm dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white"
                         : "text-txt-muted border-transparent hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"

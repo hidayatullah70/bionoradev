@@ -47,11 +47,11 @@ export function Footer({ locale, t }) {
                 className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain shrink-0"
               />
               <div className="flex flex-col">
-                <div className="font-brand text-lg sm:text-xl font-bold tracking-wider whitespace-nowrap">
+                <div className="font-heading text-lg sm:text-xl font-semibold tracking-wider whitespace-nowrap">
                   <span className="text-txt">{siteConfig.brand.wordmarkFirst}</span>
                   <span className="text-brand-blue ml-0.5">{siteConfig.brand.wordmarkSecond}</span>
                 </div>
-                <span className="text-[10px] font-brand tracking-wider text-brand-blue uppercase font-bold">
+                <span className="text-[10px] tracking-wider text-brand-blue uppercase font-bold">
                   {siteConfig.brand.taglineUppercase}
                 </span>
               </div>
@@ -79,7 +79,7 @@ export function Footer({ locale, t }) {
 
           {/* Quick Nav Col */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-txt mb-4">
+            <h3 className="text-xs font-heading font-semibold uppercase tracking-wider text-txt mb-4">
               {t.footer.quickLinksTitle}
             </h3>
             <ul className="space-y-2.5">
@@ -98,7 +98,7 @@ export function Footer({ locale, t }) {
 
           {/* Services Col */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-txt mb-4">
+            <h3 className="text-xs font-heading font-semibold uppercase tracking-wider text-txt mb-4">
               {t.footer.servicesTitle}
             </h3>
             <ul className="space-y-2.5">
@@ -117,7 +117,7 @@ export function Footer({ locale, t }) {
 
           {/* Contact Col */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-txt mb-4">
+            <h3 className="text-xs font-heading font-semibold uppercase tracking-wider text-txt mb-4">
               {t.footer.contactTitle}
             </h3>
             <div className="space-y-3 text-sm text-txt-muted">
@@ -141,7 +141,7 @@ export function Footer({ locale, t }) {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-txt-muted">
           <p>
             © {currentYear}{" "}
-            <span className="font-brand font-bold text-txt">
+            <span className="font-semibold text-txt">
               {siteConfig.brand.wordmarkFirst}
               <span className="text-brand-blue">{siteConfig.brand.wordmarkSecond}</span>
             </span>

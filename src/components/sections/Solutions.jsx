@@ -55,7 +55,7 @@ export function Solutions({ locale, t }) {
                     <div className="p-2.5 rounded-xl bg-surface-muted border border-border">
                       {solutionIcons[idx]}
                     </div>
-                    <h3 className="text-base font-bold text-txt">
+                    <h3 className="text-base font-heading font-semibold text-txt">
                       {item.solution}
                     </h3>
                   </div>

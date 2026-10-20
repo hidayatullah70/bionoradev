@@ -26,7 +26,7 @@ export function CapabilityBar({ t }) {
                 {icons[idx]}
               </div>
               <div>
-                <h3 className="text-sm font-brand font-bold text-txt group-hover:text-accent transition-colors">
+                <h3 className="text-sm font-heading font-semibold text-txt group-hover:text-accent transition-colors">
                   {item.title}
                 </h3>
                 <p className="mt-1 text-xs text-txt-muted leading-relaxed">

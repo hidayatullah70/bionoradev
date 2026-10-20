@@ -19,7 +19,7 @@ export function WhyBionoraDev({ t }) {
               {t.why.badge}
             </Badge>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-txt tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-semibold text-txt tracking-tight leading-tight">
               {t.why.title}
             </h2>
 
@@ -55,13 +55,13 @@ export function WhyBionoraDev({ t }) {
                 className="py-7 first:pt-0 last:pb-0 flex items-start gap-5 sm:gap-6 group"
               >
                 {/* Principle Number */}
-                <span className="font-brand text-xl sm:text-2xl font-bold text-brand-blue shrink-0 pt-0.5">
+                <span className="font-heading text-xl sm:text-2xl font-semibold text-brand-blue shrink-0 pt-0.5">
                   {numbers[idx] || `0${idx + 1}`}
                 </span>
 
                 {/* Principle Body */}
                 <div className="flex-1">
-                  <h3 className="text-lg sm:text-xl font-bold text-txt group-hover:text-accent transition-colors mb-2">
+                  <h3 className="text-lg sm:text-xl font-heading font-semibold text-txt group-hover:text-accent transition-colors mb-2">
                     {card.title}
                   </h3>
                   <p className="text-sm text-txt-muted leading-relaxed">

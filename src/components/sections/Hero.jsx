@@ -36,13 +36,13 @@ export function Hero({ locale, t }) {
             {/* Top Badge (Kicker from bionoraDevUI.jpeg) */}
             <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface/80 border border-brand-blue/30 backdrop-blur-md shadow-sm">
               <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
-              <span className="text-xs font-brand font-bold tracking-wider text-txt">
+              <span className="text-xs font-bold tracking-wider text-txt">
                 {t.hero.badge}
               </span>
             </div>
 
             {/* Single H1 for SEO with Brand Accent (bionoraDevUI.jpeg) */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-brand font-extrabold tracking-tight text-txt leading-[1.15]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-semibold tracking-tight text-txt leading-[1.15]">
               {t.hero.headlineLine1} <br />
               <span className="brand-gradient-text">{t.hero.headlineLine2}</span>
             </h1>
@@ -115,7 +115,7 @@ export function Hero({ locale, t }) {
                     <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
                     <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
                   </div>
-                  <div className="font-mono text-[11px] bg-bg/80 px-4 py-0.5 rounded-md border border-border text-txt-muted truncate max-w-[200px]">
+                <div className="text-[11px] bg-bg/80 px-4 py-0.5 rounded-md border border-border text-txt-muted truncate max-w-[200px]">
                     https://bionoradev.com/app
                   </div>
                   <div className="w-4" />
@@ -131,7 +131,7 @@ export function Hero({ locale, t }) {
                           <Code2 className="w-5 h-5" />
                         </div>
                         <div>
-                          <h3 className="font-brand font-bold text-sm sm:text-base text-txt group-hover:text-brand-blue transition-colors">
+                          <h3 className="font-heading font-semibold text-sm sm:text-base text-txt group-hover:text-brand-blue transition-colors">
                             Web Development
                           </h3>
                           <p className="text-xs text-txt-muted mt-0.5 leading-relaxed">
@@ -146,7 +146,7 @@ export function Hero({ locale, t }) {
                     <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-border/60">
                       <button
                         onClick={() => scrollToSection('services')}
-                        className="inline-flex items-center gap-1.5 text-xs font-brand font-bold text-brand-blue hover:text-brand-cyan transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-cyan transition-colors"
                       >
                         <span>{locale === 'id' ? 'Selengkapnya' : 'Learn More'}</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -175,7 +175,7 @@ export function Hero({ locale, t }) {
                     <div className="p-3.5 rounded-xl bg-surface border border-border flex flex-col justify-between">
                       <span className="text-xs text-txt-muted">{t.hero.mockup.activeUsers}</span>
                       <div className="mt-2 flex items-baseline justify-between">
-                        <span className="text-xl font-brand font-bold text-txt">14,280</span>
+                        <span className="text-xl font-semibold text-txt">14,280</span>
                         <span className="text-xs font-semibold text-emerald-400 flex items-center gap-0.5">
                           <TrendingUp className="w-3 h-3" />
                           {t.hero.mockup.weeklyGrowth}
@@ -186,8 +186,8 @@ export function Hero({ locale, t }) {
                     <div className="p-3.5 rounded-xl bg-surface border border-border flex flex-col justify-between">
                       <span className="text-xs text-txt-muted">{t.hero.mockup.conversionRate}</span>
                       <div className="mt-2 flex items-baseline justify-between">
-                        <span className="text-xl font-brand font-bold text-brand-cyan">{t.hero.mockup.conversionVal}</span>
-                        <Badge variant="cyan" className="text-[10px] px-1.5 py-0 font-brand">High</Badge>
+                        <span className="text-xl font-semibold text-brand-cyan">{t.hero.mockup.conversionVal}</span>
+                        <Badge variant="cyan" className="text-[10px] px-1.5 py-0">High</Badge>
                       </div>
                     </div>
                   </div>
@@ -199,11 +199,11 @@ export function Hero({ locale, t }) {
                         <WhatsAppIcon3D className="w-5 h-5" size={20} />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-xs font-brand font-bold text-txt">WhatsApp Lead Sync</span>
+                        <span className="text-xs font-bold text-txt">WhatsApp Lead Sync</span>
                         <span className="text-[10px] text-txt-muted">{t.hero.mockup.fastResponse}</span>
                       </div>
                     </div>
-                    <Badge variant="cyan" className="text-[10px] font-brand">Connected</Badge>
+                    <Badge variant="cyan" className="text-[10px]">Connected</Badge>
                   </div>
                 </div>
               </div>
@@ -214,7 +214,7 @@ export function Hero({ locale, t }) {
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="font-brand text-xs font-bold text-txt tracking-wide">
+                  <div className="font-heading text-xs font-semibold text-txt tracking-wide">
                     Bionora<span className="text-brand-blue">Dev</span>
                   </div>
                   <div className="text-[10px] text-txt-muted">Fast & Modern Static Stack</div>

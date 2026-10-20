@@ -32,7 +32,7 @@ export function FinalCTA({ locale, t }) {
               {t.cta.badge}
             </Badge>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-txt tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-semibold text-txt tracking-tight leading-tight">
               {t.cta.title}
             </h2>
 

@@ -79,7 +79,7 @@ export function FAQ({ locale, t }) {
         {/* FAQ Bottom Helper / WhatsApp CTA */}
         <div className="mt-12 p-6 rounded-2xl bg-surface-muted/60 border border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div>
-            <h4 className="text-sm font-bold text-txt">
+            <h4 className="text-sm font-heading font-semibold text-txt">
               {t.faq.moreQuestions}
             </h4>
             <p className="text-xs text-txt-muted mt-0.5">

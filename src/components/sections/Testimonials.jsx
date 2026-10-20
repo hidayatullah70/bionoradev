@@ -26,7 +26,7 @@ export function Testimonials({ t }) {
           </div>
 
           <div className="max-w-xl">
-            <h3 className="text-lg font-bold text-txt mb-2">
+            <h3 className="text-lg font-heading font-semibold text-txt mb-2">
               {t.testimonials.placeholderNotice}
             </h3>
             <p className="text-xs sm:text-sm text-txt-muted leading-relaxed">

@@ -40,13 +40,13 @@ export function Process({ t }) {
                   <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-surface border-2 border-border group-hover:border-accent flex items-center justify-center shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-glow-cyan/20">
                     {stepIcons[idx]}
                   </div>
-                  <span className="absolute -top-2 -right-2 font-brand text-xs font-bold px-2 py-0.5 rounded-full bg-brand-blue text-white shadow-sm">
+                  <span className="absolute -top-2 -right-2 font-heading text-xs font-semibold px-2 py-0.5 rounded-full bg-brand-blue text-white shadow-sm">
                     {step.step}
                   </span>
                 </div>
 
                 {/* Step Content */}
-                <h3 className="text-base font-bold text-txt mb-2 group-hover:text-accent transition-colors">
+                <h3 className="text-base font-heading font-semibold text-txt mb-2 group-hover:text-accent transition-colors">
                   {step.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-txt-muted leading-relaxed">

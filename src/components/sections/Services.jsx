@@ -47,13 +47,13 @@ export function Services({ locale, t }) {
                     <div className="w-12 h-12 rounded-xl bg-surface-muted border border-border flex items-center justify-center group-hover:scale-105 transition-transform">
                       {serviceIcons[service.id]}
                     </div>
-                    <span className="font-mono text-2xl font-bold text-txt-muted/40 group-hover:text-accent/60 transition-colors">
+                    <span className="text-2xl font-bold text-txt-muted/40 group-hover:text-accent/60 transition-colors">
                       {service.number}
                     </span>
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-txt mb-3 group-hover:text-accent transition-colors">
+                  <h3 className="text-xl font-heading font-semibold text-txt mb-3 group-hover:text-accent transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-sm text-txt-muted leading-relaxed mb-6">

@@ -54,10 +54,10 @@ export function Pricing({ locale, t }) {
                 <div>
                   {/* Plan Header */}
                   <div className="mb-6">
-                    <h3 className="font-brand text-sm font-bold tracking-wider uppercase text-brand-blue mb-1">
+                    <h3 className="font-heading text-sm font-semibold tracking-wider uppercase text-brand-blue mb-1">
                       {plan.name[locale] || plan.name.id}
                     </h3>
-                    <div className="text-xl font-brand font-bold text-txt mb-2">
+                    <div className="text-xl font-heading font-semibold text-txt mb-2">
                       {plan.service[locale] || plan.service.id}
                     </div>
                     <p className="text-xs text-txt-muted min-h-[32px]">
@@ -68,7 +68,7 @@ export function Pricing({ locale, t }) {
                   {/* Price Row */}
                   <div className="py-6 border-y border-border mb-6">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl sm:text-4xl font-brand font-extrabold text-txt tracking-tight">
+                      <span className="text-3xl sm:text-4xl font-heading font-semibold text-txt tracking-tight">
                         {plan.price[locale] || plan.price.id}
                       </span>
                     </div>

@@ -22,7 +22,7 @@ export function SectionHeading({
           <Badge variant="gradient">{badge}</Badge>
         </div>
       )}
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-brand font-bold tracking-tight text-txt">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold tracking-tight text-txt">
         {title}
       </h2>
       {subtitle && (

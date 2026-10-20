@@ -13,7 +13,7 @@ export function Button({
   type = 'button',
   ...props
 }) {
-  const baseStyles = "inline-flex items-center justify-center font-brand font-bold tracking-wider transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:cursor-not-allowed select-none";
+  const baseStyles = "inline-flex items-center justify-center font-bold tracking-wider transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:cursor-not-allowed select-none";
 
   const variants = {
     primary: "bg-gradient-to-r from-brand-blue to-brand-deep-blue text-white rounded-full shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/45 hover:brightness-110 active:scale-[0.98]",

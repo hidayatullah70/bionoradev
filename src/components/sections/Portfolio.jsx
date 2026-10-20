@@ -44,7 +44,7 @@ export function Portfolio({ locale, t }) {
             <button
               key={tab.id}
               onClick={() => setSelectedFilter(tab.id)}
-              className={`px-4 py-2 text-xs sm:text-sm font-brand font-bold rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue ${
                 selectedFilter === tab.id
                   ? 'bg-brand-blue text-white shadow-md shadow-brand-blue/25'
                   : 'bg-surface-muted text-txt-muted hover:text-txt hover:bg-surface border border-border hover:border-brand-blue'
@@ -73,7 +73,7 @@ export function Portfolio({ locale, t }) {
                   >
                     {/* Top Row: Category & Status Badge */}
                     <div className="flex items-center justify-between z-10">
-                      <span className="text-xs font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-bg/80 backdrop-blur-md border border-border text-txt">
+                      <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-bg/80 backdrop-blur-md border border-border text-txt">
                         {t.portfolio.filterLabels[project.category] || project.category}
                       </span>
 
@@ -95,14 +95,14 @@ export function Portfolio({ locale, t }) {
 
                     {/* Mockup Visual Element */}
                     <div className="self-center my-auto flex flex-col items-center justify-center text-center p-4 bg-surface/85 backdrop-blur-md rounded-xl border border-border/70 shadow-lg max-w-xs transition-all group-hover:border-accent/40">
-                      <div className="text-base font-brand font-bold text-txt mb-1">
+                      <div className="text-base font-heading font-semibold text-txt mb-1">
                         {project.name}
                       </div>
                       <div className="text-[11px] text-accent font-medium mb-1">
                         {project.stats[locale] || project.stats.id}
                       </div>
                       {project.domain && (
-                        <span className="text-[10px] font-mono text-txt-muted flex items-center gap-1.5 mt-0.5">
+                        <span className="text-[10px] text-txt-muted flex items-center gap-1.5 mt-0.5">
                           <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                           <span>{project.domain}</span>
                         </span>
@@ -114,7 +114,7 @@ export function Portfolio({ locale, t }) {
                       {project.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded bg-bg/70 backdrop-blur-sm border border-border text-txt-muted"
+                          className="text-[10px] px-2 py-0.5 rounded bg-bg/70 backdrop-blur-sm border border-border text-txt-muted"
                         >
                           {tech}
                         </span>
@@ -125,7 +125,7 @@ export function Portfolio({ locale, t }) {
                   {/* Project Meta */}
                   <div className="mb-4">
                     <div className="flex items-baseline justify-between mb-1 gap-2 flex-wrap">
-                      <h3 className="text-lg sm:text-xl font-bold text-txt group-hover:text-accent transition-colors">
+                      <h3 className="text-lg sm:text-xl font-heading font-semibold text-txt group-hover:text-accent transition-colors">
                         {project.name}
                       </h3>
                       <span className="text-xs text-txt-muted italic">
@@ -143,7 +143,7 @@ export function Portfolio({ locale, t }) {
                 <div className="pt-4 border-t border-border flex items-center justify-between gap-2 flex-wrap">
                   <div className="flex items-center gap-1.5 text-xs text-txt-muted">
                     <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                    <span className="font-mono text-[11px] text-txt-muted truncate max-w-[120px] sm:max-w-[150px]">
+                    <span className="text-[11px] text-txt-muted truncate max-w-[120px] sm:max-w-[150px]">
                       {project.domain || (isConcept ? "Konsep Desain UI" : "Live Deployment")}
                     </span>
                   </div>
@@ -208,12 +208,12 @@ export function Portfolio({ locale, t }) {
                   ? t.portfolio.labels.demoBadge
                   : t.portfolio.labels.conceptBadge}
               </Badge>
-              <span className="text-xs text-txt-muted uppercase font-mono">
+              <span className="text-xs text-txt-muted uppercase">
                 {t.portfolio.filterLabels[activeModalProject.category] || activeModalProject.category}
               </span>
             </div>
 
-            <h3 className="text-2xl font-bold text-txt mb-1">
+            <h3 className="text-2xl font-heading font-semibold text-txt mb-1">
               {activeModalProject.name}
             </h3>
             <p className="text-xs text-accent font-medium mb-4">
@@ -229,7 +229,7 @@ export function Portfolio({ locale, t }) {
               <div className="mb-5 p-3 rounded-xl bg-surface-muted/60 border border-border flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-xs truncate">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                  <span className="text-txt-muted font-mono truncate">{activeModalProject.url}</span>
+                  <span className="text-txt-muted truncate">{activeModalProject.url}</span>
                 </div>
                 <Button
                   href={activeModalProject.url}
@@ -253,7 +253,7 @@ export function Portfolio({ locale, t }) {
                 {activeModalProject.technologies.map((tech, idx) => (
                   <span
                     key={idx}
-                    className="text-xs px-2.5 py-1 rounded-md bg-bg border border-border text-txt font-mono"
+                    className="text-xs px-2.5 py-1 rounded-md bg-bg border border-border text-txt"
                   >
                     {tech}
                   </span>
