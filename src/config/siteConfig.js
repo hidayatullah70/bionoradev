@@ -13,6 +13,7 @@ export const siteConfig = {
     taglineBullets: "Web Development for a Better Tomorrow",
     foundedYear: 2026,
     logo: "/assets/logo/logoAja.png",
+    websiteUrl: "https://bionoradev.netlify.app/",
   },
   contact: {
     whatsappNumber: "6281384224733",

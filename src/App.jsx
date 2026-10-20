@@ -29,7 +29,7 @@ export default function App() {
       </div>
 
       {/* Footer */}
-      <Footer locale={locale} t={t} />
+      <Footer locale={locale} t={t} theme={theme} />
 
       {/* Accessible Floating WhatsApp Conversion Widget */}
       <FloatingWhatsApp locale={locale} t={t} />

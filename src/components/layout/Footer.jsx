@@ -4,12 +4,12 @@ import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 import { WhatsAppIcon3D } from '../ui/WhatsAppIcon3D';
 import { SocialLinks } from '../ui/SocialLinks';
+import { FooterCredit } from '../ui/FooterCredit';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
 import { scrollToSection } from '../../lib/utils';
 import { siteConfig } from '../../config/siteConfig';
 
-export function Footer({ locale, t }) {
-  const currentYear = new Date().getFullYear();
+export function Footer({ locale, t, theme = 'dark' }) {
   const whatsAppUrl = buildWhatsAppUrl({ locale });
 
   const navLinks = [
@@ -139,14 +139,7 @@ export function Footer({ locale, t }) {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-txt-muted">
-          <p>
-            © {currentYear}{" "}
-            <span className="font-semibold text-txt">
-              {siteConfig.brand.wordmarkFirst}
-              <span className="text-brand-blue">{siteConfig.brand.wordmarkSecond}</span>
-            </span>
-            . {t.footer.rights}
-          </p>
+          <FooterCredit variant={theme === 'light' ? 'light' : 'dark'} />
           <p className="text-center sm:text-right text-txt-muted/70">
             {siteConfig.brand.taglineBullets}
           </p>
