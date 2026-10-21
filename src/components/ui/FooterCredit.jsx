@@ -1,31 +1,28 @@
+import React from 'react';
 import { siteConfig } from '../../config/siteConfig';
 
 export function FooterCredit({ variant = 'dark' }) {
-  const year = new Date().getFullYear();
-  const isDark = variant === 'dark';
+  const currentYear = new Date().getFullYear();
 
   return (
-    <p
-      className={`text-sm flex flex-wrap items-center justify-center gap-x-1 ${
-        isDark ? 'text-white' : 'text-gray-600'
-      }`}
-    >
-      <span>© {year}</span>
+    <p className="text-xs sm:text-sm font-medium text-txt-muted flex flex-wrap items-center justify-center sm:justify-start gap-x-1">
+      <span>Copyright © {currentYear}</span>
       <a
-        href={siteConfig.brand.websiteUrl}
+        href={siteConfig.brand.websiteUrl || '#'}
         target="_blank"
-        rel="noreferrer"
-        className="inline-flex hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 rounded-sm transition-opacity"
+        rel="noopener noreferrer"
+        className="inline-flex items-baseline font-semibold group transition-all duration-200 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-0.5"
+        title="BionoraDev Official Website"
+        aria-label="BionoraDev Website"
       >
-        <span className={isDark ? 'text-white' : 'text-gray-600'}>bionora</span>
-        <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-500'} font-bold`}>Dev
+        <span className="text-txt transition-colors group-hover:opacity-80">
+          {siteConfig.brand.wordmarkFirst || 'Bionora'}
+        </span>
+        <span className="text-brand-blue dark:text-brand-cyan font-bold transition-colors group-hover:opacity-80">
+          {siteConfig.brand.wordmarkSecond || 'Dev'}
         </span>
       </a>
-      <span>. All rights reserved. Made with</span>
-      <span className={`${isDark ? 'text-cyan-400' : 'text-cyan-500'} mx-1`}>
-        💙
-      </span>
-      <span>in Indonesia</span>
+      <span>- All Rights Reserved</span>
     </p>
   );
 }

@@ -107,7 +107,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           scrolled && "shadow-2xl dark:bg-brand-ink/90 bg-surface/95 dark:border-white/15 border-border"
         )}
       >
-        {/* Brand Logo & Wordmark */}
+        {/* Brand Logo */}
         <a
           href="#"
           onClick={(e) => {
@@ -116,24 +116,29 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             setActiveSection('');
           }}
           className={cn(
-            "flex items-center gap-1.5 sm:gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full pl-1 sm:pl-1.5 pr-2 sm:pr-2.5 py-0.5 sm:py-1 transition-all border shrink-0 min-w-0",
+            "flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 transition-all border shrink-0 min-w-0",
             activeSection === ''
-              ? "bg-surface-muted/90 dark:bg-brand-blue/20 shadow-sm border-border/50 dark:border-brand-blue"
-              : "hover:border-brand-blue hover:bg-surface-muted/50 dark:hover:border-brand-blue dark:hover:bg-white/5 border-transparent"
+              ? "bg-surface-muted/90 dark:bg-brand-blue/15 shadow-sm border-border/50 dark:border-brand-blue/30"
+              : "hover:border-brand-blue hover:bg-surface-muted/50 dark:hover:border-brand-blue/40 dark:hover:bg-white/5 border-transparent"
           )}
           aria-label="BionoraDev Home"
         >
+          {/* Light Mode Logo */}
           <img
-            src={siteConfig.brand.logo || "/assets/logo/logoAja.png"}
+            src={siteConfig.brand.logoLight || "/assets/logo/logoLight.png"}
             alt="BionoraDev Logo"
-            width="32"
-            height="32"
-            className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0 group-hover:scale-105 transition-transform duration-200"
+            width="130"
+            height="35"
+            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 block dark:hidden group-hover:scale-[1.02] transition-transform duration-200"
           />
-          <div className="flex items-baseline font-heading tracking-wider text-xs sm:text-base md:text-lg font-semibold whitespace-nowrap">
-            <span className="text-txt transition-colors">{siteConfig.brand.wordmarkFirst}</span>
-            <span className="text-brand-blue ml-0.5">{siteConfig.brand.wordmarkSecond}</span>
-          </div>
+          {/* Dark Mode Logo */}
+          <img
+            src={siteConfig.brand.logoDark || "/assets/logo/logoDark.png"}
+            alt="BionoraDev Logo"
+            width="130"
+            height="35"
+            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 hidden dark:block group-hover:scale-[1.02] transition-transform duration-200"
+          />
         </a>
 
         {/* Desktop Navigation Links (Segmented Pill Style) */}
@@ -148,7 +153,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 className={cn(
                   "group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue whitespace-nowrap border",
                   isActive
-                    ? "bg-brand-blue text-brand-white border-brand-blue shadow-sm shadow-brand-blue/25 font-bold dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white dark:shadow-[0_0_12px_rgba(0,180,255,0.35)]"
+                    ? "bg-brand-blue text-brand-white border-brand-blue font-bold shadow-sm shadow-brand-blue/30 dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white dark:shadow-[0_0_12px_rgba(0,180,255,0.4)]"
                     : "text-txt-muted border-transparent hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
                 )}
               >

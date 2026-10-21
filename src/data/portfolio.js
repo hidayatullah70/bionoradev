@@ -104,4 +104,29 @@ export const portfolioData = [
     },
     mockupType: "corporate-dashboard",
   },
+  {
+    id: "dwi-rajendra-samudra",
+    name: "PT Dwi Rajendra Samudra",
+    url: "https://dwirajendrasamudra.vercel.app/",
+    domain: "dwirajendrasamudra.vercel.app",
+    industry: {
+      id: "Badan Usaha Jasa Pengamanan (BUJP) & Outsourcing Tenaga Kerja",
+      en: "Accredited Security Services & Professional Manpower Outsourcing",
+    },
+    category: "dashboard",
+    categories: ["dashboard", "website", "landing-page", "web-app"],
+    description: {
+      id: "Website profil korporat resmi dan sistem dashboard operasional terpadu untuk Badan Usaha Jasa Pengamanan (BUJP) serta outsourcing tenaga kerja. Mengintegrasikan landing page publik dengan dashboard manajemen personel, arsitektur backend, database terpusat, dan REST API (dalam tahap pengembangan aktif) untuk pemantauan penempatan satpam, rekrutmen alih daya, serta manajemen kontrak kemitraan.",
+      en: "Official corporate website and integrated operational dashboard platform for an accredited security services firm (BUJP) and manpower outsourcing provider. Combines a public-facing landing page with an operations dashboard, backend architecture, centralized database, and REST APIs (in active development) for security deployment monitoring, workforce roster, and corporate partnership contracts.",
+    },
+    technologies: ["React / Vite", "Tailwind CSS", "REST API", "Database", "Operations Dashboard"],
+    status: "client",
+    gradient: "from-cyan-600/30 via-blue-600/20 to-slate-900/30",
+    badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
+    stats: {
+      id: "Landing Page & Dashboard Operasional (In-Dev)",
+      en: "Landing Page & Operations Dashboard (In-Dev)",
+    },
+    mockupType: "corporate-dashboard",
+  },
 ];

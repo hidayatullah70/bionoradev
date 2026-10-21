@@ -38,24 +38,32 @@ export function Footer({ locale, t, theme = 'dark' }) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 pb-12 border-b border-border">
           {/* Brand Col */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            <div className="flex items-center gap-2.5 sm:gap-3">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="inline-flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-lg w-fit"
+              aria-label="BionoraDev Home"
+            >
+              {/* Light Mode Logo */}
               <img
-                src={siteConfig.brand.logo || "/assets/logo/logoAja.png"}
+                src={siteConfig.brand.logoLight || "/assets/logo/logoLight.png"}
                 alt="BionoraDev Logo"
-                width="40"
-                height="40"
-                className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 object-contain shrink-0"
+                width="180"
+                height="48"
+                className="h-8 sm:h-9 md:h-10 w-auto max-w-[160px] sm:max-w-[190px] md:max-w-[220px] object-contain shrink-0 block dark:hidden group-hover:opacity-90 transition-opacity"
               />
-              <div className="flex flex-col">
-                <div className="font-heading text-lg sm:text-xl font-semibold tracking-wider whitespace-nowrap">
-                  <span className="text-txt">{siteConfig.brand.wordmarkFirst}</span>
-                  <span className="text-brand-blue ml-0.5">{siteConfig.brand.wordmarkSecond}</span>
-                </div>
-                <span className="text-[10px] tracking-wider text-brand-blue uppercase font-bold">
-                  {siteConfig.brand.taglineUppercase}
-                </span>
-              </div>
-            </div>
+              {/* Dark Mode Logo */}
+              <img
+                src={siteConfig.brand.logoDark || "/assets/logo/logoDark.png"}
+                alt="BionoraDev Logo"
+                width="180"
+                height="48"
+                className="h-8 sm:h-9 md:h-10 w-auto max-w-[160px] sm:max-w-[190px] md:max-w-[220px] object-contain shrink-0 hidden dark:block group-hover:opacity-90 transition-opacity"
+              />
+            </a>
 
             <p className="text-sm text-txt-muted max-w-sm leading-relaxed">
               {t.footer.description}
