@@ -1,4 +1,5 @@
 import React from 'react';
+import { FadeUp } from '../components/ui/FadeUp';
 import { Hero } from '../components/sections/Hero';
 import { CapabilityBar } from '../components/sections/CapabilityBar';
 import { Services } from '../components/sections/Services';
@@ -15,18 +16,42 @@ import { FinalCTA } from '../components/sections/FinalCTA';
 export function Home({ locale, t }) {
   return (
     <main className="min-h-screen">
-      <Hero locale={locale} t={t} />
-      <CapabilityBar t={t} />
-      <Services locale={locale} t={t} />
-      <Solutions locale={locale} t={t} />
-      <Portfolio locale={locale} t={t} />
-      <TechStack t={t} />
-      <Process t={t} />
-      <Pricing locale={locale} t={t} />
-      <WhyBionoraDev t={t} />
-      <Testimonials t={t} />
-      <FAQ locale={locale} t={t} />
-      <FinalCTA locale={locale} t={t} />
+      <FadeUp>
+        <Hero locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <CapabilityBar t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Services locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Solutions locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Portfolio locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <TechStack t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Process t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Pricing locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <WhyBionoraDev t={t} />
+      </FadeUp>
+      <FadeUp>
+        <Testimonials t={t} />
+      </FadeUp>
+      <FadeUp>
+        <FAQ locale={locale} t={t} />
+      </FadeUp>
+      <FadeUp>
+        <FinalCTA locale={locale} t={t} />
+      </FadeUp>
     </main>
   );
 }

@@ -18,7 +18,7 @@ export const messages = {
       badge: "BUILD · DEVELOP · INNOVATE",
       headlineLine1: "Usaha Sudah Jalan,",
       headlineLine2: "Saatnya Biar Makin Dikenal.",
-      subheadline: "Punya usaha tapi belum punya website? BionoraDev bantu buatkan landing page modern, menarik, dan profesional untuk memperkenalkan bisnis Anda kepada lebih banyak pelanggan — dengan harga yang tetap ramah di kantong.",
+      subheadline: "Punya usaha tapi belum punya website? BionoraDev bantu buatkan landing page modern, menarik, dan profesional untuk memperkenalkan bisnis Anda kepada lebih banyak pelanggan dengan harga yang tetap ramah di kantong.",
       checklist: [
         "Terhubung WhatsApp",
         "Terhubung Media Sosial",

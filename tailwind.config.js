@@ -49,6 +49,15 @@ export default {
         'card-light': '0 4px 20px -2px rgba(11, 18, 32, 0.05)',
         'card-dark': '0 4px 20px -2px rgba(0, 0, 0, 0.5)',
       },
+      keyframes: {
+        kenburns: {
+          '0%': { transform: 'scale(1.0)' },
+          '100%': { transform: 'scale(1.15)' },
+        },
+      },
+      animation: {
+        kenburns: 'kenburns 20s ease-in-out infinite alternate',
+      },
     },
   },
   plugins: [],
