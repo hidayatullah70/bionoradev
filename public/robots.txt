@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bionora.my.id/sitemap.xml
