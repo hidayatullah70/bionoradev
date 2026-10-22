@@ -25,7 +25,7 @@ export const messages = {
         "Mobile-Friendly",
         "Ramah Budget UMKM",
       ],
-      taglineBullets: "Web Development for a Better Tomorrow",
+      taglineBullets: "Jasa Bikin Website Murah Untuk UMKM",
       ctaPrimary: "Konsultasi Gratis via WhatsApp",
       ctaSecondary: "Lihat Contoh Landing Page",
       capabilityBullets: [
@@ -319,7 +319,7 @@ export const messages = {
         "Mobile-Friendly",
         "Budget-Friendly for SMBs",
       ],
-      taglineBullets: "Web Development for a Better Tomorrow",
+      taglineBullets: "Affordable & Professional Website for SMEs",
       ctaPrimary: "Free Consultation via WhatsApp",
       ctaSecondary: "View Landing Page Examples",
       capabilityBullets: [
