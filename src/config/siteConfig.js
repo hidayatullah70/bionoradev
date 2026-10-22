@@ -76,8 +76,8 @@ export const siteConfig = {
   },
   seo: {
     title: {
-      id: "BionoraDev — Web Development for a Better Tomorrow",
-      en: "BionoraDev — Web Development for a Better Tomorrow",
+      id: "BionoraDev — Jasa Bikin Website Murah Untuk UMKM Mulai 500rb",
+en: "BionoraDev — Affordable Website Service for SMEs Starting at 500k",
     },
     description: {
       id: "Solusi web modern untuk bisnis Anda. Dari website profesional hingga aplikasi web yang scalable dan siap masa depan. Web Development for a Better Tomorrow.",
