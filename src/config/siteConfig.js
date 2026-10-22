@@ -15,7 +15,7 @@ export const siteConfig = {
     logo: "/assets/logo/logoDark.png",
     logoLight: "/assets/logo/logoLight.png",
     logoDark: "/assets/logo/logoDark.png",
-    websiteUrl: "https://bionoradev.netlify.app/",
+    websiteUrl: "https://bionora.my.id/",
     philosophy: {
       letterB: "Melambangkan Bionora (gabungan nama anak dan istri), juga merepresentasikan fondasi yang kuat, stabil, dan berorientasi pada masa depan.",
       codeSymbol: "Mewakili dunia teknologi, pengembangan web, dan semangat belajar yang terus berkembang.",

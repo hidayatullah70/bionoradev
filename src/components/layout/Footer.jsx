@@ -129,14 +129,14 @@ export function Footer({ locale, t, theme = 'dark' }) {
               {t.footer.contactTitle}
             </h3>
             <div className="space-y-3 text-sm text-txt-muted">
-              <p className="flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <WhatsAppIcon3D className="w-4 h-4 shrink-0" size={16} />
                 <span>+62 813-8422-4733</span>
-              </p>
-              <p className="flex items-center gap-2">
+              </div>
+              <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-accent shrink-0" />
                 <span>Indonesia (Online Support)</span>
-              </p>
+              </div>
               <div className="pt-2 flex items-center gap-1.5 text-xs text-txt-muted/80">
                 <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
                 <span>{t.footer.truthNote}</span>

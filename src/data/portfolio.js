@@ -55,6 +55,31 @@ export const portfolioData = [
     mockupType: "desktop-website",
   },
   {
+    id: "crib-society",
+    name: "Crib Society Coffee",
+    url: "https://cribsociety.vercel.app/",
+    domain: "cribsociety.vercel.app",
+    industry: {
+      id: "Kafe, Specialty Coffee & Point of Sale (POS)",
+      en: "Specialty Coffee Cafe & Counter POS System",
+    },
+    category: "web-app",
+    categories: ["web-app", "dashboard", "website"],
+    description: {
+      id: "Aplikasi web modern untuk kedai kopi dan kafe yang mengintegrasikan website profil interaktif dengan sistem Point of Sale (POS) counter kasir. Mempermudah pemesanan menu kopi specialty dan makanan di meja kasir, pencatatan transaksi pesanan secara real-time, kalkulasi total belanja otomatis, serta struk digital yang efisien.",
+      en: "Modern cafe web application seamlessly integrating an interactive coffeehouse web presence with a counter Point of Sale (POS) cashier system. Features specialty coffee and food menu management, real-time counter order processing, automated bill calculations, and streamlined digital order workflows.",
+    },
+    technologies: ["React", "Tailwind CSS", "POS System", "Interactive Menu", "Vercel"],
+    status: "client",
+    gradient: "from-amber-600/30 via-orange-600/20 to-neutral-900/40",
+    badgeColor: "bg-amber-500/10 text-amber-400 border-amber-500/20",
+    stats: {
+      id: "Sistem Kasir Counter POS & Menu Kafe Interaktif",
+      en: "Counter POS System & Interactive Cafe Menu",
+    },
+    mockupType: "pos-dashboard",
+  },
+  {
     id: "rumah-berubat",
     name: "Rumah Berubat — Terapi Syaraf Kejepit",
     url: "https://rumah-berubat.vercel.app/",

@@ -59,7 +59,6 @@ export const messages = {
       items: [
         {
           id: "landing-page",
-          number: "01",
           title: "Landing Page",
           description: "Halaman web berfokus konversi tinggi untuk peluncuran produk, promosi iklan, dan perolehan prospek cepat.",
           features: [
@@ -73,7 +72,6 @@ export const messages = {
         },
         {
           id: "business-website",
-          number: "02",
           title: "Business Website",
           description: "Website profil perusahaan profesional untuk membangun kredibilitas merek dan menjangkau calon klien secara luas.",
           features: [
@@ -87,7 +85,6 @@ export const messages = {
         },
         {
           id: "web-app",
-          number: "03",
           title: "Web Application",
           description: "Aplikasi web interaktif dengan alur logika khusus untuk digitalisasi layanan, pesanan, atau sistem pengguna Anda.",
           features: [
@@ -101,7 +98,6 @@ export const messages = {
         },
         {
           id: "web-dashboard",
-          number: "04",
           title: "Web Dashboard",
           description: "Panel kendali dan dashboard internal untuk memonitor metrik bisnis, manajemen inventaris, atau pelaporan tim.",
           features: [
@@ -357,7 +353,6 @@ export const messages = {
       items: [
         {
           id: "landing-page",
-          number: "01",
           title: "Landing Page",
           description: "High-converting web pages tailored for product launches, ad campaigns, and rapid lead acquisition.",
           features: [
@@ -371,7 +366,6 @@ export const messages = {
         },
         {
           id: "business-website",
-          number: "02",
           title: "Business Website",
           description: "Professional corporate websites to establish brand authority and connect with prospective clients.",
           features: [
@@ -385,7 +379,6 @@ export const messages = {
         },
         {
           id: "web-app",
-          number: "03",
           title: "Web Application",
           description: "Interactive web applications with tailored business logic to digitize your services or workflows.",
           features: [
@@ -399,7 +392,6 @@ export const messages = {
         },
         {
           id: "web-dashboard",
-          number: "04",
           title: "Web Dashboard",
           description: "Internal control panels to monitor business KPIs, track inventory, and streamline team workflows.",
           features: [
