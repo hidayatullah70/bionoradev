@@ -29,11 +29,12 @@ export const messages = {
       ctaPrimary: "Konsultasi Gratis via WhatsApp",
       ctaSecondary: "Lihat Contoh Landing Page",
       capabilityBullets: [
-        { label: "Mobile-Friendly", desc: "Responsif di semua gadget" },
-        { label: "WhatsApp Ready", desc: "Langsung chat prospek" },
-        { label: "Desain Modern", desc: "Tampilan profesional & memikat" },
-        { label: "Ramah Budget", desc: "Investasi hemat hasil optimal" },
+      { label: "Mobile-Friendly", desc: "Bikin website murah yang responsif di semua gadget" },
+      { label: "WhatsApp Ready", desc: "Buat website murah langsung chat prospek via WA" },
+      { label: "Desain Modern", desc: "Jasa bikin website murah tapi tampilan profesional & memikat" },
+      { label: "Ramah Budget", desc: "Jasa buat website murah UMKM investasi hemat hasil optimal" },
       ],
+
       mockup: {
         activeUsers: "Pertumbuhan Trafik",
         weeklyGrowth: "+24.8%",
@@ -323,10 +324,10 @@ export const messages = {
       ctaPrimary: "Free Consultation via WhatsApp",
       ctaSecondary: "View Landing Page Examples",
       capabilityBullets: [
-        { label: "Mobile-Friendly", desc: "Optimized for all screens" },
-        { label: "WhatsApp Ready", desc: "Direct chat with leads" },
-        { label: "Modern Design", desc: "Professional & engaging look" },
-        { label: "Budget-Friendly", desc: "Smart value for businesses" },
+      { label: "Mobile-Friendly", desc: "Affordable website that is responsive on all devices" },
+      { label: "WhatsApp Ready", desc: "Professional website to chat prospects directly via WA" },
+      { label: "Modern Design", desc: "Affordable website service with professional & captivating look" },
+      { label: "Budget-Friendly", desc: "Affordable website for SMEs, low investment, optimal results" },
       ],
       mockup: {
         activeUsers: "Traffic Growth",
