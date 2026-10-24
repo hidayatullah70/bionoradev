@@ -234,29 +234,13 @@
   animation: radar-sweep 5s linear infinite;
 }
 
-/* Testimonial Marquee Slider (Smooth right-to-left movement) */
-@keyframes marquee-slider {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+/* Touch-Friendly Slider Utilities */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-.animate-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-slider 40s linear infinite;
-  will-change: transform;
-}
-
-.animate-marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.marquee-paused {
-  animation-play-state: paused !important;
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Accessibility: Respect Reduced Motion */
@@ -272,11 +256,6 @@
   
   .reveal-init {
     opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .animate-marquee-track {
-    animation: none !important;
     transform: none !important;
   }
 }
