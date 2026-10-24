@@ -116,28 +116,20 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             setActiveSection('');
           }}
           className={cn(
-            "flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 transition-all border shrink-0 min-w-0",
+            "flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-all border shrink-0 min-w-0 shadow-sm",
             activeSection === ''
-              ? "bg-surface-muted/90 dark:bg-brand-blue/15 shadow-sm border-border/50 dark:border-brand-blue/30"
-              : "hover:border-brand-blue hover:bg-surface-muted/50 dark:hover:border-brand-blue/40 dark:hover:bg-white/5 border-transparent"
+              ? "bg-brand-blue/15 border-brand-blue/30 shadow-sm shadow-brand-blue/10"
+              : "bg-white/5 border-white/10 hover:border-brand-blue/40 hover:bg-brand-blue/15"
           )}
           aria-label="BionoraDev Home"
         >
-          {/* Light Mode Logo */}
+          {/* Logo (Identical logoTransDark.png for both Light and Dark modes for crisp readability) */}
           <img
-            src={siteConfig.brand.logoLight || "/assets/logo/logoTransLightMode.png"}
+            src="/assets/logo/logoTransDark.png"
             alt="BionoraDev Logo"
             width="130"
             height="35"
-            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 block dark:hidden group-hover:scale-[1.02] transition-transform duration-200"
-          />
-          {/* Dark Mode Logo */}
-          <img
-            src={siteConfig.brand.logoDark || "/assets/logo/logoTransDarkMode.png"}
-            alt="BionoraDev Logo"
-            width="130"
-            height="35"
-            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 hidden dark:block group-hover:scale-[1.02] transition-transform duration-200"
+            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 group-hover:scale-[1.02] transition-transform duration-200"
           />
         </a>
 

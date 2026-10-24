@@ -54,7 +54,24 @@ export function Hero({ locale, t }) {
 
               {/* Subheadline - constrained max-w to prevent overlapping text on laptop */}
               <p className="mt-5 text-base sm:text-lg lg:text-xl text-slate-200 dark:text-txt-muted leading-relaxed max-w-lg lg:max-w-[460px] xl:max-w-[480px]">
-                {t.hero.subheadline}
+                {(() => {
+                  const parts = t.hero.subheadline.split('BionoraDev');
+                  if (parts.length > 1) {
+                    return (
+                      <>
+                        {parts[0]}
+                        <strong className="font-bold whitespace-nowrap">
+                          <span className="text-white">Bionora</span>
+                          <span className="text-brand-cyan bg-gradient-to-r from-brand-blue to-brand-cyan bg-clip-text text-transparent">
+                            Dev
+                          </span>
+                        </strong>
+                        {parts[1]}
+                      </>
+                    );
+                  }
+                  return t.hero.subheadline;
+                })()}
               </p>
 
               {/* Checklist Selling Points */}
@@ -125,7 +142,7 @@ export function Hero({ locale, t }) {
                     <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
                   </div>
                   <div className="text-[10px] bg-transparent px-2 py-0.5 rounded border border-white/15 dark:border-white/10 text-slate-300 dark:text-txt-muted font-mono truncate max-w-[170px]">
-                    https://bionoradev.com/app
+                    https://bionora.my.id/
                   </div>
                   <div className="w-3" />
                 </div>
