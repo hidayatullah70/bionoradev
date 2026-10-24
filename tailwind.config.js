@@ -51,12 +51,13 @@ export default {
       },
       keyframes: {
         kenburns: {
-          '0%': { transform: 'scale(1.0)' },
-          '100%': { transform: 'scale(1.15)' },
+          '0%': { transform: 'scale(1.02) translate3d(0, 0, 0)' },
+          '50%': { transform: 'scale(1.16) translate3d(-1.5%, -1%, 0)' },
+          '100%': { transform: 'scale(1.02) translate3d(0, 0, 0)' },
         },
       },
       animation: {
-        kenburns: 'kenburns 20s ease-in-out infinite alternate',
+        kenburns: 'kenburns 14s ease-in-out infinite',
       },
     },
   },

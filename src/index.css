@@ -243,7 +243,7 @@
   scrollbar-width: none;
 }
 
-/* Accessibility: Respect Reduced Motion */
+/* Accessibility: Respect Reduced Motion (preserves subtle ambient background) */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -257,5 +257,10 @@
   .reveal-init {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .animate-kenburns {
+    animation-duration: 18s !important;
+    animation-iteration-count: infinite !important;
   }
 }

@@ -28,7 +28,8 @@ export function Hero({ locale, t }) {
           src="/assets/hero/hero01.png"
           alt=""
           aria-hidden="true"
-          className="w-full h-screen min-h-full object-cover object-center lg:object-right animate-kenburns motion-reduce:animate-none"
+          className="w-full h-screen min-h-full object-cover object-center lg:object-right animate-kenburns will-change-transform"
+          style={{ transformOrigin: 'center center' }}
         />
       </div>
 
