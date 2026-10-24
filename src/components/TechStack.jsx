@@ -62,7 +62,7 @@ export function TechStack({ t }) {
   return (
     <section
       id="technology"
-      className="relative overflow-hidden border-y border-border bg-bg py-20 text-txt sm:py-28 dark:border-white/[0.06] dark:bg-[#080808] dark:text-white"
+      className="relative overflow-hidden border-y border-border bg-bg py-12 sm:py-20 lg:py-28 text-txt dark:border-white/[0.06] dark:bg-[#080808] dark:text-white"
     >
       <div
         aria-hidden="true"
@@ -70,42 +70,42 @@ export function TechStack({ t }) {
       />
 
       <Container className="relative z-10">
-        <div className="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface-muted px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.18em] text-txt-muted dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
+        <div className="mx-auto mb-8 sm:mb-12 lg:mb-16 max-w-3xl text-center">
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface-muted px-3 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-txt-muted dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
             <span className="text-brand-cyan" aria-hidden="true">●</span>
             <span>{technology.badge}</span>
           </div>
-          <h2 className="font-heading text-2xl font-semibold tracking-tight text-txt sm:text-3xl lg:text-4xl dark:text-white">
+          <h2 className="font-heading text-xl sm:text-2xl lg:text-4xl font-semibold tracking-tight text-txt dark:text-white">
             {technology.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-txt-muted sm:text-lg">
+          <p className="mx-auto mt-2.5 sm:mt-4 max-w-2xl text-xs sm:text-base leading-relaxed text-txt-muted">
             {technology.subtitle}
           </p>
         </div>
 
-        <div ref={revealRef} className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+        <div ref={revealRef} className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
           {techCategories.map((category) => (
             <article
               key={category.id}
-              className="rounded-[20px] border border-border bg-surface p-5 transition-colors duration-200 hover:border-accent/40 dark:border-white/[0.08] dark:bg-[#121212] dark:hover:border-white/[0.16]"
+              className="rounded-xl sm:rounded-[20px] border border-border bg-surface p-3.5 sm:p-5 transition-colors duration-200 hover:border-accent/40 dark:border-white/[0.08] dark:bg-[#121212] dark:hover:border-white/[0.16]"
             >
-              <h3 className="font-heading text-sm font-semibold tracking-wide text-txt dark:text-white">
+              <h3 className="font-heading text-xs sm:text-sm font-semibold tracking-wide text-txt dark:text-white">
                 {technology.categories[category.id]}
               </h3>
 
-              <ul className="mt-5 space-y-2.5">
+              <ul className="mt-3 sm:mt-5 space-y-1.5 sm:space-y-2.5">
                 {category.technologies.map((tech) => {
                   const Icon = tech.icon;
 
                   return (
                     <li key={tech.name}>
-                      <div className="group/item flex items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-sm text-txt-muted transition-colors duration-200 hover:bg-surface-muted hover:text-txt dark:hover:bg-white/[0.06] dark:hover:text-white">
+                      <div className="group/item flex items-center gap-2 sm:gap-3 rounded-lg sm:rounded-xl border border-transparent px-2 py-1.5 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-txt-muted transition-colors duration-200 hover:bg-surface-muted hover:text-txt dark:hover:bg-white/[0.06] dark:hover:text-white">
                         <Icon
                           aria-hidden="true"
-                          className={`h-5 w-5 shrink-0 transition-transform duration-200 group-hover/item:scale-110 ${tech.darkTone ? 'dark:brightness-0 dark:invert' : ''}`}
+                          className={`h-4 w-4 sm:h-5 sm:w-5 shrink-0 transition-transform duration-200 group-hover/item:scale-110 ${tech.darkTone ? 'dark:brightness-0 dark:invert' : ''}`}
                           style={{ color: tech.color }}
                         />
-                        <span>{tech.name}</span>
+                        <span className="truncate">{tech.name}</span>
                       </div>
                     </li>
                   );

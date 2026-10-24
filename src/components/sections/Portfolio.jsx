@@ -67,58 +67,73 @@ export function Portfolio({ locale, t }) {
                 className="flex flex-col justify-between overflow-hidden group border-border hover:border-accent/50 transition-all duration-300"
               >
                 <div>
-                  {/* Mockup Preview Surface */}
-                  <div
-                    className={`relative h-48 sm:h-56 rounded-xl bg-gradient-to-br ${project.gradient} border border-border/80 p-4 flex flex-col justify-between overflow-hidden mb-6 group-hover:scale-[1.01] transition-transform duration-300`}
-                  >
+                  {/* Mockup Preview Surface with Full Client Screenshot Background */}
+                  <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] rounded-xl overflow-hidden mb-5 border border-border/80 group-hover:border-accent/50 transition-all duration-300 bg-surface-muted shadow-sm">
+                    {/* Actual Client Screenshot */}
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={`${project.name} Screenshot`}
+                        loading="lazy"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className={`w-full h-full bg-gradient-to-br ${project.gradient}`} />
+                    )}
+
+                    {/* Gradient Overlays for High Text Contrast in Both Light & Dark Mode */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/55 pointer-events-none transition-opacity duration-300" />
+
                     {/* Top Row: Category & Status Badge */}
-                    <div className="flex items-center justify-between z-10">
-                      <span className="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-bg/80 backdrop-blur-md border border-border text-txt">
+                    <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
+                      <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-black/65 backdrop-blur-md border border-white/20 text-white shadow-sm">
                         {t.portfolio.filterLabels[project.category] || project.category}
                       </span>
 
-                      {/* Explicit Honest Badge per SOT */}
+                      {/* Status Badge */}
                       {isConcept ? (
-                        <Badge variant="cyan">
+                        <Badge variant="cyan" className="shadow-sm">
                           {t.portfolio.labels.conceptBadge}
                         </Badge>
                       ) : isDemo ? (
-                        <Badge variant="blue">
+                        <Badge variant="blue" className="shadow-sm">
                           {t.portfolio.labels.demoBadge}
                         </Badge>
                       ) : (
-                        <Badge variant="accent">
-                          {t.portfolio.labels.clientBadge}
-                        </Badge>
-                      )}
-                    </div>
-
-                    {/* Mockup Visual Element */}
-                    <div className="self-center my-auto flex flex-col items-center justify-center text-center p-4 bg-surface/85 backdrop-blur-md rounded-xl border border-border/70 shadow-lg max-w-xs transition-all group-hover:border-accent/40">
-                      <div className="text-base font-heading font-semibold text-txt mb-1">
-                        {project.name}
-                      </div>
-                      <div className="text-[11px] text-accent font-medium mb-1">
-                        {project.stats[locale] || project.stats.id}
-                      </div>
-                      {project.domain && (
-                        <span className="text-[10px] text-txt-muted flex items-center gap-1.5 mt-0.5">
-                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          <span>{project.domain}</span>
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-500/25 border border-emerald-400/40 text-emerald-300 backdrop-blur-md shadow-sm">
+                          <CheckCircle className="w-3 h-3 text-emerald-400" />
+                          <span>{t.portfolio.labels.clientBadge}</span>
                         </span>
                       )}
                     </div>
 
-                    {/* Technologies pills */}
-                    <div className="flex items-center gap-1.5 flex-wrap z-10">
-                      {project.technologies.map((tech, i) => (
-                        <span
-                          key={i}
-                          className="text-[10px] px-2 py-0.5 rounded bg-bg/70 backdrop-blur-sm border border-border text-txt-muted"
+                    {/* Bottom Bar inside Screenshot: Live Indicator & Highlight */}
+                    <div className="absolute bottom-3 inset-x-3 z-10 flex items-end justify-between gap-2">
+                      <div className="flex flex-col min-w-0 pr-2">
+                        <span className="text-xs font-semibold text-white drop-shadow-md truncate">
+                          {project.stats[locale] || project.stats.id}
+                        </span>
+                        {project.domain && (
+                          <span className="text-[11px] text-slate-300 drop-shadow flex items-center gap-1.5 mt-0.5">
+                            <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                            <span className="truncate">{project.domain}</span>
+                          </span>
+                        )}
+                      </div>
+
+                      {project.url && (
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-all group-hover:scale-105 shrink-0 shadow-sm"
+                          onClick={(e) => e.stopPropagation()}
+                          title={t.portfolio.labels.visitSite}
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          <span className="hidden xs:inline">{t.portfolio.labels.visitSite}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
                     </div>
                   </div>
 
@@ -128,7 +143,7 @@ export function Portfolio({ locale, t }) {
                       <h3 className="text-lg sm:text-xl font-heading font-semibold text-txt group-hover:text-accent transition-colors">
                         {project.name}
                       </h3>
-                      <span className="text-xs text-txt-muted italic">
+                      <span className="text-xs text-accent font-medium">
                         {project.industry[locale] || project.industry.id}
                       </span>
                     </div>
@@ -136,6 +151,18 @@ export function Portfolio({ locale, t }) {
                     <p className="text-xs sm:text-sm text-txt-muted leading-relaxed line-clamp-3 mt-2">
                       {project.description[locale] || project.description.id}
                     </p>
+
+                    {/* Technologies pills */}
+                    <div className="flex items-center gap-1.5 flex-wrap mt-3">
+                      {project.technologies.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-md bg-surface-muted border border-border text-txt-muted font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -219,6 +246,17 @@ export function Portfolio({ locale, t }) {
             <p className="text-xs text-accent font-medium mb-4">
               {activeModalProject.industry[locale] || activeModalProject.industry.id}
             </p>
+
+            {/* Modal Screenshot Preview */}
+            {activeModalProject.image && (
+              <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] rounded-xl overflow-hidden border border-border mb-4 bg-surface-muted shadow-sm">
+                <img
+                  src={activeModalProject.image}
+                  alt={`${activeModalProject.name} Full Preview`}
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+            )}
 
             <div className="p-4 rounded-xl bg-surface-muted border border-border text-sm text-txt leading-relaxed mb-4">
               {activeModalProject.description[locale] || activeModalProject.description.id}

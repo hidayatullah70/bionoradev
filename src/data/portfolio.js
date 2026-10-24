@@ -9,6 +9,7 @@ export const portfolioData = [
     name: "Washup Laundry",
     url: "https://washup-laundry.vercel.app/",
     domain: "washup-laundry.vercel.app",
+    image: "/assets/portfolio/washup-laundry.png",
     industry: {
       id: "Jasa Laundry & Cuci Kering",
       en: "Laundry & Garment Care",
@@ -34,6 +35,7 @@ export const portfolioData = [
     name: "Dewi Catering & Events",
     url: "https://dewicatering.netlify.app/",
     domain: "dewicatering.netlify.app",
+    image: "/assets/portfolio/dewicatering.png",
     industry: {
       id: "Kuliner, Katering & Acara Spesial",
       en: "Culinary & Event Catering Services",
@@ -59,6 +61,7 @@ export const portfolioData = [
     name: "Crib Society Coffee",
     url: "https://cribsociety.vercel.app/",
     domain: "cribsociety.vercel.app",
+    image: "/assets/portfolio/cribsociety.png",
     industry: {
       id: "Kafe, Specialty Coffee & Point of Sale (POS)",
       en: "Specialty Coffee Cafe & Counter POS System",
@@ -84,6 +87,7 @@ export const portfolioData = [
     name: "Rumah Berubat — Terapi Syaraf Kejepit",
     url: "https://rumah-berubat.vercel.app/",
     domain: "rumah-berubat.vercel.app",
+    image: "/assets/portfolio/rumah-berubat.png",
     industry: {
       id: "Klinik Kesehatan & Terapi Alami",
       en: "Healthcare & Natural Spine Therapy",
@@ -109,6 +113,7 @@ export const portfolioData = [
     name: "PT Bimasena Adhirajasa Radhika",
     url: "https://bimasenaadhirajasaradika.com/",
     domain: "bimasenaadhirajasaradika.com",
+    image: "/assets/portfolio/bimasenaadhirajasaradika.png",
     industry: {
       id: "Badan Usaha Jasa Pengamanan (BUJP) & Corporate Security",
       en: "Accredited Security Services & Corporate Protection",
@@ -134,6 +139,7 @@ export const portfolioData = [
     name: "PT Dwi Rajendra Samudra",
     url: "https://dwirajendrasamudra.vercel.app/",
     domain: "dwirajendrasamudra.vercel.app",
+    image: "/assets/portfolio/dwirajendrasamudra.png",
     industry: {
       id: "Badan Usaha Jasa Pengamanan (BUJP) & Outsourcing Tenaga Kerja",
       en: "Accredited Security Services & Professional Manpower Outsourcing",

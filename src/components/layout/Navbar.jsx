@@ -125,7 +125,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         >
           {/* Light Mode Logo */}
           <img
-            src={siteConfig.brand.logoLight || "/assets/logo/logoLight.png"}
+            src={siteConfig.brand.logoLight || "/assets/logo/logoTransLightMode.png"}
             alt="BionoraDev Logo"
             width="130"
             height="35"
@@ -133,7 +133,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           />
           {/* Dark Mode Logo */}
           <img
-            src={siteConfig.brand.logoDark || "/assets/logo/logoDark.png"}
+            src={siteConfig.brand.logoDark || "/assets/logo/logoTransDarkMode.png"}
             alt="BionoraDev Logo"
             width="130"
             height="35"

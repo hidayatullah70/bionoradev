@@ -49,7 +49,7 @@ export function Footer({ locale, t, theme = 'dark' }) {
             >
               {/* Light Mode Logo */}
               <img
-                src={siteConfig.brand.logoLight || "/assets/logo/logoLight.png"}
+                src={siteConfig.brand.logoLight || "/assets/logo/logoTransLightMode.png"}
                 alt="BionoraDev Logo"
                 width="180"
                 height="48"
@@ -57,7 +57,7 @@ export function Footer({ locale, t, theme = 'dark' }) {
               />
               {/* Dark Mode Logo */}
               <img
-                src={siteConfig.brand.logoDark || "/assets/logo/logoDark.png"}
+                src={siteConfig.brand.logoDark || "/assets/logo/logoTransDarkMode.png"}
                 alt="BionoraDev Logo"
                 width="180"
                 height="48"

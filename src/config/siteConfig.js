@@ -12,9 +12,9 @@ export const siteConfig = {
     kicker: "BUILD · DEVELOP · INNOVATE",
     taglineBullets: "Crafting Digital Spaces with Precision and Soul",
     foundedYear: 2026,
-    logo: "/assets/logo/logoDark.png",
-    logoLight: "/assets/logo/logoLight.png",
-    logoDark: "/assets/logo/logoDark.png",
+    logo: "/assets/logo/logoTransDarkMode.png",
+    logoLight: "/assets/logo/logoTransLightMode.png",
+    logoDark: "/assets/logo/logoTransDarkMode.png",
     websiteUrl: "https://bionora.my.id/",
     philosophy: {
       letterB: "Melambangkan Bionora (gabungan nama anak dan istri), juga merepresentasikan fondasi yang kuat, stabil, dan berorientasi pada masa depan.",
