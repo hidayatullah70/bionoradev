@@ -44,7 +44,7 @@ export function Home({ locale, t }) {
         <WhyBionoraDev t={t} />
       </FadeUp>
       <FadeUp>
-        <Testimonials t={t} />
+        <Testimonials locale={locale} t={t} />
       </FadeUp>
       <FadeUp>
         <FAQ locale={locale} t={t} />
