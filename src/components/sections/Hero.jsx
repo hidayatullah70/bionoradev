@@ -21,7 +21,7 @@ export function Hero({ locale, t }) {
   ];
 
   return (
-    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent">
+    <section id="hero" className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent">
       {/* Hero Background Image: Ken Burns Effect auto zoom-in 1.0 -> 1.15 infinite alternate */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden bg-transparent">
         <img

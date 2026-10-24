@@ -25,6 +25,19 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isPastHero, setIsPastHero] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Synchronize effective dark/light mode state reactively
+  useEffect(() => {
+    const checkDark = () => {
+      setIsDarkMode(document.documentElement.classList.contains('dark'));
+    };
+    checkDark();
+    const observer = new MutationObserver(checkDark);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, [theme]);
 
   const navLinks = [
     { label: t.nav.services, id: 'services', icon: Sparkles },
@@ -36,19 +49,25 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
     { label: t.nav.faq, id: 'faq', icon: HelpCircle },
   ];
 
-  // ScrollSpy to track active section and scroll state
+  // ScrollSpy to track active section, past-hero position, and scroll state
   useEffect(() => {
     const sectionIds = ['services', 'solutions', 'portfolio', 'process', 'pricing', 'why', 'faq'];
 
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      setScrolled(scrollY > 20);
 
-      if (window.scrollY < 200) {
+      // Track whether navbar has scrolled past dark hero section onto light/white screen
+      const heroEl = document.getElementById('hero');
+      const heroThreshold = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight - 90) : 500;
+      setIsPastHero(scrollY >= heroThreshold);
+
+      if (scrollY < 200) {
         setActiveSection('');
         return;
       }
 
-      const scrollPosition = window.scrollY + 180;
+      const scrollPosition = scrollY + 180;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const el = document.getElementById(sectionIds[i]);
         if (el && el.offsetTop <= scrollPosition) {
@@ -107,31 +126,44 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           scrolled && "shadow-2xl dark:bg-brand-ink/90 bg-surface/95 dark:border-white/15 border-border"
         )}
       >
-        {/* Brand Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setActiveSection('');
-          }}
-          className={cn(
-            "flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-all border shrink-0 min-w-0 shadow-sm",
-            activeSection === ''
-              ? "bg-brand-blue/15 border-brand-blue/30 shadow-sm shadow-brand-blue/10"
-              : "bg-white/5 border-white/10 hover:border-brand-blue/40 hover:bg-brand-blue/15"
-          )}
-          aria-label="BionoraDev Home"
-        >
-          {/* Logo (Identical logoTransDark.png for both Light and Dark modes for crisp readability) */}
-          <img
-            src="/assets/logo/logoTransDark.png"
-            alt="BionoraDev Logo"
-            width="130"
-            height="35"
-            className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 group-hover:scale-[1.02] transition-transform duration-200"
-          />
-        </a>
+        {/* Brand Logo with Dynamic Theme & Scroll Detection */}
+        {(() => {
+          const isDarkBg = isDarkMode || !isPastHero;
+          const currentLogoSrc = isDarkBg
+            ? "/assets/logo/logoTransDarkMode.png"
+            : "/assets/logo/logoTransLightMode.png";
+
+          const currentCapsuleClass = isDarkBg
+            ? (activeSection === ''
+                ? "bg-brand-blue/15 border-brand-blue/30 shadow-sm shadow-brand-blue/10"
+                : "bg-white/5 border-white/10 hover:border-brand-blue/40 hover:bg-brand-blue/15")
+            : "bg-slate-100/95 border-slate-300/80 shadow-sm hover:bg-white hover:border-brand-blue/50";
+
+          return (
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setActiveSection('');
+              }}
+              className={cn(
+                "flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full px-2.5 sm:px-3 py-1 sm:py-1.5 transition-all duration-300 border shrink-0 min-w-0 shadow-sm",
+                currentCapsuleClass
+              )}
+              aria-label="BionoraDev Home"
+            >
+              <img
+                key={currentLogoSrc}
+                src={currentLogoSrc}
+                alt="BionoraDev Logo"
+                width="130"
+                height="35"
+                className="h-6 sm:h-7 md:h-8 w-auto max-w-[110px] sm:max-w-[130px] md:max-w-[150px] object-contain shrink-0 group-hover:scale-[1.02] transition-transform duration-200"
+              />
+            </a>
+          );
+        })()}
 
         {/* Desktop Navigation Links (Segmented Pill Style) */}
         <div className="hidden lg:flex items-center gap-1 xl:gap-1.5">
