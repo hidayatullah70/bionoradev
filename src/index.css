@@ -264,3 +264,86 @@
     animation-iteration-count: infinite !important;
   }
 }
+
+/* Footer-16 Components & Animation Effects */
+.footer-social-btn {
+  position: relative;
+  font-size: 1.125rem;
+  background: rgba(11, 89, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.22);
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.footer-social-btn:hover {
+  transform: scale(1.12);
+  border-color: rgba(0, 229, 255, 0.6);
+  box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
+}
+
+.footer-social-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translate(-50%, 6px);
+  padding: 5px 11px;
+  border-radius: 8px;
+  background: rgba(11, 18, 32, 0.95);
+  color: #F8FAFC;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 40;
+}
+
+.footer-social-btn:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* Light mode tooltip styling */
+:root:not(.dark) .footer-social-btn {
+  background: rgba(0, 180, 255, 0.12);
+  border-color: rgba(0, 102, 255, 0.2);
+}
+
+:root:not(.dark) .footer-social-btn::after {
+  background: rgba(255, 255, 255, 0.97);
+  color: #0B1220;
+  border: 1px solid rgba(0, 180, 255, 0.3);
+  box-shadow: 0 4px 16px rgba(11, 18, 32, 0.12);
+}
+
+/* Footer-16 Links Focus Dimming Effect */
+.footer-nav-dim {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-nav-dim a,
+.footer-nav-dim button {
+  transition: opacity 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-nav-dim:has(a:hover) a:not(:hover),
+.footer-nav-dim:has(button:hover) button:not(:hover) {
+  opacity: 0.32;
+}

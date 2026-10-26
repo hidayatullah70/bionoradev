@@ -296,7 +296,6 @@ export const messages = {
       quickLinksTitle: "Navigasi Cepat",
       servicesTitle: "Layanan",
       contactTitle: "Kontak & Diskusi",
-      truthNote: "Karya konsep dan demo prototipe diberi tanda secara transparan.",
     },
   },
   en: {
