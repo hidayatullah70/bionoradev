@@ -1,17 +1,36 @@
 import React from 'react';
 import { FaCss3Alt, FaHtml5, FaJsSquare, FaNodeJs, FaReact, FaServer } from 'react-icons/fa';
 import {
+  SiCloudflarepages,
   SiExpress,
+  SiFirebase,
+  SiFlydotio,
   SiGithubpages,
+  SiInfinityfree,
   SiMysql,
   SiNetlify,
   SiRailway,
+  SiRender,
+  SiSupabase,
   SiTailwindcss,
   SiVercel,
   SiVite,
 } from 'react-icons/si';
 import { Container } from './ui/Container';
 import { useReveal } from '../hooks/useReveal';
+
+function SupabaseFirebaseIcon({ className = '', style = {} }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-flex items-center -space-x-1 sm:-space-x-1.5 shrink-0 ${className}`}
+      style={style}
+    >
+      <SiSupabase className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: '#3ECF8E' }} />
+      <SiFirebase className="h-3.5 w-3.5 sm:h-4 sm:w-4" style={{ color: '#FFCA28' }} />
+    </span>
+  );
+}
 
 const techCategories = [
   {
@@ -43,6 +62,9 @@ const techCategories = [
     technologies: [
       { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
       { name: 'Railway', icon: SiRailway, color: '#111827', darkTone: true },
+      { name: 'Render.com', icon: SiRender, color: '#111827', darkTone: true },
+      { name: 'Fly.io', icon: SiFlydotio, color: '#7B3FE4' },
+      { name: 'Supabase / Firebase', icon: SupabaseFirebaseIcon },
     ],
   },
   {
@@ -50,7 +72,9 @@ const techCategories = [
     technologies: [
       { name: 'Vercel', icon: SiVercel, color: '#111827', darkTone: true },
       { name: 'Netlify', icon: SiNetlify, color: '#00C7B7' },
+      { name: 'Cloudflare Pages', icon: SiCloudflarepages, color: '#F38020' },
       { name: 'GitHub Pages', icon: SiGithubpages, color: '#111827', darkTone: true },
+      { name: 'InfinityFree', icon: SiInfinityfree, color: '#0052CC' },
     ],
   },
 ];
@@ -105,7 +129,9 @@ export function TechStack({ t }) {
                           className={`h-4 w-4 sm:h-5 sm:w-5 shrink-0 transition-transform duration-200 group-hover/item:scale-110 ${tech.darkTone ? 'dark:brightness-0 dark:invert' : ''}`}
                           style={{ color: tech.color }}
                         />
-                        <span className="truncate">{tech.name}</span>
+                        <span className="truncate" title={tech.name}>
+                          {tech.name}
+                        </span>
                       </div>
                     </li>
                   );
