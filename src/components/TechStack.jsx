@@ -95,8 +95,8 @@ export function TechStack({ t }) {
 
       <Container className="relative z-10">
         <div className="mx-auto mb-8 sm:mb-12 lg:mb-16 max-w-3xl text-center">
-          <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface-muted px-3 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-txt-muted dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-300">
-            <span className="text-brand-cyan" aria-hidden="true">●</span>
+          <div className="mb-3 sm:mb-4 inline-flex items-center gap-2 rounded-full border border-blue-900/20 dark:border-white/10 bg-blue-900/[0.05] dark:bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.18em] text-blue-900 dark:text-slate-300">
+            <span className="text-blue-900 dark:text-brand-cyan" aria-hidden="true">●</span>
             <span>{technology.badge}</span>
           </div>
           <h2 className="font-heading text-xl sm:text-2xl lg:text-4xl font-semibold tracking-tight text-txt dark:text-white">

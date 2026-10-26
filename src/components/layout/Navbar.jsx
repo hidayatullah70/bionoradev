@@ -269,11 +269,11 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-brand-cyan/40 dark:border-brand-cyan/40 bg-brand-cyan/10 dark:bg-brand-cyan/15 text-brand-cyan hover:border-brand-blue dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-blue-900/30 dark:border-brand-cyan/40 bg-blue-900/10 dark:bg-brand-cyan/15 text-blue-900 dark:text-brand-cyan hover:border-blue-950 dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-brand-cyan" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-blue-900 dark:text-brand-cyan" />}
           </button>
         </div>
       </nav>

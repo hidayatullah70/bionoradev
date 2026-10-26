@@ -44,7 +44,7 @@ export function Pricing({ locale, t }) {
                 {/* Recommendation Badge */}
                 {plan.popular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface border border-accent/40 text-accent text-xs font-bold shadow-md">
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-surface border border-blue-900/30 text-blue-900 dark:border-accent/40 dark:text-accent text-xs font-bold shadow-md">
                       <Sparkles className="w-3.5 h-3.5" />
                       {t.pricing.popularBadge}
                     </span>

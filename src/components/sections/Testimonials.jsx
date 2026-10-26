@@ -258,7 +258,7 @@ export function Testimonials({ locale = 'id', t }) {
                 {/* Top Row: Category Pill & Star Rating */}
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-blue/10 dark:bg-brand-cyan/10 text-brand-blue dark:text-brand-cyan border border-brand-blue/20 dark:border-brand-cyan/20">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-900/[0.08] dark:bg-brand-cyan/10 text-blue-900 dark:text-brand-cyan border border-blue-900/25 dark:border-brand-cyan/20">
                       <Sparkles className="w-3 h-3 shrink-0" />
                       <span className="truncate">{categoryText}</span>
                     </span>

@@ -19,7 +19,7 @@ export function Button({
     primary: "bg-gradient-to-r from-brand-blue to-brand-deep-blue text-white rounded-full shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/45 hover:brightness-110 active:scale-[0.98]",
     gradient: "brand-gradient-bg text-black font-bold rounded-full shadow-glow-cyan hover:opacity-95 active:scale-[0.98]",
     secondary: "bg-surface-muted/80 hover:bg-surface border border-border/80 hover:border-brand-blue text-txt rounded-full active:scale-[0.98]",
-    outline: "bg-transparent border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white rounded-full active:scale-[0.98]",
+    outline: "bg-transparent border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white dark:border-brand-blue dark:text-brand-blue dark:hover:bg-brand-blue dark:hover:text-white rounded-full active:scale-[0.98]",
     ghost: "bg-transparent hover:bg-surface-muted text-txt-muted hover:text-txt rounded-full",
     link: "bg-transparent text-accent hover:underline p-0 h-auto font-sans font-medium",
   };

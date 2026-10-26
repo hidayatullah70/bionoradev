@@ -44,10 +44,10 @@ export function Portfolio({ locale, t }) {
             <button
               key={tab.id}
               onClick={() => setSelectedFilter(tab.id)}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900 dark:focus-visible:ring-accent ${
                 selectedFilter === tab.id
-                  ? 'bg-accent text-brand-dark-navy shadow-md shadow-accent/20 border border-accent font-bold'
-                  : 'bg-surface-muted text-txt-muted hover:text-txt hover:bg-surface border border-border hover:border-accent/40'
+                  ? 'bg-blue-900 text-white dark:bg-accent dark:text-brand-dark-navy shadow-md shadow-blue-900/20 dark:shadow-accent/20 border border-blue-900 dark:border-accent font-bold'
+                  : 'bg-surface-muted text-txt-muted hover:text-txt hover:bg-surface border border-border hover:border-blue-900/40 dark:hover:border-accent/40'
               }`}
             >
               {tab.label}
