@@ -296,6 +296,7 @@ export const messages = {
       quickLinksTitle: "Navigasi Cepat",
       servicesTitle: "Layanan",
       contactTitle: "Kontak & Diskusi",
+      ctaWhatsApp: "Konsultasi WhatsApp",
     },
   },
   en: {
@@ -595,6 +596,7 @@ export const messages = {
       servicesTitle: "Services",
       contactTitle: "Contact & Inquiries",
       truthNote: "Concept prototypes and demos are transparently labeled.",
+      ctaWhatsApp: "WhatsApp Consultation",
     },
   },
 };

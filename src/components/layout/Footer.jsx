@@ -222,7 +222,7 @@ export function Footer({ locale, t, theme = 'dark' }) {
             >
               <WhatsAppIcon3D className="w-4 h-4 group-hover:scale-110 transition-transform" size={17} />
               <span className="text-xs font-semibold text-txt group-hover:text-white transition-colors">
-                Konsultasi WhatsApp
+                {t.footer?.ctaWhatsApp || t.nav?.ctaWhatsApp || (locale === 'en' ? 'WhatsApp Consultation' : 'Konsultasi WhatsApp')}
               </span>
             </Button>
           </div>
