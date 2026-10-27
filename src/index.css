@@ -347,3 +347,19 @@
 .footer-nav-dim:has(button:hover) button:not(:hover) {
   opacity: 0.32;
 }
+
+/* Testimonial Star Pop Keyframes */
+@keyframes starPop {
+  0% {
+    transform: scale(0.3) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.35) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
