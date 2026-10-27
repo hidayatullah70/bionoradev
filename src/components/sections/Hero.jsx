@@ -1,17 +1,70 @@
 import React from 'react';
-import { ArrowRight, MessageCircle, Sparkles, Smartphone, Zap, Shield, Layout, TrendingUp, CheckCircle2, Code2, Monitor, Search } from 'lucide-react';
+import { ArrowRight, Sparkles, Smartphone, Zap, Layout, TrendingUp, CheckCircle2, Code2, Monitor, Search, RotateCcw } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
 import { WhatsAppIcon3D } from '../ui/WhatsAppIcon3D';
-import { scrollToSection } from '../../lib/utils';
+import { scrollToSection, cn } from '../../lib/utils';
 import { useReveal } from '../../hooks/useReveal';
 import { siteConfig } from '../../config/siteConfig';
 
 export function Hero({ locale, t }) {
   const revealRef = useReveal();
+  const sectionRef = React.useRef(null);
   const whatsAppUrl = buildWhatsAppUrl({ locale });
+
+  // Hero Reveal sequence state (Gambar 2: 7s loop, pauses on hover/reduced motion)
+  const [cycleKey, setCycleKey] = React.useState(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isInView, setIsInView] = React.useState(true);
+
+  // Monitor viewport visibility so we don't loop off-screen
+  React.useEffect(() => {
+    const elem = sectionRef.current;
+    if (!elem || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(elem);
+    return () => observer.disconnect();
+  }, []);
+
+  // 7s sequence loop as specified in Gambar 2
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return;
+
+    if (isHovered || !isInView) return;
+
+    const timer = setInterval(() => {
+      setCycleKey((prev) => prev + 1);
+    }, 7000);
+
+    return () => clearInterval(timer);
+  }, [isHovered, isInView]);
+
+  const handleReplay = (e) => {
+    if (e) e.stopPropagation();
+    setCycleKey((prev) => prev + 1);
+  };
+
+  // Split headline lines into individual words for staggered blur-to-sharp reveal
+  const line1Words = React.useMemo(() => {
+    return (t.hero.headlineLine1 || '').trim().split(/\s+/).filter(Boolean);
+  }, [t.hero.headlineLine1]);
+
+  const line2Words = React.useMemo(() => {
+    return (t.hero.headlineLine2 || '').trim().split(/\s+/).filter(Boolean);
+  }, [t.hero.headlineLine2]);
+
+  const totalWords = line1Words.length + line2Words.length;
 
   const bulletIcons = [
     <Smartphone key="1" className="w-4 h-4 text-cyan-400" />,
@@ -21,7 +74,13 @@ export function Hero({ locale, t }) {
   ];
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent">
+    <section
+      id="hero"
+      ref={sectionRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent"
+    >
       {/* Hero Background Image: Ken Burns Effect auto zoom-in 1.0 -> 1.15 infinite alternate */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden bg-transparent">
         <img
@@ -39,22 +98,111 @@ export function Hero({ locale, t }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Width-constrained so text does NOT overlap laptop image */}
             <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
-              {/* Top Badge (Kicker from bionoraDevUI.jpeg) */}
-              <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 dark:bg-surface/80 border border-white/20 dark:border-brand-blue/30 backdrop-blur-md shadow-sm">
-                <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
-                <span className="text-xs font-bold tracking-wider text-white dark:text-txt">
-                  {t.hero.badge}
-                </span>
+              {/* Top Badge (Kicker & Reveal Loop Indicator) */}
+              <div className="mb-6 flex flex-wrap items-center gap-2.5">
+                {/* 1. Badge Drops in 16px and fades in (0.6s) */}
+                <div
+                  key={`badge-${cycleKey}`}
+                  className="hero-badge-drop inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 dark:bg-surface/80 border border-white/20 dark:border-brand-blue/30 backdrop-blur-md shadow-sm will-change-transform"
+                  style={{ animationDelay: '40ms' }}
+                >
+                  <Sparkles className="w-4 h-4 text-brand-cyan animate-pulse" />
+                  <span className="text-xs font-bold tracking-wider text-white dark:text-txt">
+                    {t.hero.badge}
+                  </span>
+                </div>
+
+                {/* Hero Reveal Auto-loop Status & Manual Replay Button */}
+                <button
+                  type="button"
+                  onClick={handleReplay}
+                  title={locale === 'id' ? 'Hero Reveal · Auto-loop 7s (Klik untuk replay)' : 'Hero Reveal · 7s auto-loop (Click to replay)'}
+                  aria-label="Replay Hero Reveal animation"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 dark:bg-surface/50 dark:hover:bg-surface border border-white/10 dark:border-white/15 text-[11px] font-medium text-slate-300 dark:text-txt-muted hover:text-brand-cyan transition-all duration-200 cursor-pointer group select-none"
+                >
+                  <RotateCcw className={cn("w-3 h-3 transition-transform duration-500", isHovered ? "" : "group-hover:-rotate-90")} />
+                  <span className="hidden sm:inline font-mono text-[10px] tracking-wide">
+                    {isHovered ? (locale === 'id' ? 'Ditahan' : 'Paused') : 'Reveal 7s'}
+                  </span>
+                  <span className="relative flex h-2 w-2">
+                    <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", isHovered ? "bg-amber-400" : "bg-brand-cyan")} />
+                    <span className={cn("relative inline-flex rounded-full h-2 w-2", isHovered ? "bg-amber-400" : "bg-brand-cyan")} />
+                  </span>
+                </button>
               </div>
 
-              {/* Single H1 for SEO with Brand Accent - headlineLine1 stays on 1 line */}
+              {/* 2. Single H1 for SEO with Staggered Word Reveal (rises 28px from 14px blur to sharp, staggered 90ms) */}
               <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-heading font-semibold tracking-tight text-white dark:text-txt leading-[1.15]">
-                <span className="block whitespace-nowrap">{t.hero.headlineLine1}</span>
-                <span className="brand-gradient-text block mt-1 sm:mt-2">{t.hero.headlineLine2}</span>
+                {/* Line 1 Words */}
+                <span className="block sm:whitespace-nowrap">
+                  {line1Words.map((word, idx) => (
+                    <span
+                      key={`l1-${idx}-${cycleKey}`}
+                      className="hero-word-reveal inline-block mr-[0.28em] will-change-transform"
+                      style={{
+                        animationDelay: `${120 + idx * 90}ms`,
+                      }}
+                    >
+                      {word}
+                    </span>
+                  ))}
+                </span>
+
+                {/* Line 2 Words with Brand Accent + 3. Animated SVG Underline */}
+                <span className="relative inline-block mt-1 sm:mt-2">
+                  {line2Words.map((word, idx) => {
+                    const globalIdx = line1Words.length + idx;
+                    return (
+                      <span
+                        key={`l2-${idx}-${cycleKey}`}
+                        className="brand-gradient-text hero-word-reveal inline-block mr-[0.28em] will-change-transform"
+                        style={{
+                          animationDelay: `${120 + globalIdx * 90}ms`,
+                        }}
+                      >
+                        {word}
+                      </span>
+                    );
+                  })}
+
+                  {/* 3. Accent Underline SVG draws from left to right */}
+                  <svg
+                    key={`underline-${cycleKey}`}
+                    className="absolute -bottom-1.5 sm:-bottom-2.5 left-0 w-full h-2.5 sm:h-3.5 pointer-events-none overflow-visible z-10"
+                    viewBox="0 0 320 14"
+                    fill="none"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 9 C 80 2, 220 2, 318 8"
+                      stroke="url(#hero-accent-underline-gradient)"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
+                      className="hero-underline-draw"
+                      style={{
+                        animationDelay: `${120 + totalWords * 90 + 50}ms`,
+                      }}
+                    />
+                    <defs>
+                      <linearGradient id="hero-accent-underline-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#00E5FF" />
+                        <stop offset="50%" stopColor="#00B4FF" />
+                        <stop offset="100%" stopColor="#0066FF" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </span>
               </h1>
 
-              {/* Subheadline - constrained max-w to prevent overlapping text on laptop */}
-              <p className="mt-5 text-base sm:text-lg lg:text-xl text-slate-200 dark:text-txt-muted leading-relaxed max-w-lg lg:max-w-[460px] xl:max-w-[480px]">
+              {/* 4. Subheadline Supporting Copy: Fades up smoothly */}
+              <p
+                key={`subheadline-${cycleKey}`}
+                className="hero-copy-fade mt-5 text-base sm:text-lg lg:text-xl text-slate-200 dark:text-txt-muted leading-relaxed max-w-lg lg:max-w-[460px] xl:max-w-[480px] will-change-transform"
+                style={{
+                  animationDelay: `${120 + totalWords * 90 + 120}ms`,
+                }}
+              >
                 {(() => {
                   const parts = t.hero.subheadline.split('BionoraDev');
                   if (parts.length > 1) {
@@ -75,9 +223,15 @@ export function Hero({ locale, t }) {
                 })()}
               </p>
 
-              {/* Checklist Selling Points */}
+              {/* Checklist Selling Points: Fades up with copy */}
               {t.hero.checklist && (
-                <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md sm:max-w-lg">
+                <div
+                  key={`checklist-${cycleKey}`}
+                  className="hero-copy-fade mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-md sm:max-w-lg will-change-transform"
+                  style={{
+                    animationDelay: `${120 + totalWords * 90 + 220}ms`,
+                  }}
+                >
                   {t.hero.checklist.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-2.5 text-sm sm:text-base font-semibold text-white dark:text-txt">
                       <div className="w-5 h-5 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
@@ -89,27 +243,52 @@ export function Hero({ locale, t }) {
                 </div>
               )}
 
-              {/* Primary & Secondary CTAs */}
+              {/* 5. Primary & Secondary CTAs Spring from 0.6 to 1 with slight overshoot */}
               <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-                <Button
-                  href={whatsAppUrl}
-                  variant="gradient"
-                  size="lg"
-                  className="gap-3 group font-bold"
+                <div
+                  key={`btn-primary-${cycleKey}`}
+                  className="hero-button-spring relative will-change-transform"
+                  style={{
+                    animationDelay: `${120 + totalWords * 90 + 340}ms`,
+                  }}
                 >
-                  <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={20} />
-                  <span>{t.hero.ctaPrimary}</span>
-                </Button>
+                  <Button
+                    href={whatsAppUrl}
+                    variant="gradient"
+                    size="lg"
+                    className="gap-3 group font-bold w-full sm:w-auto relative overflow-hidden"
+                  >
+                    {/* 6. Soft shine sweeps across primary button once */}
+                    <span
+                      key={`shine-${cycleKey}`}
+                      aria-hidden="true"
+                      className="hero-shine-sweep absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
+                      style={{
+                        animationDelay: `${120 + totalWords * 90 + 950}ms`,
+                      }}
+                    />
+                    <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={20} />
+                    <span>{t.hero.ctaPrimary}</span>
+                  </Button>
+                </div>
 
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="gap-2 group font-semibold text-white dark:text-txt border-white/20 dark:border-border hover:bg-white/10"
-                  onClick={() => scrollToSection('portfolio')}
+                <div
+                  key={`btn-secondary-${cycleKey}`}
+                  className="hero-button-spring will-change-transform"
+                  style={{
+                    animationDelay: `${120 + totalWords * 90 + 440}ms`,
+                  }}
                 >
-                  <span>{t.hero.ctaSecondary}</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                  <Button
+                    variant="secondary"
+                    size="lg"
+                    className="gap-2 group font-semibold text-white dark:text-txt border-white/20 dark:border-border hover:bg-white/10 w-full sm:w-auto"
+                    onClick={() => scrollToSection('portfolio')}
+                  >
+                    <span>{t.hero.ctaSecondary}</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </div>
               </div>
             </div>
 
@@ -117,10 +296,16 @@ export function Hero({ locale, t }) {
             <div className="hidden lg:block lg:col-span-6 xl:col-span-6 min-h-[300px] pointer-events-none" />
           </div>
 
-          {/* Bottom Row: 4 Capability Bullets (Left) & Compact Transparent Container (Right) */}
+          {/* Bottom Row: 4 Capability Bullets (Left) & 7. Dashboard Card peeking up (Right) */}
           <div className="mt-12 pt-8 border-t border-white/20 dark:border-white/10 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             {/* Left Column: 4 Capability Bullets */}
-            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+            <div
+              key={`capability-${cycleKey}`}
+              className="hero-copy-fade lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4 w-full will-change-transform"
+              style={{
+                animationDelay: `${120 + totalWords * 90 + 460}ms`,
+              }}
+            >
               {t.hero.capabilityBullets.map((bullet, idx) => (
                 <div key={idx} className="flex flex-col gap-1">
                   <div className="flex items-center gap-1.5">
@@ -132,9 +317,15 @@ export function Hero({ locale, t }) {
               ))}
             </div>
 
-            {/* Right Column: Compact Transparent Container */}
-            <div className="lg:col-span-5 flex justify-start lg:justify-end w-full">
-              <div className="w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-transparent border border-white/20 dark:border-white/20 p-2.5 sm:p-3 backdrop-blur-[2px] shadow-sm flex flex-col gap-2">
+            {/* Right Column: 7. Compact Dashboard Card peeking up, tilts from rotateX(28deg) 240px lower into place */}
+            <div className="lg:col-span-5 flex justify-start lg:justify-end w-full overflow-visible">
+              <div
+                key={`dashboard-card-${cycleKey}`}
+                className="hero-card-tilt w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-transparent border border-white/20 dark:border-white/20 p-2.5 sm:p-3 backdrop-blur-[2px] shadow-sm flex flex-col gap-2 will-change-transform"
+                style={{
+                  animationDelay: `${120 + totalWords * 90 + 260}ms`,
+                }}
+              >
                 {/* Mini Browser Bar */}
                 <div className="flex items-center justify-between px-2.5 py-1 rounded-lg bg-transparent border border-white/15 dark:border-white/10 text-xs">
                   <div className="flex items-center gap-1.5">
@@ -228,3 +419,4 @@ export function Hero({ locale, t }) {
     </section>
   );
 }
+

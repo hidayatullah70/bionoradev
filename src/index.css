@@ -363,3 +363,167 @@
     opacity: 1;
   }
 }
+
+/* ------------------------------------------------------------- */
+/* Hero Reveal Motion & Effects (Gambar 2 Reference Specification) */
+/* ------------------------------------------------------------- */
+
+/* 1. Badge Drop */
+@keyframes heroBadgeDrop {
+  0% {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero-badge-drop {
+  animation: heroBadgeDrop 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 2. Headline Words Staggered Rise from Blur */
+@keyframes heroWordRise {
+  0% {
+    transform: translateY(28px);
+    filter: blur(14px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.hero-word-reveal {
+  animation: heroWordRise 0.65s cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+/* 3. Accent Underline SVG Draw */
+@keyframes heroUnderlineDraw {
+  0% {
+    stroke-dashoffset: 320;
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.hero-underline-draw {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: heroUnderlineDraw 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. Supporting Copy & Checklist Fade-Up */
+@keyframes heroCopyFadeUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.hero-copy-fade {
+  animation: heroCopyFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 5. Buttons Spring Overshoot */
+@keyframes heroButtonSpring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  65% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+  85% {
+    transform: scale(0.98);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hero-button-spring {
+  animation: heroButtonSpring 0.65s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+/* 6. Soft Specular Shine Sweep Across Primary CTA */
+@keyframes heroShineSweep {
+  0% {
+    transform: translateX(-160%) skewX(-25deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(260%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.hero-shine-sweep {
+  animation: heroShineSweep 0.85s ease-in-out forwards;
+}
+
+/* 7. Dashboard Card 3D Tilt Up */
+@keyframes heroCardTiltUp {
+  0% {
+    transform: perspective(1200px) rotateX(28deg) translateY(240px);
+    opacity: 0;
+    filter: blur(6px);
+  }
+  60% {
+    filter: blur(0px);
+  }
+  100% {
+    transform: perspective(1200px) rotateX(0deg) translateY(0);
+    opacity: 1;
+    filter: blur(0px);
+  }
+}
+
+.hero-card-tilt {
+  transform-origin: bottom center;
+  animation: heroCardTiltUp 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Prefers Reduced Motion overrides */
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge-drop,
+  .hero-word-reveal,
+  .hero-copy-fade,
+  .hero-button-spring,
+  .hero-card-tilt,
+  .hero-shine-sweep {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .hero-underline-draw {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+}
+
