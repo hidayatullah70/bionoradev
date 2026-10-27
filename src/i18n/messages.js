@@ -214,6 +214,11 @@ export const messages = {
           desc: "Pemeriksaan kualitas menyeluruh di berbagai perangkat sebelum website siap digunakan dan online.",
         },
       ],
+      liveBadge: "Website Siap Online & Beroperasi",
+      replayButton: "Ulangi Animasi",
+      pauseNotice: "Arahkan kursor untuk jeda",
+      resumeText: "Lanjutkan",
+      pauseText: "Jeda",
     },
     pricing: {
       badge: "Investasi Terjangkau",
@@ -514,6 +519,11 @@ export const messages = {
           desc: "Rigorous cross-device testing and quality assurance before deploying your site live.",
         },
       ],
+      liveBadge: "Website is Live & Ready to Convert",
+      replayButton: "Replay Animation",
+      pauseNotice: "Hover to pause",
+      resumeText: "Resume",
+      pauseText: "Pause",
     },
     pricing: {
       badge: "Transparent Pricing",
