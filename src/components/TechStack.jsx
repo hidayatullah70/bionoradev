@@ -18,7 +18,6 @@ import {
   SiRender,
   SiSupabase,
   SiTailwindcss,
-  SiV0,
   SiVercel,
   SiVite,
 } from 'react-icons/si';
@@ -126,7 +125,6 @@ const techCategories = [
       { name: 'Cursor', icon: SiCursor, color: '#111827', darkTone: true },
       { name: 'Claude', icon: SiClaude, color: '#D97757' },
       { name: 'Lovable', icon: LovableIcon },
-      { name: 'V0', icon: SiV0, color: '#111827', darkTone: true },
       { name: 'Git', icon: SiGit, color: '#F05032' },
       { name: 'Github', icon: SiGithub, color: '#111827', darkTone: true },
     ],
