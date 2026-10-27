@@ -1,11 +1,16 @@
 import React from 'react';
 import { FaCss3Alt, FaHtml5, FaJsSquare, FaNodeJs, FaReact, FaServer } from 'react-icons/fa';
 import {
+  SiClaude,
   SiCloudflarepages,
+  SiCursor,
   SiExpress,
   SiFirebase,
   SiFlydotio,
+  SiGit,
+  SiGithub,
   SiGithubpages,
+  SiGoogle,
   SiInfinityfree,
   SiMysql,
   SiNetlify,
@@ -13,11 +18,47 @@ import {
   SiRender,
   SiSupabase,
   SiTailwindcss,
+  SiV0,
   SiVercel,
   SiVite,
 } from 'react-icons/si';
+import { VscVscode } from 'react-icons/vsc';
 import { Container } from './ui/Container';
 import { useReveal } from '../hooks/useReveal';
+
+function LovableIcon({ className = '', style = {} }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      style={style}
+    >
+      <defs>
+        <radialGradient
+          id="lovable-grad"
+          cx="0"
+          cy="0"
+          r="1"
+          gradientTransform="matrix(-1 22.5 -30.45 -1.35 14 3)"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="30%" stopColor="#FE7B02" />
+          <stop offset="40%" stopColor="#FE4230" />
+          <stop offset="50%" stopColor="#FE529A" />
+          <stop offset="70%" stopColor="#DD67EE" />
+          <stop offset="90%" stopColor="#4B73FF" />
+        </radialGradient>
+      </defs>
+      <path
+        fill="url(#lovable-grad)"
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7 0c4 0 7.2 3.2 7.2 7.1v2.7h2.3a7 7 0 0 1 0 14.2H0V7.1A7 7 0 0 1 7 0"
+      />
+    </svg>
+  );
+}
 
 function SupabaseFirebaseIcon({ className = '', style = {} }) {
   return (
@@ -77,6 +118,19 @@ const techCategories = [
       { name: 'InfinityFree', icon: SiInfinityfree, color: '#0052CC' },
     ],
   },
+  {
+    id: 'tools',
+    technologies: [
+      { name: 'VS Code', icon: VscVscode, color: '#007ACC' },
+      { name: 'Google Antigravity', icon: SiGoogle, color: '#4285F4' },
+      { name: 'Cursor', icon: SiCursor, color: '#111827', darkTone: true },
+      { name: 'Claude', icon: SiClaude, color: '#D97757' },
+      { name: 'Lovable', icon: LovableIcon },
+      { name: 'V0', icon: SiV0, color: '#111827', darkTone: true },
+      { name: 'Git', icon: SiGit, color: '#F05032' },
+      { name: 'Github', icon: SiGithub, color: '#111827', darkTone: true },
+    ],
+  },
 ];
 
 export function TechStack({ t }) {
@@ -107,7 +161,7 @@ export function TechStack({ t }) {
           </p>
         </div>
 
-        <div ref={revealRef} className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-5">
+        <div ref={revealRef} className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-6">
           {techCategories.map((category) => (
             <article
               key={category.id}

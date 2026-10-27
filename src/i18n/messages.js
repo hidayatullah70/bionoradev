@@ -262,6 +262,7 @@ export const messages = {
         backend: "Backend & API",
         database: "Database",
         deployment: "Deployment",
+        tools: "Tools",
       },
     },
     testimonials: {
@@ -561,6 +562,7 @@ export const messages = {
         backend: "Backend & API",
         database: "Database",
         deployment: "Deployment",
+        tools: "Tools",
       },
     },
     testimonials: {
