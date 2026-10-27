@@ -95,9 +95,9 @@ export function Hero({ locale, t }) {
                   href={whatsAppUrl}
                   variant="gradient"
                   size="lg"
-                  className="gap-3 group font-bold shadow-lg shadow-brand-blue/20"
+                  className="gap-3 group font-bold"
                 >
-                  <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 transition-transform" size={20} />
+                  <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={20} />
                   <span>{t.hero.ctaPrimary}</span>
                 </Button>
 

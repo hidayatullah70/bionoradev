@@ -234,9 +234,9 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             href={whatsAppUrl}
             variant="gradient"
             size="sm"
-            className="gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold shadow-glow-cyan/20 shrink-0"
+            className="group gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold shrink-0"
           >
-            <WhatsAppIcon3D className="w-4 h-4" size={16} />
+            <WhatsAppIcon3D className="w-4 h-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={16} />
             <span className="hidden xl:inline">{t.nav.ctaWhatsApp}</span>
             <span className="xl:hidden">WhatsApp</span>
           </Button>
@@ -326,10 +326,10 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 href={whatsAppUrl}
                 variant="gradient"
                 size="md"
-                className="w-full justify-center gap-2 rounded-full"
+                className="group w-full justify-center gap-2 rounded-full font-bold"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <WhatsAppIcon3D className="w-4 h-4" size={18} />
+                <WhatsAppIcon3D className="w-4 h-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={18} />
                 <span>{t.nav.ctaWhatsApp}</span>
               </Button>
 

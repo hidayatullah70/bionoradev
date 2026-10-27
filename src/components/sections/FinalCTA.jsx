@@ -45,11 +45,11 @@ export function FinalCTA({ locale, t }) {
                 href={whatsAppUrl}
                 variant="gradient"
                 size="lg"
-                className="w-full sm:w-auto gap-3 group"
+                className="w-full sm:w-auto gap-3 group font-bold"
               >
-                <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 transition-transform" size={20} />
+                <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={20} />
                 <span>{t.cta.buttonLabel}</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
               </Button>
 
               <Button

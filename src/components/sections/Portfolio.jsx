@@ -308,9 +308,9 @@ export function Portfolio({ locale, t }) {
                 })}
                 variant="gradient"
                 size="md"
-                className="w-full justify-center gap-2"
+                className="group w-full justify-center gap-2 font-bold"
               >
-                <WhatsAppIcon3D className="w-4 h-4 group-hover:scale-110 transition-transform" size={16} />
+                <WhatsAppIcon3D className="w-4 h-4 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={16} />
                 <span>Diskusikan Proyek Serupa</span>
               </Button>
             </div>
