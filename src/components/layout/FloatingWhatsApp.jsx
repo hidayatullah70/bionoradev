@@ -332,7 +332,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
             >
               {/* Rotating Radar Sweep Cone */}
               <div
-                className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full animate-radar-sweep opacity-25 dark:opacity-35 pointer-events-none"
+                className="absolute w-20 h-20 sm:w-22 sm:h-22 rounded-full animate-radar-sweep opacity-25 dark:opacity-35 pointer-events-none"
                 style={{
                   background:
                     'conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(0, 229, 255, 0.45) 360deg)',
@@ -345,10 +345,10 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
               <span className="absolute w-full h-full rounded-full border border-brand-blue/40 bg-brand-blue/5 animate-radar-3" />
             </div>
 
-            {/* 3D Sphere Trigger Button */}
+            {/* 3D Sphere Trigger Button (Ukuran persis sama dengan tombol Back To Top) */}
             <div
               className={cn(
-                "relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-white/90 dark:border-cyan-400/70 transition-all duration-300 overflow-hidden",
+                "relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white/90 dark:border-cyan-400/70 transition-all duration-300 overflow-hidden",
                 "shadow-[0_4px_20px_rgba(0,128,240,0.35)] dark:shadow-[0_0_24px_rgba(0,229,255,0.55)]",
                 isOpen
                   ? "scale-105 ring-4 ring-cyan-400/40"
@@ -372,7 +372,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
               {/* 3D Specular Glass Gloss */}
               <span
                 aria-hidden="true"
-                className="absolute inset-x-1.5 top-0.5 h-4 sm:h-4.5 rounded-full pointer-events-none opacity-85 z-20"
+                className="absolute inset-x-1.5 top-0.5 h-3.5 sm:h-4 rounded-full pointer-events-none opacity-85 z-20"
                 style={{
                   background:
                     'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)',
@@ -393,16 +393,16 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
               <img
                 src="/assets/icons/live-chat.png"
                 alt="BionoraDev Live Chat"
-                width={36}
-                height={36}
+                width={32}
+                height={32}
                 className={cn(
-                  "w-7 h-7 sm:w-8.5 sm:h-8.5 object-contain relative z-10 transition-transform duration-300 drop-shadow-[0_2px_4px_rgba(0,128,240,0.3)] dark:drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]",
+                  "w-6 h-6 sm:w-6.5 sm:h-6.5 object-contain relative z-10 transition-transform duration-300 drop-shadow-[0_2px_4px_rgba(0,128,240,0.3)] dark:drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]",
                   isOpen ? "rotate-[-10deg] scale-110" : "group-hover:rotate-6 group-hover:scale-105"
                 )}
               />
 
               {/* Active Indicator Ping Dot */}
-              <span className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white dark:border-[#0B1220] z-30 animate-pulse" />
+              <span className="absolute top-0.5 right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white dark:border-[#0B1220] z-30 animate-pulse" />
             </div>
           </div>
         </button>
