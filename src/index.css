@@ -243,25 +243,10 @@
   scrollbar-width: none;
 }
 
-/* Accessibility: Respect Reduced Motion (preserves subtle ambient background) */
+/* Accessibility: Respect Reduced Motion (preserves essential UI feedback) */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  
-  .reveal-init {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
   .animate-kenburns {
-    animation-duration: 18s !important;
-    animation-iteration-count: infinite !important;
+    animation-duration: 24s !important;
   }
 }
 
@@ -507,23 +492,10 @@
   animation: heroCardTiltUp 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Prefers Reduced Motion overrides */
+/* Prefers Reduced Motion overrides - keep functional motion smooth without intense blur */
 @media (prefers-reduced-motion: reduce) {
-  .hero-badge-drop,
-  .hero-word-reveal,
-  .hero-copy-fade,
-  .hero-button-spring,
-  .hero-card-tilt,
-  .hero-shine-sweep {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+  .hero-word-reveal {
     filter: none !important;
-  }
-  .hero-underline-draw {
-    animation: none !important;
-    stroke-dashoffset: 0 !important;
-    opacity: 1 !important;
   }
 }
 
@@ -753,66 +725,12 @@
   animation: bentoGlidingSpotlight 12s ease-in-out infinite alternate;
 }
 
-/* Prefers Reduced Motion overrides for Bento */
+/* Prefers Reduced Motion overrides for Bento - soften orbital rotation speed */
 @media (prefers-reduced-motion: reduce) {
-  .bento-snap-0,
-  .bento-snap-1,
-  .bento-snap-2,
-  .bento-snap-3,
-  .bento-snap-4,
-  .bento-snap-5,
-  .bento-bar-grow,
-  .bento-avatar-slide,
   .bento-orbit-cw,
-  .bento-orbit-ccw,
-  .bento-spotlight-glide {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-  .bento-check-draw {
-    animation: none !important;
-    stroke-dashoffset: 0 !important;
-    opacity: 1 !important;
+  .bento-orbit-ccw {
+    animation-duration: 25s !important;
   }
 }
-
-/* ------------------------------------------------------------- */
-/* Mobile Screen Optimizations (Smooth 60fps & Zero Horizontal Shift) */
-/* ------------------------------------------------------------- */
-@media (max-width: 640px) {
-  @keyframes heroWordRise {
-    0% {
-      transform: translateY(18px);
-      filter: blur(4px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      filter: blur(0px);
-      opacity: 1;
-    }
-  }
-
-  @keyframes heroCardTiltUp {
-    0% {
-      transform: perspective(600px) rotateX(12deg) translateY(40px);
-      opacity: 0;
-    }
-    100% {
-      transform: perspective(600px) rotateX(0deg) translateY(0);
-      opacity: 1;
-    }
-  }
-
-  /* Bento Snap Mobile: vertical slide & scale, no horizontal jitter */
-  @keyframes bentoSnap0 { 0% { transform: translateY(-16px) scale(0.96); opacity: 0; } 70% { transform: translateY(2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-  @keyframes bentoSnap1 { 0% { transform: translateY(-16px) scale(0.96); opacity: 0; } 70% { transform: translateY(2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-  @keyframes bentoSnap2 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-  @keyframes bentoSnap3 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-  @keyframes bentoSnap4 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-  @keyframes bentoSnap5 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
-}
-
 
 

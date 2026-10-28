@@ -25,41 +25,19 @@ const TOTAL_CYCLE = DRAW_DURATION + HOLD_DURATION + RESET_DURATION;
 
 export function Process({ t }) {
   const revealRef = useReveal();
-  const sectionRef = useRef(null);
   const pathRef = useRef(null);
   const startTimeRef = useRef(null);
   const rafRef = useRef(null);
-  const touchTimeoutRef = useRef(null);
 
   const [progress, setProgress] = useState(0);
   const [tipPos, setTipPos] = useState({ x: 100, y: 60 });
   const [pathLength, setPathLength] = useState(950);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isInView, setIsInView] = useState(true);
 
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Track section visibility in viewport
-  useEffect(() => {
-    const elem = sectionRef.current;
-    if (!elem || typeof IntersectionObserver === 'undefined') return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.05, rootMargin: '80px 0px' }
-    );
-
-    observer.observe(elem);
-    return () => {
-      observer.disconnect();
-      if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    };
-  }, []);
 
   // Icons corresponding to each of the 5 steps
   const stepIcons = [
@@ -84,15 +62,41 @@ export function Process({ t }) {
     }
   }, []);
 
-  const effectivelyPaused = isPaused || isHovered || prefersReducedMotion || !isInView;
+  const [isInView, setIsInView] = useState(true);
+  const sectionRef = useRef(null);
 
-  // Animation Loop via requestAnimationFrame
+  // Monitor viewport visibility with mobile-friendly threshold
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setProgress(1);
-      return;
-    }
+    const elem = sectionRef.current;
+    if (!elem || typeof IntersectionObserver === 'undefined') return;
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(elem);
+    return () => observer.disconnect();
+  }, []);
+
+  // Safe hover handlers that ignore touch devices
+  const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return; // Ignore synthetic mouseenter on touch devices
+    }
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const effectivelyPaused = isPaused || isHovered || !isInView;
+
+  // Animation Loop via requestAnimationFrame (runs continuously when in view)
+  useEffect(() => {
     const animate = (timestamp) => {
       if (!startTimeRef.current) {
         startTimeRef.current = timestamp;
@@ -115,7 +119,9 @@ export function Process({ t }) {
             const total = pathRef.current.getTotalLength() || pathLength;
             if (total > 0) {
               const pt = pathRef.current.getPointAtLength(currentProg * total);
-              setTipPos({ x: pt.x, y: pt.y });
+              if (pt && typeof pt.x === 'number') {
+                setTipPos({ x: pt.x, y: pt.y });
+              }
             }
           } catch (e) {
             // fallback
@@ -135,7 +141,7 @@ export function Process({ t }) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [effectivelyPaused, prefersReducedMotion, pathLength, progress]);
+  }, [effectivelyPaused, pathLength, progress]);
 
   // Restart animation
   const handleRestart = useCallback(() => {
@@ -156,7 +162,9 @@ export function Process({ t }) {
           const total = pathRef.current.getTotalLength() || pathLength;
           if (total > 0) {
             const pt = pathRef.current.getPointAtLength(targetProg * total);
-            setTipPos({ x: pt.x, y: pt.y });
+            if (pt && typeof pt.x === 'number') {
+              setTipPos({ x: pt.x, y: pt.y });
+            }
           }
         } catch (e) {
           // ignore
@@ -166,28 +174,6 @@ export function Process({ t }) {
     [pathLength]
   );
 
-  const handleMouseEnter = () => {
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      setIsHovered(true);
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  const handleTouchStart = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    setIsHovered(true);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    touchTimeoutRef.current = setTimeout(() => {
-      setIsHovered(false);
-    }, 2000);
-  };
-
   return (
     <section
       id="process"
@@ -195,8 +181,6 @@ export function Process({ t }) {
       className="py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden select-none"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
     >
       {/* Background ambient lighting */}
       <div className="glow-ambient-cyan w-[600px] h-[300px] top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-40 dark:opacity-70" />
@@ -373,21 +357,19 @@ export function Process({ t }) {
           {/* ========================================================== */}
           <div className="lg:hidden relative pl-12 sm:pl-16 space-y-6 sm:space-y-8">
             {/* Background Dim Dashed Track */}
-            <div className="absolute left-5 sm:left-7 top-4 bottom-8 w-0.5 border-l-2 border-dashed border-border/70 dark:border-white/10 z-0" />
+            <div className="absolute left-5 sm:left-7 top-4 bottom-8 w-1 border-l-2 border-dashed border-border/70 dark:border-white/10 z-0" />
 
-            {/* Active Drawing Glow Track Container */}
-            <div className="absolute left-5 sm:left-7 top-4 bottom-8 w-0.5 z-0 pointer-events-none overflow-hidden">
-              <div
-                className="w-full bg-gradient-to-b from-brand-cyan via-brand-blue to-brand-deep-blue shadow-[0_0_12px_#00E5FF] transition-[height] duration-75 ease-linear"
-                style={{ height: `${progress * 100}%` }}
-              />
-            </div>
+            {/* Active Drawing Glow Track */}
+            <div
+              className="absolute left-5 sm:left-7 top-4 w-1 bg-gradient-to-b from-brand-cyan via-brand-blue to-brand-deep-blue shadow-[0_0_14px_#00E5FF] rounded-full z-10 transition-[height] duration-75 ease-linear"
+              style={{ height: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+            />
 
             {/* Glowing Leading Dot on Mobile */}
             {progress > 0.01 && progress < 0.99 && (
               <div
-                className="absolute left-5 sm:left-7 -translate-x-1/2 w-4 h-4 rounded-full bg-brand-cyan shadow-[0_0_14px_#00E5FF] border-2 border-white pointer-events-none transition-[top] duration-75 ease-linear z-10"
-                style={{ top: `calc(1rem + ${progress} * (100% - 3rem))` }}
+                className="absolute left-5 sm:left-7 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-brand-cyan shadow-[0_0_14px_#00E5FF] border-2 border-white z-20 pointer-events-none transition-[top] duration-75 ease-linear"
+                style={{ top: `calc(1rem + ${progress * 100}% * 0.94)` }}
               />
             )}
 

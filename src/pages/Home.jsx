@@ -16,9 +16,7 @@ import { FinalCTA } from '../components/sections/FinalCTA';
 export function Home({ locale, t }) {
   return (
     <main className="min-h-screen">
-      <FadeUp>
-        <Hero locale={locale} t={t} />
-      </FadeUp>
+      <Hero locale={locale} t={t} />
       <FadeUp>
         <CapabilityBar t={t} />
       </FadeUp>

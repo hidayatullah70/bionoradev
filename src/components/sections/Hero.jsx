@@ -14,13 +14,12 @@ export function Hero({ locale, t }) {
   const sectionRef = React.useRef(null);
   const whatsAppUrl = buildWhatsAppUrl({ locale });
 
-  // Hero Reveal sequence state (Gambar 2: 7s loop, pauses on hover/reduced motion)
+  // Hero Reveal sequence state (Gambar 2: 7s loop, pauses on true mouse hover)
   const [cycleKey, setCycleKey] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isInView, setIsInView] = React.useState(true);
-  const touchTimeoutRef = React.useRef(null);
 
-  // Monitor viewport visibility so we don't loop off-screen
+  // Monitor viewport visibility with generous threshold for mobile
   React.useEffect(() => {
     const elem = sectionRef.current;
     if (!elem || typeof IntersectionObserver === 'undefined') return;
@@ -29,22 +28,15 @@ export function Hero({ locale, t }) {
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.05, rootMargin: '60px 0px' }
+      { threshold: 0.05 }
     );
 
     observer.observe(elem);
-    return () => {
-      observer.disconnect();
-      if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    };
+    return () => observer.disconnect();
   }, []);
 
-  // 7s sequence loop as specified in Gambar 2
+  // 7s sequence loop (pauses only on real mouse hover, never on mobile touch)
   React.useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) return;
-
     if (isHovered || !isInView) return;
 
     const timer = setInterval(() => {
@@ -59,27 +51,16 @@ export function Hero({ locale, t }) {
     setCycleKey((prev) => prev + 1);
   };
 
+  // Safe mouse hover handlers that ignore touch events on mobile
   const handleMouseEnter = () => {
-    // Only pause on hover if device has true cursor/mouse pointer
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      setIsHovered(true);
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return; // Ignore synthetic mouseenter on touch devices
     }
+    setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-  };
-
-  const handleTouchStart = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    setIsHovered(true);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    touchTimeoutRef.current = setTimeout(() => {
-      setIsHovered(false);
-    }, 2000);
   };
 
   // Split headline lines into individual words for staggered blur-to-sharp reveal
@@ -106,8 +87,6 @@ export function Hero({ locale, t }) {
       ref={sectionRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent"
     >
       {/* Hero Background Image: Ken Burns Effect auto zoom-in 1.0 -> 1.15 infinite alternate */}

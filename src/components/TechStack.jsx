@@ -143,8 +143,6 @@ export function TechStack({ t }) {
   const [cycleKey, setCycleKey] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isInView, setIsInView] = React.useState(true);
-  const hasTriggeredRef = React.useRef(false);
-  const touchTimeoutRef = React.useRef(null);
 
   // Spotlight cursor tracking
   const [mousePos, setMousePos] = React.useState({ x: 50, y: 35, isManual: false });
@@ -153,7 +151,7 @@ export function TechStack({ t }) {
   const fullTypedText = "const app = createModernUI({ fast: true, seo: true });";
   const [typedText, setTypedText] = React.useState("");
 
-  // Intersection observer to track section visibility on both mobile & desktop
+  // Intersection observer to track section visibility
   React.useEffect(() => {
     const elem = sectionRef.current;
     if (!elem || typeof IntersectionObserver === 'undefined') return;
@@ -161,28 +159,25 @@ export function TechStack({ t }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInView(entry.isIntersecting);
-        // Trigger fresh bento build snap animation when user scrolls into view
-        if (entry.isIntersecting && !hasTriggeredRef.current) {
-          hasTriggeredRef.current = true;
-          setCycleKey((k) => k + 1);
-        }
       },
-      { threshold: 0.05, rootMargin: '80px 0px' }
+      { threshold: 0.05 }
     );
 
     observer.observe(elem);
-    return () => {
-      observer.disconnect();
-      if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    };
+    return () => observer.disconnect();
   }, []);
 
-  // 7s auto-loop
+  // When scrolled into view for the first time, re-trigger the sequence so mobile users see the full animation
+  const hasTriggeredInViewRef = React.useRef(false);
   React.useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) return;
+    if (isInView && !hasTriggeredInViewRef.current) {
+      hasTriggeredInViewRef.current = true;
+      setCycleKey((prev) => prev + 1);
+    }
+  }, [isInView]);
 
+  // 7s auto-loop (pauses only on real mouse hover, never on mobile touch)
+  React.useEffect(() => {
     if (isHovered || !isInView) return;
 
     const timer = setInterval(() => {
@@ -196,6 +191,14 @@ export function TechStack({ t }) {
   const handleReplay = (e) => {
     if (e) e.stopPropagation();
     setCycleKey((prev) => prev + 1);
+  };
+
+  // Safe hover handler that ignores touch devices
+  const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      return; // Ignore synthetic mouseenter on touch devices
+    }
+    setIsHovered(true);
   };
 
   // Typewriter effect triggered on cycleKey
@@ -226,37 +229,9 @@ export function TechStack({ t }) {
     setMousePos({ x, y, isManual: true });
   };
 
-  const handleMouseEnter = () => {
-    // Only register hover if device has true mouse pointer
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-      setIsHovered(true);
-    }
-  };
-
   const handleMouseLeaveGrid = () => {
     setMousePos((prev) => ({ ...prev, isManual: false }));
     setIsHovered(false);
-  };
-
-  const handleTouchStart = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    setIsHovered(true);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
-    touchTimeoutRef.current = setTimeout(() => {
-      setIsHovered(false);
-    }, 2000);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!gridRef.current || !e.touches || !e.touches[0]) return;
-    const rect = gridRef.current.getBoundingClientRect();
-    const touch = e.touches[0];
-    const x = Math.max(0, Math.min(100, ((touch.clientX - rect.left) / rect.width) * 100));
-    const y = Math.max(0, Math.min(100, ((touch.clientY - rect.top) / rect.height) * 100));
-    setMousePos({ x, y, isManual: true });
   };
 
   return (
@@ -265,9 +240,6 @@ export function TechStack({ t }) {
       ref={sectionRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeaveGrid}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
       className="relative overflow-hidden border-y border-border bg-bg py-14 sm:py-20 lg:py-28 text-txt dark:border-white/[0.06] dark:bg-[#070B12] dark:text-white"
     >
       {/* Ambient Top Glow */}
