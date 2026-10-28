@@ -18,6 +18,7 @@ export function Hero({ locale, t }) {
   const [cycleKey, setCycleKey] = React.useState(0);
   const [isHovered, setIsHovered] = React.useState(false);
   const [isInView, setIsInView] = React.useState(true);
+  const touchTimeoutRef = React.useRef(null);
 
   // Monitor viewport visibility so we don't loop off-screen
   React.useEffect(() => {
@@ -28,11 +29,14 @@ export function Hero({ locale, t }) {
       ([entry]) => {
         setIsInView(entry.isIntersecting);
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: '60px 0px' }
     );
 
     observer.observe(elem);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    };
   }, []);
 
   // 7s sequence loop as specified in Gambar 2
@@ -53,6 +57,29 @@ export function Hero({ locale, t }) {
   const handleReplay = (e) => {
     if (e) e.stopPropagation();
     setCycleKey((prev) => prev + 1);
+  };
+
+  const handleMouseEnter = () => {
+    // Only pause on hover if device has true cursor/mouse pointer
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const handleTouchStart = () => {
+    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    setIsHovered(true);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    touchTimeoutRef.current = setTimeout(() => {
+      setIsHovered(false);
+    }, 2000);
   };
 
   // Split headline lines into individual words for staggered blur-to-sharp reveal
@@ -77,8 +104,10 @@ export function Hero({ locale, t }) {
     <section
       id="hero"
       ref={sectionRef}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent"
     >
       {/* Hero Background Image: Ken Burns Effect auto zoom-in 1.0 -> 1.15 infinite alternate */}

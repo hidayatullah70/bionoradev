@@ -22,6 +22,10 @@ export function Testimonials({ locale = 'id', t }) {
   const [starKey, setStarKey] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+
+  const sectionRef = useRef(null);
+  const touchTimeoutRef = useRef(null);
 
   // Gestures refs
   const touchStartXRef = useRef(0);
@@ -32,6 +36,25 @@ export function Testimonials({ locale = 'id', t }) {
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Track section visibility in viewport
+  useEffect(() => {
+    const elem = sectionRef.current;
+    if (!elem || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.05, rootMargin: '80px 0px' }
+    );
+
+    observer.observe(elem);
+    return () => {
+      observer.disconnect();
+      if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    };
+  }, []);
 
   // Dealing next card off the deck (swipe to left)
   const handleNext = useCallback(() => {
@@ -76,7 +99,7 @@ export function Testimonials({ locale = 'id', t }) {
   );
 
   // Auto-shuffle interval timer
-  const autoPlayActive = !isPaused && !isHovered && !prefersReducedMotion;
+  const autoPlayActive = !isPaused && !isHovered && !prefersReducedMotion && isInView;
   useEffect(() => {
     if (!autoPlayActive) return;
 
@@ -90,6 +113,8 @@ export function Testimonials({ locale = 'id', t }) {
 
   // Touch gesture handlers
   const handleTouchStart = (e) => {
+    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    setIsHovered(true);
     touchStartXRef.current = e.touches[0].clientX;
     touchStartYRef.current = e.touches[0].clientY;
   };
@@ -98,13 +123,29 @@ export function Testimonials({ locale = 'id', t }) {
     const diffX = e.changedTouches[0].clientX - touchStartXRef.current;
     const diffY = e.changedTouches[0].clientY - touchStartYRef.current;
 
-    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
       if (diffX < 0) {
         handleNext();
       } else {
         handlePrev();
       }
     }
+
+    if (touchTimeoutRef.current) clearTimeout(touchTimeoutRef.current);
+    touchTimeoutRef.current = setTimeout(() => {
+      setIsHovered(false);
+    }, 2200);
+  };
+
+  const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      setIsHovered(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    isMouseDownRef.current = false;
   };
 
   // Mouse drag handlers
@@ -129,6 +170,7 @@ export function Testimonials({ locale = 'id', t }) {
   return (
     <section
       id="testimonials"
+      ref={sectionRef}
       className="py-20 sm:py-28 bg-surface-muted/30 relative overflow-hidden select-none"
     >
       {/* Background ambient lighting */}
@@ -146,11 +188,8 @@ export function Testimonials({ locale = 'id', t }) {
         {/* ============================================================== */}
         <div
           className="relative max-w-xl xl:max-w-2xl mx-auto mt-16 sm:mt-20 pt-16 pb-8"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => {
-            setIsHovered(false);
-            isMouseDownRef.current = false;
-          }}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}

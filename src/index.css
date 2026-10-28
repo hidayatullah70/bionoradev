@@ -777,4 +777,42 @@
   }
 }
 
+/* ------------------------------------------------------------- */
+/* Mobile Screen Optimizations (Smooth 60fps & Zero Horizontal Shift) */
+/* ------------------------------------------------------------- */
+@media (max-width: 640px) {
+  @keyframes heroWordRise {
+    0% {
+      transform: translateY(18px);
+      filter: blur(4px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes heroCardTiltUp {
+    0% {
+      transform: perspective(600px) rotateX(12deg) translateY(40px);
+      opacity: 0;
+    }
+    100% {
+      transform: perspective(600px) rotateX(0deg) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Bento Snap Mobile: vertical slide & scale, no horizontal jitter */
+  @keyframes bentoSnap0 { 0% { transform: translateY(-16px) scale(0.96); opacity: 0; } 70% { transform: translateY(2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+  @keyframes bentoSnap1 { 0% { transform: translateY(-16px) scale(0.96); opacity: 0; } 70% { transform: translateY(2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+  @keyframes bentoSnap2 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+  @keyframes bentoSnap3 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+  @keyframes bentoSnap4 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+  @keyframes bentoSnap5 { 0% { transform: translateY(16px) scale(0.96); opacity: 0; } 70% { transform: translateY(-2px) scale(1.01); opacity: 1; } 100% { transform: translateY(0) scale(1); opacity: 1; } }
+}
+
+
 
