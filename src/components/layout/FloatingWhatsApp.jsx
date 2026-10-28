@@ -8,7 +8,9 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
   const [showWidget, setShowWidget] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [copiedToast, setCopiedToast] = useState(false);
   const closeTimeoutRef = useRef(null);
+  const toastTimeoutRef = useRef(null);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
     };
   }, []);
 
@@ -79,20 +82,44 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
     setIsOpen((prev) => !prev);
   };
 
-  // URL WhatsApp terpusat
-  const whatsAppUrl = buildWhatsAppUrl({ locale });
+  // Teks konsultasi standar: "Halo BionoraDev, saya ingin berdiskusi mengenai kebutuhan website untuk bisnis saya."
+  const consultationMessage =
+    siteConfig.defaults?.whatsappMessage?.[locale] ||
+    siteConfig.defaults?.whatsappMessage?.id ||
+    'Halo BionoraDev, saya ingin berdiskusi mengenai kebutuhan website untuk bisnis saya.';
+  const encodedMessage = encodeURIComponent(consultationMessage);
 
-  // URL Telegram langsung dengan nomor telepon internasional +6281384224733
-  const telegramUrl = `https://t.me/${siteConfig.contact.telegramNumber || '+6281384224733'}`;
+  // URL WhatsApp terpusat dengan teks konsultasi otomatis
+  const whatsAppUrl = buildWhatsAppUrl({ locale, message: consultationMessage });
 
-  // URL Discord dengan nomor/ID 081384224733
-  const discordUrl = `https://discord.com/users/${siteConfig.contact.discordNumber || '081384224733'}`;
+  // URL Telegram dengan nomor +6281384224733 dan teks konsultasi otomatis
+  const telegramUrl = `https://t.me/${siteConfig.contact.telegramNumber || '+6281384224733'}?text=${encodedMessage}`;
+
+  // URL Discord dengan nomor/ID 081384224733 dan pesan otomatis
+  const discordUrl = `https://discord.com/users/${siteConfig.contact.discordNumber || '081384224733'}?message=${encodedMessage}`;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Daftar 3 Tombol Sub CTA (WhatsApp, Telegram, Discord) tanpa teks nomor
+  const handleSubCtaClick = () => {
+    // Salin teks pesan ke clipboard secara otomatis sehingga pengguna dapat langsung menempelkannya (paste)
+    if (navigator?.clipboard?.writeText) {
+      navigator.clipboard.writeText(consultationMessage).catch(() => {});
+      setCopiedToast(true);
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+      toastTimeoutRef.current = setTimeout(() => {
+        setCopiedToast(false);
+      }, 2500);
+    }
+
+    // Pada perangkat mobile, tutup menu setelah item dipilih
+    if (window.matchMedia('(hover: none)').matches) {
+      setIsOpen(false);
+    }
+  };
+
+  // Daftar 3 Tombol Sub CTA (WhatsApp, Telegram, Discord)
   const subCtaItems = [
     {
       id: 'whatsapp',
@@ -167,6 +194,17 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
             : "opacity-0 translate-y-4 scale-90 pointer-events-none"
         )}
       >
+        {/* Notifikasi Toast saat teks pesan tersalin otomatis */}
+        {copiedToast && (
+          <div
+            aria-live="polite"
+            className="absolute -top-10 right-0 px-3.5 py-1.5 rounded-full bg-slate-900/95 dark:bg-white/95 text-white dark:text-slate-900 text-xs font-semibold shadow-xl border border-cyan-400/50 backdrop-blur-md pointer-events-none whitespace-nowrap z-50 flex items-center gap-2 animate-in fade-in slide-in-from-bottom-2 duration-200"
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span>{locale === 'id' ? 'Teks konsultasi tersalin!' : 'Consultation text copied!'}</span>
+          </div>
+        )}
+
         {/* Menu Sub-CTA yang muncul ke atas saat di-hover / dibuka */}
         <div
           className={cn(
@@ -192,12 +230,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => {
-                  // Berikan sedikit feedback interaktif sebelum berpindah tab
-                  if (window.matchMedia('(hover: none)').matches) {
-                    setIsOpen(false);
-                  }
-                }}
+                onClick={handleSubCtaClick}
                 tabIndex={isOpen ? 0 : -1}
                 aria-label={item.ariaLabel}
                 style={delayStyles}
@@ -207,7 +240,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
                 )}
                 role="menuitem"
               >
-                {/* Pill Label Text di sebelah kiri (tanpa nomor teks) */}
+                {/* Pill Label Text di sebelah kiri */}
                 <div
                   className={cn(
                     "flex items-center px-4 py-1.5 sm:py-2 rounded-full border-2 bg-white dark:bg-[#0B1220]/95 shadow-md shadow-black/10 dark:shadow-black/50 text-slate-800 dark:text-white transition-all duration-200 group-hover:scale-102 group-hover:-translate-x-1",
