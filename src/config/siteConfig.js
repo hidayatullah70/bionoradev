@@ -26,6 +26,8 @@ export const siteConfig = {
   },
   contact: {
     whatsappNumber: "6281384224733",
+    telegramNumber: "+6281384224733",
+    discordNumber: "081384224733",
     email: "contact@bionoradev.com",
     githubUrl: "https://github.com",
   },

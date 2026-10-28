@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { SiWhatsapp, SiTelegram, SiDiscord } from 'react-icons/si';
 import { buildWhatsAppUrl } from '../../lib/whatsapp';
+import { siteConfig } from '../../config/siteConfig';
 import { cn } from '../../lib/utils';
 
-export function FloatingWhatsApp({ locale, t }) {
-  const [showWhatsApp, setShowWhatsApp] = useState(false);
+export function FloatingWhatsApp({ locale = 'id', t }) {
+  const [showWidget, setShowWidget] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
       const oneThirdScreen = window.innerHeight / 3;
 
-      // WhatsApp CTA muncul saat mulai menggulir (melewati 80px)
-      setShowWhatsApp(scrollY > 80);
+      // Widget CTA muncul setelah scroll sedikit (> 40px)
+      setShowWidget(scrollY > 40);
 
-      // Tombol CTA Back To Top muncul setelah layar di-scroll ke bawah 1/3 layar
+      // Tombol Back To Top muncul setelah 1/3 layar
       setShowBackToTop(scrollY > oneThirdScreen);
     };
 
@@ -27,116 +32,146 @@ export function FloatingWhatsApp({ locale, t }) {
     };
   }, []);
 
+  // Handle klik di luar area widget untuk menutup menu di perangkat mobile
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (containerRef.current && !containerRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  // Hover handlers dengan delay toleransi agar kursor tidak sengaja menutup menu
+  const handleMouseEnter = () => {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+        closeTimeoutRef.current = null;
+      }
+      setIsOpen(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      closeTimeoutRef.current = setTimeout(() => {
+        setIsOpen(false);
+      }, 240);
+    }
+  };
+
+  const handleTriggerClick = (e) => {
+    // Pada layar sentuh atau klik langsung, toggle state buka/tutup
+    e.preventDefault();
+    setIsOpen((prev) => !prev);
+  };
+
+  // URL WhatsApp terpusat
   const whatsAppUrl = buildWhatsAppUrl({ locale });
+
+  // URL Telegram langsung dengan nomor telepon internasional +6281384224733
+  const telegramUrl = `https://t.me/${siteConfig.contact.telegramNumber || '+6281384224733'}`;
+
+  // URL Discord dengan nomor/ID 081384224733
+  const discordUrl = `https://discord.com/users/${siteConfig.contact.discordNumber || '081384224733'}`;
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Daftar 3 Tombol Sub CTA (WhatsApp, Telegram, Discord)
+  const subCtaItems = [
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp',
+      label: locale === 'id' ? 'Chat via WhatsApp' : 'Chat via WhatsApp',
+      phoneText: '081384224733',
+      href: whatsAppUrl,
+      icon: SiWhatsapp,
+      ariaLabel: locale === 'id' ? 'Hubungi via WhatsApp (081384224733)' : 'Contact via WhatsApp (081384224733)',
+      // Warna & Tema
+      theme: {
+        borderLight: 'border-[#25D366]',
+        borderDark: 'dark:border-[#25D366]',
+        hoverLight: 'hover:bg-emerald-50 hover:border-[#1ebe5d]',
+        hoverDark: 'dark:hover:bg-[#072719] dark:hover:border-[#25D366]',
+        glowRing: 'focus-visible:ring-[#25D366]/50',
+        sphereBg: 'radial-gradient(circle at 35% 30%, #4ade80 0%, #25D366 38%, #16a34a 65%, #065f46 100%)',
+        sphereShadow: 'shadow-[0_4px_16px_rgba(37,211,102,0.45)] dark:shadow-[0_0_20px_rgba(37,211,102,0.65)]',
+      },
+    },
+    {
+      id: 'telegram',
+      name: 'Telegram',
+      label: locale === 'id' ? 'Chat via Telegram' : 'Chat via Telegram',
+      phoneText: '081384224733',
+      href: telegramUrl,
+      icon: SiTelegram,
+      ariaLabel: locale === 'id' ? 'Hubungi via Telegram (081384224733)' : 'Contact via Telegram (081384224733)',
+      // Warna & Tema
+      theme: {
+        borderLight: 'border-[#229ED9]',
+        borderDark: 'dark:border-[#229ED9]',
+        hoverLight: 'hover:bg-sky-50 hover:border-[#0088cc]',
+        hoverDark: 'dark:hover:bg-[#08283d] dark:hover:border-[#229ED9]',
+        glowRing: 'focus-visible:ring-[#229ED9]/50',
+        sphereBg: 'radial-gradient(circle at 35% 30%, #67e8f9 0%, #229ED9 38%, #0088cc 65%, #005a8c 100%)',
+        sphereShadow: 'shadow-[0_4px_16px_rgba(34,158,217,0.45)] dark:shadow-[0_0_20px_rgba(34,158,217,0.65)]',
+      },
+    },
+    {
+      id: 'discord',
+      name: 'Discord',
+      label: locale === 'id' ? 'Chat via Discord' : 'Chat via Discord',
+      phoneText: '081384224733',
+      href: discordUrl,
+      icon: SiDiscord,
+      ariaLabel: locale === 'id' ? 'Hubungi via Discord (081384224733)' : 'Contact via Discord (081384224733)',
+      // Warna & Tema
+      theme: {
+        borderLight: 'border-[#5865F2]',
+        borderDark: 'dark:border-[#5865F2]',
+        hoverLight: 'hover:bg-indigo-50 hover:border-[#4752c4]',
+        hoverDark: 'dark:hover:bg-[#15193b] dark:hover:border-[#5865F2]',
+        glowRing: 'focus-visible:ring-[#5865F2]/50',
+        sphereBg: 'radial-gradient(circle at 35% 30%, #a5b4fc 0%, #5865F2 38%, #4752C4 65%, #2c327c 100%)',
+        sphereShadow: 'shadow-[0_4px_16px_rgba(88,101,242,0.45)] dark:shadow-[0_0_20px_rgba(88,101,242,0.65)]',
+      },
+    },
+  ];
+
   return (
     <aside
-      aria-label={locale === 'id' ? 'Aksi Cepat Mengambang' : 'Floating Quick Actions'}
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-2.5 sm:gap-3 select-none pointer-events-none"
+      aria-label={locale === 'id' ? 'Aksi Cepat Live Chat BionoraDev' : 'BionoraDev Live Chat Quick Actions'}
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex items-end gap-2.5 sm:gap-3 select-none pointer-events-none"
     >
-      {/* 1. Tombol CTA WhatsApp */}
-      <div
-        className={cn(
-          "transition-all duration-300 ease-out transform",
-          showWhatsApp
-            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-            : "opacity-0 translate-y-4 scale-90 pointer-events-none h-0 overflow-hidden"
-        )}
-      >
-        <a
-          href={whatsAppUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative flex items-center gap-2.5 sm:gap-3 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50 rounded-full"
-          aria-label={locale === 'id' ? 'Chat Konsultasi via WhatsApp' : 'Chat Consultation via WhatsApp'}
-        >
-          {/* Hover Pill: Border Chat Konsultasi */}
-          <div
-            className="flex items-center px-4 py-1.5 sm:py-2 rounded-full border-2 border-[#25D366] bg-white dark:bg-brand-ink/95 shadow-md shadow-black/5 dark:shadow-black/40 text-slate-800 dark:text-white text-xs sm:text-[13px] font-semibold whitespace-nowrap opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0 transition-all duration-300 ease-out pointer-events-none group-hover:pointer-events-auto"
-          >
-            <span>{locale === 'id' ? 'Chat Konsultasi' : 'Chat Consultation'}</span>
-          </div>
-
-          {/* 3D Button Container with Radar Waves */}
-          <div className="relative flex items-center justify-center shrink-0">
-            {/* Radar Wave Pulse Rings (Warna Hijau Brand WhatsApp) */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10"
-            >
-              {/* Rotating Radar Sweep Cone in WhatsApp Green */}
-              <div
-                className="absolute w-20 h-20 sm:w-22 sm:h-22 rounded-full animate-radar-sweep opacity-20 dark:opacity-30 pointer-events-none"
-                style={{
-                  background:
-                    'conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(37, 211, 102, 0.4) 360deg)',
-                }}
-              />
-
-              {/* Concentric radar waves */}
-              <span className="absolute w-full h-full rounded-full border border-[#25D366]/60 bg-[#25D366]/15 animate-radar-1" />
-              <span className="absolute w-full h-full rounded-full border border-[#22c55e]/50 bg-[#22c55e]/10 animate-radar-2" />
-              <span className="absolute w-full h-full rounded-full border border-[#10b981]/40 bg-[#10b981]/5 animate-radar-3" />
-            </div>
-
-            {/* 3D WhatsApp Green Sphere Button */}
-            <div
-              className="relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white shadow-[0_4px_16px_rgba(37,211,102,0.45)] dark:shadow-[0_0_24px_rgba(37,211,102,0.6)] transition-all duration-200 group-hover:scale-105 active:scale-95 overflow-hidden"
-              style={{
-                background:
-                  'radial-gradient(circle at 35% 30%, #4ade80 0%, #22c55e 38%, #16a34a 65%, #065f46 100%)',
-              }}
-            >
-              {/* 3D Specular Glass Gloss Curved Reflection */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-1.5 top-0.5 h-3.5 sm:h-4 rounded-full pointer-events-none opacity-85"
-                style={{
-                  background:
-                    'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)',
-                }}
-              />
-
-              {/* Ambient Bottom Rim Reflection */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-2 bottom-0.5 h-2 rounded-full pointer-events-none opacity-40"
-                style={{
-                  background:
-                    'radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.75) 0%, transparent 80%)',
-                }}
-              />
-
-              {/* 3D White Phone Handset Icon */}
-              <svg
-                viewBox="0 0 24 24"
-                className="w-5 h-5 sm:w-5.5 sm:h-5.5 fill-white text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.35)] relative z-10 transition-transform duration-200 group-hover:rotate-[-6deg]"
-              >
-                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.58 1 1 0 01-.24 1.02l-2.21 2.19z" />
-              </svg>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      {/* 2. Tombol Back To Top 3 Dimensi (Warna Brand-Blue, Posisi di bawah CTA WhatsApp) */}
+      {/* 1. Tombol Back To Top (Terletak di sebelah kiri tombol Live Chat) */}
       <div
         className={cn(
           "transition-all duration-300 ease-out transform",
           showBackToTop
             ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-            : "opacity-0 translate-y-4 scale-75 pointer-events-none h-0 overflow-hidden"
+            : "opacity-0 translate-y-4 scale-75 pointer-events-none w-0 overflow-hidden"
         )}
       >
         <button
           onClick={scrollToTop}
           tabIndex={showBackToTop ? 0 : -1}
           aria-hidden={!showBackToTop}
-          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-brand-blue shadow-[0_4px_16px_rgba(0,128,240,0.45)] dark:shadow-[0_0_24px_rgba(0,128,240,0.65)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50 cursor-pointer overflow-hidden"
+          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-brand-blue/50 dark:border-cyan-400/50 shadow-[0_4px_16px_rgba(0,128,240,0.4)] dark:shadow-[0_0_22px_rgba(0,229,255,0.45)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50 cursor-pointer overflow-hidden shrink-0"
           style={{
             background:
               'radial-gradient(circle at 35% 30%, #67e8f9 0%, #0080F0 38%, #0050c0 68%, #001f7a 88%, #001040 100%)',
@@ -144,7 +179,7 @@ export function FloatingWhatsApp({ locale, t }) {
           aria-label={locale === 'id' ? 'Kembali ke atas halaman' : 'Back to top'}
           title={locale === 'id' ? 'Kembali ke atas' : 'Back to top'}
         >
-          {/* 3D Specular Glass Gloss Curved Reflection */}
+          {/* 3D Specular Glass Gloss */}
           <span
             aria-hidden="true"
             className="absolute inset-x-1.5 top-0.5 h-3.5 sm:h-4 rounded-full pointer-events-none opacity-85"
@@ -164,10 +199,10 @@ export function FloatingWhatsApp({ locale, t }) {
             }}
           />
 
-          {/* 3D Upward Arrow Icon in brand-white */}
+          {/* Upward Arrow Icon */}
           <svg
             viewBox="0 0 24 24"
-            className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-brand-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.45)] relative z-10 transition-transform duration-200 group-hover:-translate-y-0.5"
+            className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.45)] relative z-10 transition-transform duration-200 group-hover:-translate-y-0.5"
             fill="none"
             stroke="currentColor"
             strokeWidth="3.5"
@@ -176,6 +211,229 @@ export function FloatingWhatsApp({ locale, t }) {
           >
             <path d="M18 15l-6-6-6 6" />
           </svg>
+        </button>
+      </div>
+
+      {/* 2. Container Live Chat dengan 3 Sub-CTA (WhatsApp, Telegram, Discord) */}
+      <div
+        ref={containerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={cn(
+          "relative flex flex-col items-end transition-all duration-300 ease-out transform pointer-events-auto",
+          showWidget
+            ? "opacity-100 translate-y-0 scale-100"
+            : "opacity-0 translate-y-4 scale-90 pointer-events-none"
+        )}
+      >
+        {/* Menu Sub-CTA yang muncul ke atas saat di-hover / dibuka */}
+        <div
+          className={cn(
+            "absolute bottom-[calc(100%+0.75rem)] right-0 flex flex-col items-end gap-2.5 sm:gap-3 transition-all duration-300 ease-out",
+            isOpen
+              ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+              : "opacity-0 translate-y-4 scale-90 pointer-events-none invisible"
+          )}
+          role="menu"
+          aria-orientation="vertical"
+          aria-hidden={!isOpen}
+        >
+          {subCtaItems.map((item, idx) => {
+            const IconComponent = item.icon;
+            // Delay staggered untuk efek pop-up halus
+            const delayStyles = {
+              transitionDelay: isOpen ? `${(subCtaItems.length - 1 - idx) * 45}ms` : '0ms',
+            };
+
+            return (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  // Berikan sedikit feedback interaktif sebelum berpindah tab
+                  if (window.matchMedia('(hover: none)').matches) {
+                    setIsOpen(false);
+                  }
+                }}
+                tabIndex={isOpen ? 0 : -1}
+                aria-label={item.ariaLabel}
+                style={delayStyles}
+                className={cn(
+                  "group flex items-center gap-2.5 sm:gap-3 focus:outline-none rounded-full transition-all duration-200 transform",
+                  isOpen ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+                )}
+                role="menuitem"
+              >
+                {/* Pill Label Text di sebelah kiri */}
+                <div
+                  className={cn(
+                    "flex items-center gap-2 px-3.5 py-1.5 sm:py-2 rounded-full border-2 bg-white dark:bg-[#0B1220]/95 shadow-md shadow-black/10 dark:shadow-black/50 text-slate-800 dark:text-white transition-all duration-200 group-hover:scale-102 group-hover:-translate-x-1",
+                    item.theme.borderLight,
+                    item.theme.borderDark,
+                    item.theme.hoverLight,
+                    item.theme.hoverDark
+                  )}
+                >
+                  <span className="text-xs sm:text-[13px] font-semibold whitespace-nowrap">
+                    {item.label}
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] font-mono px-1.5 py-0.5 rounded-full bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300">
+                    {item.phoneText}
+                  </span>
+                </div>
+
+                {/* 3D Sphere Button Icon di sebelah kanan */}
+                <div className="relative flex items-center justify-center shrink-0">
+                  <div
+                    className={cn(
+                      "relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-white dark:border-white/80 transition-all duration-200 group-hover:scale-110 active:scale-95 overflow-hidden",
+                      item.theme.sphereShadow
+                    )}
+                    style={{ background: item.theme.sphereBg }}
+                  >
+                    {/* 3D Specular Glass Gloss */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-1.5 top-0.5 h-3.5 sm:h-4 rounded-full pointer-events-none opacity-85"
+                      style={{
+                        background:
+                          'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)',
+                      }}
+                    />
+
+                    {/* Ambient Bottom Rim Reflection */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-x-2 bottom-0.5 h-2 rounded-full pointer-events-none opacity-40"
+                      style={{
+                        background:
+                          'radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.75) 0%, transparent 80%)',
+                      }}
+                    />
+
+                    {/* Official Brand SVG Icon */}
+                    <IconComponent className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.35)] relative z-10 transition-transform duration-200 group-hover:rotate-[-6deg]" />
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Tombol Utama Trigger (Live Chat Headset Icon Flaticon 8744028) */}
+        <button
+          type="button"
+          onClick={handleTriggerClick}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+          aria-label={
+            isOpen
+              ? locale === 'id'
+                ? 'Tutup Menu Chat Konsultasi'
+                : 'Close Consultation Chat Menu'
+              : locale === 'id'
+              ? 'Buka Menu Live Chat (WhatsApp, Telegram, Discord)'
+              : 'Open Live Chat Menu (WhatsApp, Telegram, Discord)'
+          }
+          className="group relative flex items-center gap-2.5 sm:gap-3 focus:outline-none focus-visible:ring-4 focus-visible:ring-cyan-400/50 rounded-full cursor-pointer"
+        >
+          {/* Label Pill Samping saat Hover di Desktop (ketika menu belum dibuka) */}
+          <div
+            className={cn(
+              "flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-full border-2 border-brand-blue/60 dark:border-cyan-400/60 bg-white dark:bg-[#0B1220]/95 shadow-md shadow-black/10 dark:shadow-black/50 text-slate-800 dark:text-white text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-300 ease-out pointer-events-none",
+              isOpen
+                ? "opacity-0 translate-x-3 pointer-events-none"
+                : "opacity-0 translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 group-focus-visible:opacity-100 group-focus-visible:translate-x-0"
+            )}
+          >
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>{locale === 'id' ? 'Live Chat Konsultasi' : 'Live Consultation Chat'}</span>
+          </div>
+
+          {/* 3D Button Container dengan Radar Wave Animation */}
+          <div className="relative flex items-center justify-center shrink-0">
+            {/* Radar Wave Pulse Rings (Brand Cyan / Blue Pulse) */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10"
+            >
+              {/* Rotating Radar Sweep Cone */}
+              <div
+                className="absolute w-20 h-20 sm:w-24 sm:h-24 rounded-full animate-radar-sweep opacity-25 dark:opacity-35 pointer-events-none"
+                style={{
+                  background:
+                    'conic-gradient(from 0deg, transparent 0deg, transparent 270deg, rgba(0, 229, 255, 0.45) 360deg)',
+                }}
+              />
+
+              {/* Concentric radar waves */}
+              <span className="absolute w-full h-full rounded-full border border-cyan-400/60 bg-cyan-400/15 animate-radar-1" />
+              <span className="absolute w-full h-full rounded-full border border-sky-400/50 bg-sky-400/10 animate-radar-2" />
+              <span className="absolute w-full h-full rounded-full border border-brand-blue/40 bg-brand-blue/5 animate-radar-3" />
+            </div>
+
+            {/* 3D Sphere Trigger Button */}
+            <div
+              className={cn(
+                "relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-white/90 dark:border-cyan-400/70 transition-all duration-300 overflow-hidden",
+                "shadow-[0_4px_20px_rgba(0,128,240,0.35)] dark:shadow-[0_0_24px_rgba(0,229,255,0.55)]",
+                isOpen
+                  ? "scale-105 ring-4 ring-cyan-400/40"
+                  : "group-hover:scale-105 active:scale-95"
+              )}
+              style={{
+                background:
+                  'radial-gradient(circle at 35% 30%, #ffffff 0%, #f0f9ff 35%, #e0f2fe 70%, #bae6fd 100%)',
+              }}
+            >
+              {/* Dark mode background overlay */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 dark:block hidden opacity-100"
+                style={{
+                  background:
+                    'radial-gradient(circle at 35% 30%, #1e293b 0%, #0f172a 45%, #0B1220 85%, #020617 100%)',
+                }}
+              />
+
+              {/* 3D Specular Glass Gloss */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-1.5 top-0.5 h-4 sm:h-4.5 rounded-full pointer-events-none opacity-85 z-20"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.3) 60%, transparent 100%)',
+                }}
+              />
+
+              {/* Ambient Bottom Rim Reflection */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-2 bottom-0.5 h-2 rounded-full pointer-events-none opacity-40 z-20"
+                style={{
+                  background:
+                    'radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.75) 0%, transparent 80%)',
+                }}
+              />
+
+              {/* Gambar 1: Flaticon 8744028 Live Chat Icon */}
+              <img
+                src="/assets/icons/live-chat.png"
+                alt="BionoraDev Live Chat"
+                width={36}
+                height={36}
+                className={cn(
+                  "w-7 h-7 sm:w-8.5 sm:h-8.5 object-contain relative z-10 transition-transform duration-300 drop-shadow-[0_2px_4px_rgba(0,128,240,0.3)] dark:drop-shadow-[0_0_8px_rgba(0,229,255,0.6)]",
+                  isOpen ? "rotate-[-10deg] scale-110" : "group-hover:rotate-6 group-hover:scale-105"
+                )}
+              />
+
+              {/* Active Indicator Ping Dot */}
+              <span className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white dark:border-[#0B1220] z-30 animate-pulse" />
+            </div>
+          </div>
         </button>
       </div>
     </aside>
