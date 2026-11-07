@@ -41,5 +41,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
           local-dir: ./dist/
-          protocol: ftp
+          # Explicit FTPS encrypts the deployment credentials and file transfer.
+          protocol: ftps
           port: 21
