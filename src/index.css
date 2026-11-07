@@ -1082,12 +1082,22 @@ body {
 }
 
 .hallmark-section-solutions .hallmark-solutions-grid > div:first-child {
-  background: var(--hm-ink) !important;
-  color: var(--hm-contrast-text) !important;
+  background: var(--hm-surface) !important;
+  color: var(--hm-text) !important;
 }
 
 .hallmark-section-solutions .hallmark-solutions-grid > div:first-child h3,
 .hallmark-section-solutions .hallmark-solutions-grid > div:first-child p {
+  color: var(--hm-text) !important;
+}
+
+.dark .hallmark-section-solutions .hallmark-solutions-grid > div:first-child {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text) !important;
+}
+
+.dark .hallmark-section-solutions .hallmark-solutions-grid > div:first-child h3,
+.dark .hallmark-section-solutions .hallmark-solutions-grid > div:first-child p {
   color: var(--hm-contrast-text) !important;
 }
 
@@ -1125,9 +1135,14 @@ body {
 
 /* Technology: keep the live technical material, reduce the dashboard noise. */
 .hallmark-section-technology {
-  background: var(--hm-ink) !important;
-  color: var(--hm-contrast-text);
+  background: var(--hm-surface-muted) !important;
+  color: var(--hm-text) !important;
   border-color: color-mix(in srgb, var(--hm-accent) 22%, var(--hm-border)) !important;
+}
+
+.dark .hallmark-section-technology {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text) !important;
 }
 
 .hallmark-section-technology .rounded-3xl,
@@ -1174,19 +1189,30 @@ body {
 }
 
 .hallmark-section-pricing .grid > div:nth-child(2) {
-  background: var(--hm-ink) !important;
+  background: var(--hm-surface-muted) !important;
   border-color: var(--hm-accent) !important;
-  color: var(--hm-contrast-text) !important;
+  color: var(--hm-text) !important;
 }
 
 .hallmark-section-pricing .grid > div:nth-child(2) h3,
 .hallmark-section-pricing .grid > div:nth-child(2) p,
 .hallmark-section-pricing .grid > div:nth-child(2) span {
-  color: var(--hm-contrast-text) !important;
+  color: var(--hm-text) !important;
 }
 
 .hallmark-section-pricing .grid > div:nth-child(2) .border-border {
   border-color: color-mix(in srgb, var(--hm-text) 18%, transparent) !important;
+}
+
+.dark .hallmark-section-pricing .grid > div:nth-child(2) {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text) !important;
+}
+
+.dark .hallmark-section-pricing .grid > div:nth-child(2) h3,
+.dark .hallmark-section-pricing .grid > div:nth-child(2) p,
+.dark .hallmark-section-pricing .grid > div:nth-child(2) span {
+  color: var(--hm-contrast-text) !important;
 }
 
 /* Testimonials and FAQ: trust content gets breathing room and quiet controls. */
@@ -1223,6 +1249,13 @@ body {
 
 .hallmark-section-final-cta .rounded-card {
   border-radius: 0.95rem !important;
+  background: var(--hm-surface) !important;
+  border-color: var(--hm-border) !important;
+  box-shadow: 0 22px 60px color-mix(in srgb, var(--hm-ink) 12%, transparent) !important;
+  color: var(--hm-text);
+}
+
+.dark .hallmark-section-final-cta .rounded-card {
   background: var(--hm-ink) !important;
   border-color: color-mix(in srgb, var(--hm-accent) 38%, var(--hm-border)) !important;
   box-shadow: 0 22px 60px color-mix(in srgb, var(--hm-ink) 20%, transparent) !important;
@@ -1235,9 +1268,14 @@ body {
 
 /* Footer: an anchored mast with less animated surface noise. */
 .hallmark-footer {
+  background: var(--hm-surface-muted) !important;
+  color: var(--hm-text);
+  border-top-color: color-mix(in srgb, var(--hm-accent) 24%, var(--hm-border)) !important;
+}
+
+.dark .hallmark-footer {
   background: var(--hm-ink) !important;
   color: var(--hm-contrast-text);
-  border-top-color: color-mix(in srgb, var(--hm-accent) 24%, var(--hm-border)) !important;
 }
 
 .hallmark-footer > div:first-child {
