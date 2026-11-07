@@ -14,13 +14,13 @@ export function CapabilityBar({ t }) {
   ];
 
   return (
-    <section className="py-8 sm:py-12 border-y border-border bg-surface-muted/30 relative overflow-hidden">
+    <section className="hallmark-capability-bar py-8 sm:py-12 border-y border-border bg-surface-muted/30 relative overflow-hidden">
       <Container>
         <div ref={revealRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {t.capability.items.map((item, idx) => (
             <div
               key={idx}
-              className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-surface/60 border border-border/80 hover:border-accent/40 transition-all duration-200 flex flex-col gap-2.5 sm:gap-3 group"
+              className="p-3.5 sm:p-5 rounded-xl sm:rounded-2xl bg-surface/60 border border-border/80 hover:border-accent/40 transition-colors transition-transform duration-200 flex flex-col gap-2.5 sm:gap-3 group"
             >
               <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-surface-muted border border-border flex items-center justify-center group-hover:scale-105 transition-transform">
                 {icons[idx]}

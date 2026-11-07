@@ -12,7 +12,7 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "max-w-3xl mb-12 sm:mb-16",
+        "hallmark-section-heading max-w-3xl mb-12 sm:mb-16",
         align === 'center' ? "mx-auto text-center" : "text-left",
         className
       )}

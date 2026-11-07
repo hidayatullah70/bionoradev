@@ -14,7 +14,7 @@ export function Pricing({ locale, t }) {
   const revealRef = useReveal();
 
   return (
-    <section id="pricing" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
+    <section id="pricing" className="hallmark-section hallmark-section-pricing py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       {/* Background glow */}
       <div className="glow-ambient-blue w-96 h-96 top-1/3 -right-48" />
 
@@ -35,7 +35,7 @@ export function Pricing({ locale, t }) {
             return (
               <Card
                 key={plan.id}
-                className={`flex flex-col justify-between relative transition-all duration-300 ${
+                className={`flex flex-col justify-between relative transition-colors transition-transform transition-shadow duration-300 ${
                   plan.popular
                     ? 'border-accent shadow-xl lg:-translate-y-2 bg-surface/90'
                     : 'border-border bg-surface/60'

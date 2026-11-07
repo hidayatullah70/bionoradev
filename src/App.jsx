@@ -11,7 +11,7 @@ export default function App() {
   const { locale, setLocale, toggleLocale, t } = useLocale();
 
   return (
-    <div className="flex flex-col min-h-screen bg-bg text-txt font-sans">
+    <div className="hallmark-shell flex flex-col min-h-screen bg-bg text-txt font-sans">
       {/* Sticky Global Navigation */}
       <Navbar
         theme={theme}

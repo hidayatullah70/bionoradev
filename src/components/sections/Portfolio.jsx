@@ -30,7 +30,7 @@ export function Portfolio({ locale, t }) {
       );
 
   return (
-    <section id="portfolio" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
+    <section id="portfolio" className="hallmark-section hallmark-section-portfolio py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       <Container className="relative z-10">
         <SectionHeading
           badge={t.portfolio.badge}
@@ -44,7 +44,7 @@ export function Portfolio({ locale, t }) {
             <button
               key={tab.id}
               onClick={() => setSelectedFilter(tab.id)}
-              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900 dark:focus-visible:ring-accent ${
+              className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full transition-colors transition-shadow duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-900 dark:focus-visible:ring-accent ${
                 selectedFilter === tab.id
                   ? 'bg-blue-900 text-white dark:bg-accent dark:text-brand-dark-navy shadow-md shadow-blue-900/20 dark:shadow-accent/20 border border-blue-900 dark:border-accent font-bold'
                   : 'bg-surface-muted text-txt-muted hover:text-txt hover:bg-surface border border-border hover:border-blue-900/40 dark:hover:border-accent/40'
@@ -56,7 +56,7 @@ export function Portfolio({ locale, t }) {
         </div>
 
         {/* Portfolio Grid */}
-        <div ref={revealRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={revealRef} className="hallmark-portfolio-grid grid grid-cols-1 md:grid-cols-2 gap-8">
           {filteredProjects.map((project) => {
             const isConcept = project.status === 'concept';
             const isDemo = project.status === 'demo';
@@ -64,11 +64,11 @@ export function Portfolio({ locale, t }) {
             return (
               <Card
                 key={project.id}
-                className="flex flex-col justify-between overflow-hidden group border-border hover:border-accent/50 transition-all duration-300"
+                className="flex flex-col justify-between overflow-hidden group border-border hover:border-accent/50 transition-colors transition-shadow duration-300"
               >
                 <div>
                   {/* Mockup Preview Surface with Full Client Screenshot Background */}
-                  <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] rounded-xl overflow-hidden mb-5 border border-border/80 group-hover:border-accent/50 transition-all duration-300 bg-surface-muted shadow-sm">
+                  <div className="relative w-full aspect-[16/9] sm:aspect-[16/10] rounded-xl overflow-hidden mb-5 border border-border/80 group-hover:border-accent/50 transition-colors duration-300 bg-surface-muted shadow-sm">
                     {/* Actual Client Screenshot */}
                     {project.image ? (
                       <img
@@ -126,7 +126,7 @@ export function Portfolio({ locale, t }) {
                           href={project.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-all group-hover:scale-105 shrink-0 shadow-sm"
+                          className="px-2.5 py-1 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/30 text-white text-[11px] font-medium inline-flex items-center gap-1 transition-colors transition-transform shrink-0 shadow-sm"
                           onClick={(e) => e.stopPropagation()}
                           title={t.portfolio.labels.visitSite}
                         >

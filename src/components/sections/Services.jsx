@@ -18,7 +18,7 @@ export function Services({ locale, t }) {
   };
 
   return (
-    <section id="services" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
+    <section id="services" className="hallmark-section hallmark-section-services py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       {/* Subtle background glow */}
       <div className="glow-ambient-cyan w-96 h-96 top-1/2 -left-48" />
 
@@ -29,7 +29,7 @@ export function Services({ locale, t }) {
           subtitle={t.services.subtitle}
         />
 
-        <div ref={revealRef} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={revealRef} className="hallmark-services-grid grid grid-cols-1 md:grid-cols-2 gap-8">
           {t.services.items.map((service) => {
             const whatsAppUrl = buildWhatsAppUrl({
               locale,

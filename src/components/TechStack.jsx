@@ -240,7 +240,7 @@ export function TechStack({ t }) {
       ref={sectionRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeaveGrid}
-      className="relative overflow-hidden border-y border-border bg-bg py-14 sm:py-20 lg:py-28 text-txt dark:border-white/[0.06] dark:bg-[#070B12] dark:text-white"
+      className="hallmark-section hallmark-section-technology relative overflow-hidden border-y border-border bg-bg py-14 sm:py-20 lg:py-28 text-txt dark:border-white/[0.06] dark:bg-[#070B12] dark:text-white"
     >
       {/* Ambient Top Glow */}
       <div
@@ -536,7 +536,7 @@ export function TechStack({ t }) {
 
                 {/* Shield SVG with Animated Checkmark */}
                 <div className="relative z-10 flex items-center justify-center w-11 h-11 rounded-full bg-purple-500/15 border border-purple-400/40 text-purple-400">
-                  <svg className="w-5 h-5 overflow-visible" viewBox="0 0 24 24" fill="none">
+                  <svg className="w-5 h-5 overflow-visible" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
                       d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
                       stroke="currentColor"

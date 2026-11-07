@@ -1,3 +1,6 @@
+/* Hallmark · v2.0.0 · redesign: full · scope: homepage · copy: verbatim · theme: BionoraDev */
+/* Critique: the inherited page had strong material but too many simultaneous cards, pills, glows, and motion layers; this pass gives the content a calmer editorial rhythm. */
+/* Waive 38iii: the single accented hero word is the existing BionoraDev brand signature and remains once, in the hero. */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
@@ -139,13 +142,14 @@
 }
 
 .brand-gradient-text {
-  background: linear-gradient(135deg, #00E5FF 0%, #00B4FF 50%, #0066FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: none;
+  color: var(--accent);
+  -webkit-text-fill-color: currentColor;
 }
 
 .brand-gradient-bg {
-  background: linear-gradient(135deg, #00B4FF 0%, #0066FF 100%);
+  background: var(--accent);
+  color: var(--accent-ink, var(--text));
 }
 
 .glass-nav-light {
@@ -280,7 +284,7 @@
   bottom: calc(100% + 10px);
   left: 50%;
   transform: translate(-50%, 6px);
-  padding: 5px 11px;
+  padding: 4px 12px;
   border-radius: 8px;
   background: rgba(11, 18, 32, 0.95);
   color: #F8FAFC;
@@ -445,7 +449,7 @@
 }
 
 .hero-button-spring {
-  animation: heroButtonSpring 0.65s cubic-bezier(0.34, 1.3, 0.64, 1) both;
+  animation: heroButtonSpring 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* 6. Soft Specular Shine Sweep Across Primary CTA */
@@ -730,6 +734,583 @@
   .bento-orbit-cw,
   .bento-orbit-ccw {
     animation-duration: 25s !important;
+  }
+}
+
+/* ========================================================================== */
+/* Hallmark redesign: a quiet editorial system for the existing homepage.    */
+/* The page keeps its copy, data, destinations, handlers, and content order. */
+/* ========================================================================== */
+
+:root {
+  --hm-bg: #f3f6fa;
+  --hm-surface: #ffffff;
+  --hm-surface-muted: #e9eff5;
+  --hm-text: #0b1220;
+  --hm-text-muted: #52627a;
+  --hm-border: #d7e0ea;
+  --hm-accent: #0066ff;
+  --hm-accent-strong: #00b4ff;
+  --hm-accent-soft: #e6f4ff;
+  --hm-ink: #07101d;
+  --hm-contrast-text: #f5f8fc;
+  --hm-accent-ink: #ffffff;
+}
+
+.hallmark-shell {
+  --hm-display: var(--font-heading);
+  --hm-body: var(--font-body);
+  background: var(--hm-bg);
+  color: var(--hm-text);
+  font-family: var(--hm-body);
+}
+
+.hallmark-shell .uppercase {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.dark .hallmark-shell {
+  background: var(--hm-bg);
+  color: var(--hm-text);
+}
+
+.dark {
+  --hm-bg: #07101d;
+  --hm-surface: #0d1a2a;
+  --hm-surface-muted: #112238;
+  --hm-text: #f5f8fc;
+  --hm-text-muted: #9aabc0;
+  --hm-border: #21334a;
+  --hm-accent: #00e5ff;
+  --hm-accent-strong: #00b4ff;
+  --hm-accent-soft: #0b2c3d;
+  --hm-ink: #050b14;
+  --hm-contrast-text: #f5f8fc;
+  --hm-accent-ink: #07101d;
+}
+
+body:has(.hallmark-shell) {
+  background: var(--hm-bg);
+  color: var(--hm-text);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+.hallmark-shell,
+.hallmark-shell * {
+  border-color: var(--hm-border);
+}
+
+.hallmark-shell .bg-bg { background-color: var(--hm-bg); }
+.hallmark-shell .bg-surface { background-color: var(--hm-surface); }
+.hallmark-shell .bg-surface-muted { background-color: var(--hm-surface-muted); }
+.hallmark-shell .text-txt { color: var(--hm-text); }
+.hallmark-shell .text-txt-muted { color: var(--hm-text-muted); }
+.hallmark-shell .border-border { border-color: var(--hm-border); }
+.hallmark-shell .text-accent { color: var(--hm-accent); }
+.hallmark-shell .bg-accent { background-color: var(--hm-accent); }
+.hallmark-shell .font-heading,
+.hallmark-shell h1,
+.hallmark-shell h2,
+.hallmark-shell h3,
+.hallmark-shell h4 {
+  font-family: var(--hm-display);
+}
+
+.hallmark-shell h1,
+.hallmark-shell h2,
+.hallmark-shell h3,
+.hallmark-shell h4 {
+  text-wrap: balance;
+}
+
+.hallmark-shell ::selection {
+  background: var(--hm-accent);
+  color: var(--hm-ink);
+}
+
+.hallmark-shell {
+  scrollbar-color: var(--hm-accent) var(--hm-bg);
+}
+
+.hallmark-shell .max-w-7xl {
+  max-width: 1240px;
+}
+
+.hallmark-shell a,
+.hallmark-shell button {
+  transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: ease-out;
+}
+
+.hallmark-shell a:focus-visible,
+.hallmark-shell button:focus-visible,
+.hallmark-shell input:focus-visible,
+.hallmark-shell select:focus-visible,
+.hallmark-shell textarea:focus-visible {
+  outline: 2px solid var(--hm-accent);
+  outline-offset: 3px;
+}
+
+/* Chrome: a compact instrument panel, not a floating pill necklace. */
+.hallmark-navbar {
+  top: 1rem;
+}
+
+.hallmark-navbar > nav {
+  max-width: min(1180px, calc(100% - 1.5rem));
+  border-radius: 1rem !important;
+  border-color: color-mix(in srgb, var(--hm-border) 82%, transparent) !important;
+  background: color-mix(in srgb, var(--hm-surface) 90%, transparent) !important;
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--hm-ink) 12%, transparent) !important;
+  backdrop-filter: blur(14px);
+}
+
+.dark .hallmark-navbar > nav {
+  background: color-mix(in srgb, var(--hm-ink) 88%, transparent) !important;
+  border-color: color-mix(in srgb, var(--hm-border) 90%, transparent) !important;
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--hm-ink) 48%, transparent) !important;
+}
+
+.hallmark-navbar > nav > div.hidden.lg\:flex > button,
+.hallmark-navbar > nav > div.hidden.lg\:flex > a {
+  border-radius: 0.6rem !important;
+  letter-spacing: 0.01em;
+}
+
+.hallmark-navbar > nav > div.hidden.lg\:flex > button:not(:hover):not([aria-current="true"]) {
+  background: transparent;
+}
+
+/* Hero: preserve the supplied workstation image and let the copy lead. */
+.hallmark-hero {
+  min-height: min(840px, 100vh);
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text);
+}
+
+.hallmark-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--hm-ink) 94%, transparent) 0%, color-mix(in srgb, var(--hm-ink) 78%, transparent) 46%, color-mix(in srgb, var(--hm-ink) 20%, transparent) 100%);
+}
+
+.hallmark-hero > div:first-of-type {
+  opacity: 0.72;
+  z-index: 0;
+}
+
+.hallmark-hero > .relative.z-10 {
+  z-index: 2;
+}
+
+.hallmark-hero h1 {
+  max-width: 11ch;
+  font-size: clamp(2.5rem, 5.4vw, 5rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.hallmark-hero h1 .brand-gradient-text {
+  background: none;
+  color: var(--hm-accent);
+  -webkit-text-fill-color: currentColor;
+}
+
+.hallmark-hero .hero-badge-drop {
+  border-radius: 0.55rem;
+  background: color-mix(in srgb, var(--hm-surface) 9%, transparent) !important;
+  border-color: color-mix(in srgb, var(--hm-accent) 46%, transparent) !important;
+  backdrop-filter: blur(8px);
+}
+
+.hallmark-hero .hero-copy-fade {
+  max-width: 34rem;
+}
+
+.hallmark-hero .hero-card-tilt {
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--hm-surface) 11%, transparent) !important;
+  border-color: color-mix(in srgb, var(--hm-accent) 42%, transparent) !important;
+}
+
+.hallmark-hero .hero-button-spring a {
+  border-radius: 0.65rem !important;
+}
+
+.hallmark-hero .hero-copy-fade .rounded-full {
+  border-radius: 0.4rem;
+}
+
+/* Section rhythm: every block has a different job and a clear landing. */
+.hallmark-home .hallmark-section,
+.hallmark-capability-bar {
+  border-color: var(--hm-border) !important;
+}
+
+.hallmark-home .hallmark-section {
+  padding-block: clamp(4.5rem, 8vw, 8rem) !important;
+}
+
+.hallmark-section-heading {
+  margin-inline: 0 !important;
+  text-align: left !important;
+  max-width: 44rem;
+}
+
+.hallmark-section-heading > div {
+  justify-content: flex-start !important;
+}
+
+.hallmark-section-heading h2 {
+  max-width: 18ch;
+  font-size: clamp(2rem, 4vw, 3.6rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.hallmark-section-heading p {
+  max-width: 38rem;
+  font-size: 1rem !important;
+  line-height: 1.7;
+}
+
+.hallmark-section-heading > div:first-child > span,
+.hallmark-section-heading > div:first-child .inline-flex {
+  border-radius: 0.45rem;
+  background: transparent !important;
+  border-color: var(--hm-accent) !important;
+  color: var(--hm-accent) !important;
+  letter-spacing: 0.08em;
+}
+
+.hallmark-capability-bar {
+  padding-block: 1rem !important;
+  background: var(--hm-surface) !important;
+}
+
+.hallmark-capability-bar > div > div {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.hallmark-capability-bar > div > div > div {
+  min-height: 7rem;
+  padding: 1.2rem 1.4rem;
+  border-width: 0 1px 0 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.hallmark-capability-bar > div > div > div:last-child {
+  border-right: 0;
+}
+
+.hallmark-capability-bar > div > div > div > div:first-child {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.55rem;
+  background: var(--hm-accent-soft);
+  border-color: color-mix(in srgb, var(--hm-accent) 28%, var(--hm-border));
+}
+
+/* Services: four offerings read as a compact menu, not four identical tiles. */
+.hallmark-services-grid {
+  gap: 1rem !important;
+}
+
+.hallmark-section-services .hallmark-services-grid > div {
+  min-height: 100%;
+  border-radius: 0.85rem !important;
+  padding: clamp(1.35rem, 2.5vw, 2rem) !important;
+  background: var(--hm-surface) !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-services .hallmark-services-grid > div:nth-child(even) {
+  background: var(--hm-surface-muted) !important;
+}
+
+.hallmark-section-services .hallmark-services-grid > div:hover {
+  transform: translateY(-4px);
+  border-color: var(--hm-accent) !important;
+}
+
+/* Solutions: a wide lead problem followed by supporting operational answers. */
+@media (min-width: 1024px) {
+  .hallmark-solutions-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .hallmark-solutions-grid > *:nth-child(1) { grid-column: span 7; }
+  .hallmark-solutions-grid > *:nth-child(2) { grid-column: span 5; }
+  .hallmark-solutions-grid > *:nth-child(n + 3) { grid-column: span 4; }
+}
+
+.hallmark-section-solutions .hallmark-solutions-grid > div {
+  border-radius: 0.85rem !important;
+  background: color-mix(in srgb, var(--hm-surface) 86%, transparent) !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-solutions .hallmark-solutions-grid > div:first-child {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text) !important;
+}
+
+.hallmark-section-solutions .hallmark-solutions-grid > div:first-child h3,
+.hallmark-section-solutions .hallmark-solutions-grid > div:first-child p {
+  color: var(--hm-contrast-text) !important;
+}
+
+/* Portfolio: the first piece gets the stage; the rest form an index. */
+@media (min-width: 1024px) {
+  .hallmark-portfolio-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+
+  .hallmark-portfolio-grid > *:nth-child(1) { grid-column: span 7; }
+  .hallmark-portfolio-grid > *:nth-child(2) { grid-column: span 5; }
+  .hallmark-portfolio-grid > *:nth-child(n + 3) { grid-column: span 4; }
+}
+
+.hallmark-section-portfolio .hallmark-portfolio-grid > div {
+  border-radius: 0.85rem !important;
+  padding: 0.85rem !important;
+  background: var(--hm-surface) !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-portfolio .hallmark-portfolio-grid > div:hover {
+  border-color: var(--hm-accent) !important;
+}
+
+.hallmark-section-portfolio .hallmark-portfolio-grid > div > div:first-child {
+  border-radius: 0.55rem !important;
+}
+
+.hallmark-section-portfolio .rounded-full,
+.hallmark-section-portfolio .rounded-md {
+  border-radius: 0.4rem !important;
+}
+
+/* Technology: keep the live technical material, reduce the dashboard noise. */
+.hallmark-section-technology {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text);
+  border-color: color-mix(in srgb, var(--hm-accent) 22%, var(--hm-border)) !important;
+}
+
+.hallmark-section-technology .rounded-3xl,
+.hallmark-section-technology .rounded-2xl {
+  border-radius: 0.8rem !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-technology .backdrop-blur-xl {
+  backdrop-filter: none;
+  background: color-mix(in srgb, var(--hm-surface) 92%, transparent) !important;
+}
+
+/* Process and principles: long-form structure instead of a card wall. */
+.hallmark-section-process .glow-ambient-cyan,
+.hallmark-section-services .glow-ambient-cyan,
+.hallmark-section-final-cta .glow-ambient-cyan {
+  opacity: 0.12 !important;
+}
+
+.hallmark-section-process article,
+.hallmark-section-why .rounded-2xl {
+  border-radius: 0.7rem !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-why {
+  background: var(--hm-surface) !important;
+}
+
+.hallmark-section-why .lg\:sticky {
+  top: 7rem;
+}
+
+.hallmark-section-why .lg\:col-span-7 > div {
+  padding-block: 1.5rem;
+}
+
+/* Pricing: the middle plan is the only elevated decision. */
+.hallmark-section-pricing .grid > div {
+  border-radius: 0.85rem !important;
+  box-shadow: none !important;
+  background: var(--hm-surface) !important;
+}
+
+.hallmark-section-pricing .grid > div:nth-child(2) {
+  background: var(--hm-ink) !important;
+  border-color: var(--hm-accent) !important;
+  color: var(--hm-contrast-text) !important;
+}
+
+.hallmark-section-pricing .grid > div:nth-child(2) h3,
+.hallmark-section-pricing .grid > div:nth-child(2) p,
+.hallmark-section-pricing .grid > div:nth-child(2) span {
+  color: var(--hm-contrast-text) !important;
+}
+
+.hallmark-section-pricing .grid > div:nth-child(2) .border-border {
+  border-color: color-mix(in srgb, var(--hm-text) 18%, transparent) !important;
+}
+
+/* Testimonials and FAQ: trust content gets breathing room and quiet controls. */
+.hallmark-section-testimonials {
+  background: var(--hm-surface-muted) !important;
+}
+
+.hallmark-section-testimonials .rounded-3xl,
+.hallmark-section-testimonials .rounded-2xl {
+  border-radius: 0.85rem !important;
+}
+
+.hallmark-section-testimonials .glow-ambient-cyan {
+  opacity: 0.1 !important;
+}
+
+.hallmark-section-faq {
+  background: var(--hm-bg) !important;
+}
+
+.hallmark-section-faq .space-y-4 > div {
+  border-radius: 0.7rem !important;
+  background: var(--hm-surface) !important;
+  box-shadow: none !important;
+}
+
+.hallmark-section-faq .space-y-4 > div > button {
+  min-height: 4rem;
+}
+
+.hallmark-section-final-cta {
+  background: var(--hm-bg) !important;
+}
+
+.hallmark-section-final-cta .rounded-card {
+  border-radius: 0.95rem !important;
+  background: var(--hm-ink) !important;
+  border-color: color-mix(in srgb, var(--hm-accent) 38%, var(--hm-border)) !important;
+  box-shadow: 0 22px 60px color-mix(in srgb, var(--hm-ink) 20%, transparent) !important;
+  color: var(--hm-contrast-text);
+}
+
+.hallmark-section-final-cta .absolute.inset-0.pointer-events-none {
+  opacity: 0.12;
+}
+
+/* Footer: an anchored mast with less animated surface noise. */
+.hallmark-footer {
+  background: var(--hm-ink) !important;
+  color: var(--hm-contrast-text);
+  border-top-color: color-mix(in srgb, var(--hm-accent) 24%, var(--hm-border)) !important;
+}
+
+.hallmark-footer > div:first-child {
+  opacity: 0.28;
+}
+
+.hallmark-footer .footer-social-btn {
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--hm-surface) 16%, transparent);
+  border-color: color-mix(in srgb, var(--hm-accent) 26%, transparent);
+  box-shadow: none;
+}
+
+.hallmark-footer .footer-social-btn:hover {
+  transform: translateY(-3px);
+  background: var(--hm-accent);
+  color: var(--hm-accent-ink);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--hm-accent) 22%, transparent);
+}
+
+/* Mobile: keep the editorial read, never squeeze the desktop composition. */
+@media (max-width: 767px) {
+  .hallmark-navbar {
+    top: 0.65rem;
+  }
+
+  .hallmark-navbar > nav {
+    max-width: calc(100% - 0.75rem);
+  }
+
+  .hallmark-hero {
+    min-height: 780px;
+    align-items: flex-start;
+  }
+
+  .hallmark-hero::after {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--hm-ink) 94%, transparent) 0%, color-mix(in srgb, var(--hm-ink) 76%, transparent) 58%, color-mix(in srgb, var(--hm-ink) 56%, transparent) 100%);
+  }
+
+  .hallmark-hero > div:first-of-type img {
+    width: auto;
+    max-width: none;
+    height: 100%;
+    object-position: 68% center;
+  }
+
+  .hallmark-hero h1 {
+    max-width: 9ch;
+    font-size: clamp(2.55rem, 13vw, 4.2rem) !important;
+  }
+
+  .hallmark-capability-bar > div > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hallmark-capability-bar > div > div > div {
+    min-height: 6.6rem;
+    padding: 1rem;
+    border-width: 0 1px 1px 0;
+  }
+
+  .hallmark-capability-bar > div > div > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .hallmark-capability-bar > div > div > div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .hallmark-section-heading h2 {
+    max-width: 12ch;
+  }
+
+  .hallmark-section-portfolio .hallmark-portfolio-grid > div {
+    padding: 0.65rem !important;
+  }
+}
+
+/* The one allowed motion note: transitions guide state, never decorate silence. */
+@media (prefers-reduced-motion: reduce) {
+  .hallmark-shell *,
+  .hallmark-shell *::before,
+  .hallmark-shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

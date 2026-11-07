@@ -163,7 +163,7 @@ export function Testimonials({ locale = 'id', t }) {
     <section
       id="testimonials"
       ref={sectionRef}
-      className="py-20 sm:py-28 bg-surface-muted/30 relative overflow-hidden select-none"
+      className="hallmark-section hallmark-section-testimonials py-20 sm:py-28 bg-surface-muted/30 relative overflow-hidden select-none"
     >
       {/* Background ambient lighting */}
       <div className="glow-ambient-cyan w-[600px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 dark:opacity-60 pointer-events-none" />
@@ -253,7 +253,7 @@ export function Testimonials({ locale = 'id', t }) {
                   key={item.id}
                   className={`absolute inset-0 rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 flex flex-col justify-between border cursor-grab active:cursor-grabbing transition-colors duration-200 ${
                     pos === 0
-                      ? 'bg-surface border-border shadow-2xl dark:border-white/15 dark:bg-[#0E1726]/95 dark:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] shadow-slate-900/10'
+                    ? 'bg-surface border-border shadow-2xl dark:border-white/15 dark:bg-surface/95 dark:shadow-card-dark shadow-slate-900/10'
                       : pos === 1
                       ? 'bg-surface/90 border-border/70 dark:border-white/10 dark:bg-[#0B1322] shadow-xl'
                       : 'bg-surface/80 border-border/50 dark:border-white/5 dark:bg-[#09101C] shadow-lg'
@@ -372,7 +372,7 @@ export function Testimonials({ locale = 'id', t }) {
                 type="button"
                 onClick={handlePrev}
                 disabled={isSwiping}
-                className="w-9 h-9 rounded-full bg-surface border border-border flex items-center justify-center text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-all hover:scale-105 active:scale-95 disabled:opacity-50 cursor-pointer"
+                className="w-9 h-9 rounded-full bg-surface border border-border flex items-center justify-center text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-colors transition-transform transition-shadow hover:scale-105 active:scale-95 disabled:opacity-50 cursor-pointer"
                 aria-label={t.testimonials.prevButton || 'Sebelumnya'}
               >
                 <ChevronLeft className="w-4 h-4" />
@@ -388,7 +388,7 @@ export function Testimonials({ locale = 'id', t }) {
                     key={item.id}
                     type="button"
                     onClick={() => jumpToIndex(idx)}
-                    className={`transition-all duration-300 rounded-full cursor-pointer ${
+                    className={`transition-colors transition-transform transition-shadow duration-300 rounded-full cursor-pointer ${
                       currentIndex === idx
                         ? 'w-7 h-2 bg-brand-blue dark:bg-brand-cyan shadow-sm shadow-brand-blue/30'
                         : 'w-2 h-2 bg-border hover:bg-txt-muted/50'
@@ -403,7 +403,7 @@ export function Testimonials({ locale = 'id', t }) {
                 type="button"
                 onClick={handleNext}
                 disabled={isSwiping}
-                className="w-9 h-9 rounded-full bg-surface border border-border flex items-center justify-center text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-all hover:scale-105 active:scale-95 disabled:opacity-50 cursor-pointer"
+                className="w-9 h-9 rounded-full bg-surface border border-border flex items-center justify-center text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-colors transition-transform transition-shadow hover:scale-105 active:scale-95 disabled:opacity-50 cursor-pointer"
                 aria-label={t.testimonials.nextButton || 'Berikutnya'}
               >
                 <ChevronRight className="w-4 h-4" />
@@ -413,7 +413,7 @@ export function Testimonials({ locale = 'id', t }) {
               <button
                 type="button"
                 onClick={() => setIsPaused(!isPaused)}
-                className="ml-1 sm:ml-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-border text-xs font-semibold text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-all active:scale-95 cursor-pointer"
+                className="ml-1 sm:ml-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-border text-xs font-semibold text-txt hover:text-brand-blue hover:border-brand-blue/50 dark:hover:border-brand-cyan/50 shadow-sm transition-colors transition-transform transition-shadow active:scale-95 cursor-pointer"
                 aria-label={
                   isPaused
                     ? t.testimonials.playButton

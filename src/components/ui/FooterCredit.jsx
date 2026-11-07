@@ -11,7 +11,7 @@ export function FooterCredit({ variant = 'dark' }) {
         href={siteConfig.brand.websiteUrl || '#'}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-baseline font-semibold group transition-all duration-200 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-0.5"
+        className="inline-flex items-baseline font-semibold group transition-opacity duration-200 hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-0.5"
         title="BionoraDev Official Website"
         aria-label="BionoraDev Website"
       >

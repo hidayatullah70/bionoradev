@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-11-07",
+    "mode": "redesign",
+    "depth": "full",
+    "scope": "site",
+    "shape": "Editorial studio",
+    "theme": "BionoraDev brand",
+    "axes": {
+      "energy": 2,
+      "rhythm": 3,
+      "motion": 1,
+      "hero": "Stage",
+      "nav": "compact floating bar",
+      "footer": "mast"
+    },
+    "hero": "supplied workstation image with left-led copy",
+    "signature": "existing BionoraDev workstation image",
+    "imagery": ["existing hero image", "existing portfolio screenshots"],
+    "sections": ["Hero", "Capability Rail", "Services Grid", "Solutions Mosaic", "Portfolio Index", "Technology Workbench", "Process Steps", "Pricing Offer", "Why Rows", "Testimonial Deck", "FAQ Rows", "Final Band", "Footer"],
+    "entry": "BionoraDev company profile lead generation homepage",
+    "fingerprint": "stage-rail-grid-mosaic-index-workbench-rows-offer-mast",
+    "waived": ["38iii: the existing brand-accented hero word"],
+    "prompt": "Redesign the existing BionoraDev homepage with Hallmark while keeping all copy and wiring verbatim"
+  }
+]

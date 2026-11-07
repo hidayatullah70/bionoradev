@@ -67,7 +67,7 @@ export function Footer({ locale, t, theme = 'dark' }) {
   ];
 
   return (
-    <footer className="relative bg-surface-muted/60 dark:bg-[#0B1220] pt-16 sm:pt-20 pb-12 overflow-hidden border-t border-border/80">
+    <footer className="hallmark-footer relative bg-surface-muted/60 dark:bg-brand-ink pt-16 sm:pt-20 pb-12 overflow-hidden border-t border-border/80">
       {/* ============================================================ */}
       {/* Animated Multi-Layer SVG Waves Background (footer-16 effect) */}
       {/* ============================================================ */}

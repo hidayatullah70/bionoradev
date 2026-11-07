@@ -24,7 +24,7 @@ export function FAQ({ locale, t }) {
   });
 
   return (
-    <section id="faq" className="py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
+    <section id="faq" className="hallmark-section hallmark-section-faq py-20 sm:py-28 relative scroll-mt-16 overflow-hidden">
       <Container className="max-w-4xl">
         <SectionHeading
           badge={t.faq.badge}
@@ -42,7 +42,7 @@ export function FAQ({ locale, t }) {
             return (
               <div
                 key={item.id}
-                className="rounded-2xl bg-surface border border-border overflow-hidden transition-all duration-200"
+                className="rounded-2xl bg-surface border border-border overflow-hidden transition-colors transition-shadow duration-200"
               >
                 <button
                   onClick={() => toggleAccordion(item.id)}

@@ -112,7 +112,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
   const whatsAppUrl = buildWhatsAppUrl({ locale });
 
   return (
-    <header className="fixed top-2.5 sm:top-4 md:top-5 left-0 right-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-none transition-all duration-300 w-full">
+    <header className="hallmark-navbar fixed top-2.5 sm:top-4 md:top-5 left-0 right-0 z-50 flex justify-center px-2 sm:px-4 pointer-events-none transition-all duration-300 w-full">
       {/* Floating Pill Navbar Dock */}
       <nav
         aria-label="Main Navigation"

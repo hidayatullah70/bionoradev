@@ -87,7 +87,7 @@ export function Hero({ locale, t }) {
       ref={sectionRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent"
+      className="hallmark-hero relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32 overflow-hidden bg-transparent"
     >
       {/* Hero Background Image: Ken Burns Effect auto zoom-in 1.0 -> 1.15 infinite alternate */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden bg-transparent">
@@ -126,7 +126,7 @@ export function Hero({ locale, t }) {
                   onClick={handleReplay}
                   title={locale === 'id' ? 'Hero Reveal · Auto-loop 7s (Klik untuk replay)' : 'Hero Reveal · 7s auto-loop (Click to replay)'}
                   aria-label="Replay Hero Reveal animation"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 dark:bg-surface/50 dark:hover:bg-surface border border-white/10 dark:border-white/15 text-[11px] font-medium text-slate-300 dark:text-txt-muted hover:text-brand-cyan transition-all duration-200 cursor-pointer group select-none"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/5 hover:bg-white/15 dark:bg-surface/50 dark:hover:bg-surface border border-white/10 dark:border-white/15 text-[11px] font-medium text-slate-300 dark:text-txt-muted hover:text-brand-cyan transition-colors transition-transform duration-200 cursor-pointer group select-none"
                 >
                   <RotateCcw className={cn("w-3 h-3 transition-transform duration-500", isHovered ? "" : "group-hover:-rotate-90")} />
                   <span className="hidden sm:inline font-mono text-[10px] tracking-wide">

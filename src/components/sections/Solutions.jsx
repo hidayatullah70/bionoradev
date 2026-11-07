@@ -19,7 +19,7 @@ export function Solutions({ locale, t }) {
   ];
 
   return (
-    <section id="solutions" className="py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden">
+    <section id="solutions" className="hallmark-section hallmark-section-solutions py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden">
       <Container className="relative z-10">
         <SectionHeading
           badge={t.solutions.badge}
@@ -27,7 +27,7 @@ export function Solutions({ locale, t }) {
           subtitle={t.solutions.subtitle}
         />
 
-        <div ref={revealRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={revealRef} className="hallmark-solutions-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {t.solutions.items.map((item, idx) => {
             const whatsAppUrl = buildWhatsAppUrl({
               locale,

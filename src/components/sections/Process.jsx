@@ -178,7 +178,7 @@ export function Process({ t }) {
     <section
       id="process"
       ref={sectionRef}
-      className="py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden select-none"
+      className="hallmark-section hallmark-section-process py-20 sm:py-28 bg-surface-muted/30 relative scroll-mt-16 overflow-hidden select-none"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -203,6 +203,7 @@ export function Process({ t }) {
                 viewBox="0 0 1000 120"
                 preserveAspectRatio="none"
                 className="w-full h-full overflow-visible"
+                aria-hidden="true"
               >
                 <defs>
                   {/* Glowing draw line gradient */}
