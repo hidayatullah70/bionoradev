@@ -871,6 +871,22 @@ body {
   backdrop-filter: blur(14px);
 }
 
+/* Desktop dock: anchor the navigation to the viewport edge instead of centering it. */
+@media (min-width: 1024px) {
+  .hallmark-navbar {
+    justify-content: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hallmark-navbar > nav {
+    width: fit-content;
+    max-width: calc(100vw - 1rem);
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 .dark .hallmark-navbar > nav {
   background: color-mix(in srgb, var(--hm-ink) 88%, transparent) !important;
   border-color: color-mix(in srgb, var(--hm-border) 90%, transparent) !important;
