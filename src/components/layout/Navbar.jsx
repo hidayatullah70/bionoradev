@@ -163,6 +163,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         {/* Desktop Navigation Links (.nav-menu specification) */}
         <div className="nav-menu hidden lg:flex items-center">
           {navLinks.map((link) => {
+            const Icon = link.icon;
             const isActive = activeSection === link.id;
             return (
               <button
@@ -170,10 +171,20 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 onClick={() => handleNavClick(link.id)}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
+                  "group flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
                   isActive && "active"
                 )}
               >
+                {Icon && (
+                  <Icon
+                    className={cn(
+                      "w-3.5 h-3.5 shrink-0 transition-colors duration-300",
+                      isActive
+                        ? "text-brand-deep dark:text-brand-cyan"
+                        : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
+                    )}
+                  />
+                )}
                 <span>{link.label}</span>
               </button>
             );
@@ -283,13 +294,25 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                     onClick={() => handleNavClick(link.id)}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      "relative flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all text-left",
+                      "group relative flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all text-left",
                       isActive
                         ? "text-brand-deep font-bold bg-brand-blue/10 dark:bg-brand-blue/15 dark:text-brand-cyan"
                         : "text-slate-700 hover:text-brand-deep hover:bg-slate-100/80 dark:text-slate-300 dark:hover:text-brand-cyan dark:hover:bg-white/5"
                     )}
                   >
-                    <span>{link.label}</span>
+                    <div className="flex items-center gap-2.5">
+                      {Icon && (
+                        <Icon
+                          className={cn(
+                            "w-4 h-4 shrink-0 transition-colors duration-200",
+                            isActive
+                              ? "text-brand-deep dark:text-brand-cyan"
+                              : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
+                          )}
+                        />
+                      )}
+                      <span>{link.label}</span>
+                    </div>
                     {isActive && (
                       <span className="w-1.5 h-4 rounded-full bg-brand-deep dark:bg-brand-cyan shadow-[0_0_8px_currentColor]" />
                     )}
