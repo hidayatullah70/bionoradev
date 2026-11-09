@@ -109,12 +109,12 @@ export function Hero({ locale, t }) {
         />
       </div>
 
-      <Container className="relative z-10">
+      <Container className="relative z-10 2xl:mx-0 2xl:max-w-none 2xl:px-8">
         <div ref={revealRef} className="flex flex-col">
           {/* Top Row: Left Column with Copy & CTAs, Right area open so text never overlaps laptop showcase */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Width-constrained so text does NOT overlap laptop image */}
-            <div className="lg:col-span-6 xl:col-span-6 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
+            <div className="lg:col-span-6 xl:col-span-6 2xl:col-span-5 flex flex-col items-start text-left max-w-xl xl:max-w-2xl 2xl:max-w-xl">
               {/* Top Badge (Kicker & Reveal Loop Indicator) */}
               <div className="mb-6 flex flex-wrap items-center gap-2.5">
                 {/* 1. Badge Drops in 16px and fades in (0.6s) */}

@@ -1035,6 +1035,22 @@ body {
   }
 }
 
+/* Full HD 16:9 (1920x1080) Desktop Dock Alignment: Remove left margin so navbar is truly on the left without empty space */
+@media (min-width: 1500px) {
+  .hallmark-navbar {
+    justify-content: flex-start !important;
+    padding-left: 0 !important;
+    left: 0 !important;
+  }
+
+  .hallmark-navbar>nav {
+    margin-left: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-left: 0 !important;
+  }
+}
+
 .dark .hallmark-navbar>nav {
   background: #071328f0 !important;
   border-color: rgba(255, 255, 255, 0.12) !important;
