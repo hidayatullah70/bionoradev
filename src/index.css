@@ -1017,7 +1017,7 @@ body {
   display: flex;
   align-items: center;
   isolation: isolate;
-  background: var(--hm-bg) !important;
+  background: transparent !important;
   color: var(--hm-text);
 }
 
@@ -1032,7 +1032,7 @@ body {
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--hm-bg) 95%, transparent) 0%, color-mix(in srgb, var(--hm-bg) 80%, transparent) 46%, color-mix(in srgb, var(--hm-bg) 10%, transparent) 100%);
+  background: transparent;
 }
 
 .dark .hallmark-hero::after {
@@ -1040,12 +1040,12 @@ body {
 }
 
 .hallmark-hero > div:first-of-type {
-  opacity: 0.95;
+  opacity: 1 !important;
   z-index: 0;
 }
 
 .dark .hallmark-hero > div:first-of-type {
-  opacity: 0.72;
+  opacity: 0.72 !important;
 }
 
 .hallmark-hero > .relative.z-10 {
@@ -1447,7 +1447,7 @@ body {
   }
 
   .hallmark-hero::after {
-    background: linear-gradient(180deg, color-mix(in srgb, var(--hm-bg) 95%, transparent) 0%, color-mix(in srgb, var(--hm-bg) 76%, transparent) 58%, color-mix(in srgb, var(--hm-bg) 30%, transparent) 100%);
+    background: transparent;
   }
 
   .dark .hallmark-hero::after {

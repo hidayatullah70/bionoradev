@@ -120,7 +120,7 @@ export function Hero({ locale, t }) {
                 {/* 1. Badge Drops in 16px and fades in (0.6s) */}
                 <div
                   key={`badge-${cycleKey}`}
-                  className="hero-badge-drop inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/5 dark:bg-surface/80 border border-slate-900/10 dark:border-brand-blue/30 backdrop-blur-md shadow-sm will-change-transform"
+                  className="hero-badge-drop inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-surface/80 border border-slate-300/80 dark:border-brand-blue/30 backdrop-blur-md shadow-sm will-change-transform"
                   style={{ animationDelay: '40ms' }}
                 >
                   <Sparkles className="w-4 h-4 text-brand-blue dark:text-brand-cyan animate-pulse" />
@@ -135,7 +135,7 @@ export function Hero({ locale, t }) {
                   onClick={handleReplay}
                   title={locale === 'id' ? 'Hero Reveal · Auto-loop 7s (Klik untuk replay)' : 'Hero Reveal · 7s auto-loop (Click to replay)'}
                   aria-label="Replay Hero Reveal animation"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900/5 hover:bg-slate-900/10 dark:bg-surface/50 dark:hover:bg-surface border border-slate-900/10 dark:border-white/15 text-[11px] font-medium text-slate-600 dark:text-txt-muted hover:text-brand-deep dark:hover:text-brand-cyan transition-colors transition-transform duration-200 cursor-pointer group select-none"
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white dark:bg-surface/50 dark:hover:bg-surface border border-slate-300/80 dark:border-white/15 text-[11px] font-medium text-slate-700 dark:text-txt-muted hover:text-brand-deep dark:hover:text-brand-cyan transition-colors transition-transform duration-200 cursor-pointer group select-none backdrop-blur-sm shadow-sm"
                 >
                   <RotateCcw className={cn("w-3 h-3 transition-transform duration-500", isHovered ? "" : "group-hover:-rotate-90")} />
                   <span className="hidden sm:inline font-mono text-[10px] tracking-wide">
@@ -215,7 +215,7 @@ export function Hero({ locale, t }) {
               {/* 4. Subheadline Supporting Copy: Fades up smoothly */}
               <p
                 key={`subheadline-${cycleKey}`}
-                className="hero-copy-fade mt-5 text-base sm:text-lg lg:text-xl text-slate-600 dark:text-txt-muted leading-relaxed max-w-lg lg:max-w-[460px] xl:max-w-[480px] will-change-transform"
+                className="hero-copy-fade mt-5 text-base sm:text-lg lg:text-xl text-slate-800 dark:text-txt-muted leading-relaxed max-w-lg lg:max-w-[460px] xl:max-w-[480px] will-change-transform font-medium"
                 style={{
                   animationDelay: `${120 + totalWords * 90 + 120}ms`,
                 }}
