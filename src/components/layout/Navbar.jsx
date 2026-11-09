@@ -111,13 +111,13 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
       <nav
         aria-label="Main Navigation"
         className={cn(
-          "pointer-events-auto rounded-full border transition-all duration-300 flex items-center justify-between gap-1 sm:gap-2.5 lg:gap-3 p-1 sm:p-2",
+          "pointer-events-auto rounded-2xl border transition-all duration-300 flex items-center justify-between gap-1 sm:gap-2.5 lg:gap-3 p-1.5 sm:p-2",
           "w-full max-w-[calc(100vw-1rem)] lg:max-w-fit shadow-xl backdrop-blur-xl",
           // Light mode glassmorphism
-          "bg-white/85 border-slate-200/90 shadow-[0_12px_36px_-6px_rgba(11,18,32,0.08)] ring-1 ring-black/5",
-          // Dark mode glassmorphism
-          "dark:bg-brand-ink/85 dark:border-white/10 dark:shadow-[0_12px_36px_-6px_rgba(0,0,0,0.7)] dark:ring-1 dark:ring-white/5",
-          scrolled && "shadow-2xl bg-white/95 border-slate-300/80 dark:bg-brand-ink/95 dark:border-white/15"
+          "bg-white/90 border-slate-200/90 shadow-[0_12px_36px_-6px_rgba(11,18,32,0.08)] ring-1 ring-black/5",
+          // Dark mode glassmorphism (matches reference dock)
+          "dark:bg-[#071328]/95 dark:border-white/10 dark:shadow-[0_12px_36px_-6px_rgba(0,0,0,0.7)] dark:ring-1 dark:ring-white/5",
+          scrolled && "shadow-2xl bg-white/95 border-slate-300/80 dark:bg-[#060f20]/95 dark:border-white/15"
         )}
       >
         {/* Brand Logo with Dynamic Theme Detection */}
@@ -160,10 +160,9 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           );
         })()}
 
-        {/* Desktop Navigation Links (Segmented Pill Style) */}
-        <div className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+        {/* Desktop Navigation Links (.nav-menu specification) */}
+        <div className="nav-menu hidden lg:flex items-center">
           {navLinks.map((link) => {
-            const Icon = link.icon;
             const isActive = activeSection === link.id;
             return (
               <button
@@ -171,32 +170,10 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 onClick={() => handleNavClick(link.id)}
                 aria-current={isActive ? 'page' : undefined}
                 className={cn(
-                  "group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue whitespace-nowrap border",
-                  isActive
-                    ? [
-                        // Light mode active
-                        "bg-brand-blue text-white border-brand-blue font-bold shadow-sm shadow-brand-blue/30",
-                        // Dark mode active
-                        "dark:bg-brand-blue/25 dark:border-brand-blue dark:text-brand-cyan dark:shadow-[0_0_12px_rgba(0,180,255,0.4)]"
-                      ]
-                    : [
-                        // Light mode inactive & hover
-                        "text-slate-700 border-transparent hover:border-brand-blue/30 hover:bg-brand-blue/10 hover:text-brand-deep",
-                        // Dark mode inactive & hover
-                        "dark:text-slate-300 dark:border-transparent dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
-                      ]
+                  "focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue",
+                  isActive && "active"
                 )}
               >
-                {Icon && (
-                  <Icon
-                    className={cn(
-                      "w-3.5 h-3.5 transition-colors",
-                      isActive
-                        ? "text-white dark:text-brand-cyan"
-                        : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
-                    )}
-                  />
-                )}
                 <span>{link.label}</span>
               </button>
             );
@@ -204,7 +181,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         </div>
 
         {/* Vertical Divider before Controls (Desktop Only) */}
-        <div className="hidden lg:block h-4 w-px bg-slate-300/80 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
+        <div className="hidden lg:block h-5 w-px bg-slate-300/80 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
 
         {/* Desktop Controls (Language, Theme, WhatsApp CTA) */}
         <div className="hidden lg:flex items-center gap-1.5 xl:gap-2">
@@ -306,23 +283,16 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                     onClick={() => handleNavClick(link.id)}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      "group flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all text-left border",
+                      "relative flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold tracking-wide transition-all text-left",
                       isActive
-                        ? "bg-brand-blue text-white border-brand-blue font-bold shadow-sm dark:bg-brand-blue/25 dark:border-brand-blue dark:text-brand-cyan"
-                        : "text-slate-700 border-transparent hover:border-brand-blue/30 hover:bg-brand-blue/10 hover:text-brand-deep dark:text-slate-300 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
+                        ? "text-brand-deep font-bold bg-brand-blue/10 dark:bg-brand-blue/15 dark:text-brand-cyan"
+                        : "text-slate-700 hover:text-brand-deep hover:bg-slate-100/80 dark:text-slate-300 dark:hover:text-brand-cyan dark:hover:bg-white/5"
                     )}
                   >
-                    {Icon && (
-                      <Icon
-                        className={cn(
-                          "w-4 h-4 shrink-0 transition-colors",
-                          isActive
-                            ? "text-white dark:text-brand-cyan"
-                            : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
-                        )}
-                      />
-                    )}
                     <span>{link.label}</span>
+                    {isActive && (
+                      <span className="w-1.5 h-4 rounded-full bg-brand-deep dark:bg-brand-cyan shadow-[0_0_8px_currentColor]" />
+                    )}
                   </button>
                 );
               })}

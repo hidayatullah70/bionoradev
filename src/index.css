@@ -863,44 +863,143 @@ body {
 }
 
 .hallmark-navbar > nav {
-  max-width: min(1180px, calc(100% - 1.5rem));
-  border-radius: 1rem !important;
+  max-width: min(1200px, calc(100% - 1.5rem));
+  border-radius: 1.25rem !important;
   border-color: color-mix(in srgb, var(--hm-border) 82%, transparent) !important;
-  background: color-mix(in srgb, var(--hm-surface) 90%, transparent) !important;
+  background: color-mix(in srgb, var(--hm-surface) 92%, transparent) !important;
   box-shadow: 0 12px 30px color-mix(in srgb, var(--hm-ink) 12%, transparent) !important;
   backdrop-filter: blur(14px);
 }
 
-/* Desktop dock: anchor the navigation to the viewport edge instead of centering it. */
+/* Desktop dock: centered floating navigation dock matching reference specification */
 @media (min-width: 1024px) {
   .hallmark-navbar {
-    justify-content: flex-start;
-    padding-left: 0;
-    padding-right: 0;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .hallmark-navbar > nav {
     width: fit-content;
-    max-width: calc(100vw - 1rem);
-    margin-left: 0;
-    margin-right: 0;
+    max-width: calc(100vw - 2rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 .dark .hallmark-navbar > nav {
-  background: color-mix(in srgb, var(--hm-ink) 88%, transparent) !important;
-  border-color: color-mix(in srgb, var(--hm-border) 90%, transparent) !important;
-  box-shadow: 0 16px 40px color-mix(in srgb, var(--hm-ink) 48%, transparent) !important;
+  background: #071328f0 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
 }
 
-.hallmark-navbar > nav > div.hidden.lg\:flex > button,
-.hallmark-navbar > nav > div.hidden.lg\:flex > a {
-  border-radius: 0.6rem !important;
-  letter-spacing: 0.01em;
+/* ========================================================
+   Reference Specification: .nav-menu Animated Indicator
+   ======================================================== */
+.nav-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.hallmark-navbar > nav > div.hidden.lg\:flex > button:not(:hover):not([aria-current]) {
-  background: transparent;
+/* Subtle continuous baseline track across menu items as shown in reference photo */
+.nav-menu::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.1);
+  pointer-events: none;
+}
+
+.dark .nav-menu::after {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-menu a,
+.nav-menu button {
+  position: relative;
+  padding: 12px 18px;
+  color: #334155;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dark .nav-menu a,
+.dark .nav-menu button {
+  color: #ffffff;
+}
+
+.nav-menu a::before,
+.nav-menu button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: #0066ff;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(0, 102, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.dark .nav-menu a::before,
+.dark .nav-menu button::before {
+  background: #00b4ff;
+  box-shadow: 0 0 10px #00b4ff, 0 0 20px rgba(0, 229, 255, 0.7);
+}
+
+.nav-menu a:hover::before,
+.nav-menu a.active::before,
+.nav-menu a[aria-current="page"]::before,
+.nav-menu button:hover::before,
+.nav-menu button.active::before,
+.nav-menu button[aria-current="page"]::before {
+  left: 0;
+  width: 100%;
+}
+
+.nav-menu a:hover,
+.nav-menu button:hover {
+  color: #0066ff;
+}
+
+.dark .nav-menu a:hover,
+.dark .nav-menu button:hover {
+  color: #00e5ff;
+}
+
+.nav-menu a.active,
+.nav-menu a[aria-current="page"],
+.nav-menu button.active,
+.nav-menu button[aria-current="page"] {
+  color: #0066ff !important;
+  font-weight: 700;
+}
+
+.dark .nav-menu a.active,
+.dark .nav-menu a[aria-current="page"],
+.dark .nav-menu button.active,
+.dark .nav-menu button[aria-current="page"] {
+  color: #00e5ff !important;
+  font-weight: 700;
 }
 
 /* Hero: preserve the supplied workstation image and let the copy lead. */
