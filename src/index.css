@@ -899,7 +899,7 @@ body {
   letter-spacing: 0.01em;
 }
 
-.hallmark-navbar > nav > div.hidden.lg\:flex > button:not(:hover):not([aria-current="true"]) {
+.hallmark-navbar > nav > div.hidden.lg\:flex > button:not(:hover):not([aria-current]) {
   background: transparent;
 }
 
@@ -909,6 +909,11 @@ body {
   display: flex;
   align-items: center;
   isolation: isolate;
+  background: var(--hm-bg) !important;
+  color: var(--hm-text);
+}
+
+.dark .hallmark-hero {
   background: var(--hm-ink) !important;
   color: var(--hm-contrast-text);
 }
@@ -919,12 +924,20 @@ body {
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--hm-bg) 95%, transparent) 0%, color-mix(in srgb, var(--hm-bg) 80%, transparent) 46%, color-mix(in srgb, var(--hm-bg) 10%, transparent) 100%);
+}
+
+.dark .hallmark-hero::after {
   background: linear-gradient(90deg, color-mix(in srgb, var(--hm-ink) 94%, transparent) 0%, color-mix(in srgb, var(--hm-ink) 78%, transparent) 46%, color-mix(in srgb, var(--hm-ink) 20%, transparent) 100%);
 }
 
 .hallmark-hero > div:first-of-type {
-  opacity: 0.72;
+  opacity: 0.95;
   z-index: 0;
+}
+
+.dark .hallmark-hero > div:first-of-type {
+  opacity: 0.72;
 }
 
 .hallmark-hero > .relative.z-10 {
@@ -946,9 +959,14 @@ body {
 
 .hallmark-hero .hero-badge-drop {
   border-radius: 0.55rem;
+  background: color-mix(in srgb, var(--hm-surface) 90%, transparent) !important;
+  border-color: color-mix(in srgb, var(--hm-accent) 26%, transparent) !important;
+  backdrop-filter: blur(8px);
+}
+
+.dark .hallmark-hero .hero-badge-drop {
   background: color-mix(in srgb, var(--hm-surface) 9%, transparent) !important;
   border-color: color-mix(in srgb, var(--hm-accent) 46%, transparent) !important;
-  backdrop-filter: blur(8px);
 }
 
 .hallmark-hero .hero-copy-fade {
@@ -957,8 +975,15 @@ body {
 
 .hallmark-hero .hero-card-tilt {
   border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--hm-surface) 88%, transparent) !important;
+  border-color: color-mix(in srgb, var(--hm-border) 80%, transparent) !important;
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--hm-ink) 8%, transparent) !important;
+}
+
+.dark .hallmark-hero .hero-card-tilt {
   background: color-mix(in srgb, var(--hm-surface) 11%, transparent) !important;
   border-color: color-mix(in srgb, var(--hm-accent) 42%, transparent) !important;
+  box-shadow: none !important;
 }
 
 .hallmark-hero .hero-button-spring a {
@@ -1314,6 +1339,10 @@ body {
   }
 
   .hallmark-hero::after {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--hm-bg) 95%, transparent) 0%, color-mix(in srgb, var(--hm-bg) 76%, transparent) 58%, color-mix(in srgb, var(--hm-bg) 30%, transparent) 100%);
+  }
+
+  .dark .hallmark-hero::after {
     background: linear-gradient(180deg, color-mix(in srgb, var(--hm-ink) 94%, transparent) 0%, color-mix(in srgb, var(--hm-ink) 76%, transparent) 58%, color-mix(in srgb, var(--hm-ink) 56%, transparent) 100%);
   }
 

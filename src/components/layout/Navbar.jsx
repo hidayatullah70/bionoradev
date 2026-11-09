@@ -25,7 +25,6 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
-  const [isPastHero, setIsPastHero] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   // Synchronize effective dark/light mode state reactively
@@ -49,18 +48,13 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
     { label: t.nav.faq, id: 'faq', icon: HelpCircle },
   ];
 
-  // ScrollSpy to track active section, past-hero position, and scroll state
+  // ScrollSpy to track active section and scroll state
   useEffect(() => {
     const sectionIds = ['services', 'solutions', 'portfolio', 'process', 'pricing', 'why', 'faq'];
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setScrolled(scrollY > 20);
-
-      // Track whether navbar has scrolled past dark hero section onto light/white screen
-      const heroEl = document.getElementById('hero');
-      const heroThreshold = heroEl ? (heroEl.offsetTop + heroEl.offsetHeight - 90) : 500;
-      setIsPastHero(scrollY >= heroThreshold);
 
       if (scrollY < 200) {
         setActiveSection('');
@@ -119,25 +113,26 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         className={cn(
           "pointer-events-auto rounded-full border transition-all duration-300 flex items-center justify-between gap-1 sm:gap-2.5 lg:gap-3 p-1 sm:p-2",
           "w-full max-w-[calc(100vw-1rem)] lg:max-w-fit shadow-xl backdrop-blur-xl",
+          // Light mode glassmorphism
+          "bg-white/85 border-slate-200/90 shadow-[0_12px_36px_-6px_rgba(11,18,32,0.08)] ring-1 ring-black/5",
           // Dark mode glassmorphism
           "dark:bg-brand-ink/85 dark:border-white/10 dark:shadow-[0_12px_36px_-6px_rgba(0,0,0,0.7)] dark:ring-1 dark:ring-white/5",
-          // Light mode glassmorphism
-          "bg-surface/85 border-border/80 shadow-[0_12px_36px_-6px_rgba(11,18,32,0.08)] ring-1 ring-black/5",
-          scrolled && "shadow-2xl dark:bg-brand-ink/90 bg-surface/95 dark:border-white/15 border-border"
+          scrolled && "shadow-2xl bg-white/95 border-slate-300/80 dark:bg-brand-ink/95 dark:border-white/15"
         )}
       >
-        {/* Brand Logo with Dynamic Theme & Scroll Detection */}
+        {/* Brand Logo with Dynamic Theme Detection */}
         {(() => {
-          const isDarkBg = isDarkMode || !isPastHero;
-          const currentLogoSrc = isDarkBg
+          const currentLogoSrc = isDarkMode
             ? "/assets/logo/logoTransDarkMode.png"
             : "/assets/logo/logoTransLightMode.png";
 
-          const currentCapsuleClass = isDarkBg
+          const currentCapsuleClass = isDarkMode
             ? (activeSection === ''
-                ? "bg-brand-blue/15 border-brand-blue/30 shadow-sm shadow-brand-blue/10"
+                ? "bg-brand-blue/20 border-brand-blue/40 shadow-sm shadow-brand-blue/20"
                 : "bg-white/5 border-white/10 hover:border-brand-blue/40 hover:bg-brand-blue/15")
-            : "bg-slate-100/95 border-slate-300/80 shadow-sm hover:bg-white hover:border-brand-blue/50";
+            : (activeSection === ''
+                ? "bg-blue-50/90 border-brand-blue/40 shadow-sm shadow-brand-blue/10"
+                : "bg-slate-100/90 border-slate-200/90 shadow-sm hover:bg-white hover:border-brand-blue/40");
 
           return (
             <a
@@ -174,11 +169,22 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
+                aria-current={isActive ? 'page' : undefined}
                 className={cn(
                   "group flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs xl:text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue whitespace-nowrap border",
                   isActive
-                    ? "bg-brand-blue text-brand-white border-brand-blue font-bold shadow-sm shadow-brand-blue/30 dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white dark:shadow-[0_0_12px_rgba(0,180,255,0.4)]"
-                    : "text-txt-muted border-transparent hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
+                    ? [
+                        // Light mode active
+                        "bg-brand-blue text-white border-brand-blue font-bold shadow-sm shadow-brand-blue/30",
+                        // Dark mode active
+                        "dark:bg-brand-blue/25 dark:border-brand-blue dark:text-brand-cyan dark:shadow-[0_0_12px_rgba(0,180,255,0.4)]"
+                      ]
+                    : [
+                        // Light mode inactive & hover
+                        "text-slate-700 border-transparent hover:border-brand-blue/30 hover:bg-brand-blue/10 hover:text-brand-deep",
+                        // Dark mode inactive & hover
+                        "dark:text-slate-300 dark:border-transparent dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
+                      ]
                 )}
               >
                 {Icon && (
@@ -186,8 +192,8 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                     className={cn(
                       "w-3.5 h-3.5 transition-colors",
                       isActive
-                        ? "text-brand-white dark:text-brand-cyan"
-                        : "text-txt-muted group-hover:text-brand-white dark:group-hover:text-brand-cyan"
+                        ? "text-white dark:text-brand-cyan"
+                        : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
                     )}
                   />
                 )}
@@ -198,25 +204,25 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         </div>
 
         {/* Vertical Divider before Controls (Desktop Only) */}
-        <div className="hidden lg:block h-4 w-px bg-border/70 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
+        <div className="hidden lg:block h-4 w-px bg-slate-300/80 dark:bg-white/15 mx-0.5 sm:mx-1 shrink-0" aria-hidden="true" />
 
         {/* Desktop Controls (Language, Theme, WhatsApp CTA) */}
         <div className="hidden lg:flex items-center gap-1.5 xl:gap-2">
           {/* Language Switcher Pill */}
           <button
             onClick={toggleLocale}
-            className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white text-txt transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue group"
+            className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white text-slate-700 dark:text-txt transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue group"
             aria-label={t.nav.langToggle}
             title={t.nav.langToggle}
           >
-            <Globe className="w-3.5 h-3.5 text-accent group-hover:text-brand-white dark:group-hover:text-brand-cyan transition-colors" />
+            <Globe className="w-3.5 h-3.5 text-brand-blue group-hover:text-brand-deep dark:text-accent dark:group-hover:text-brand-cyan transition-colors" />
             <span className="uppercase">{locale}</span>
           </button>
 
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 hover:border-brand-blue hover:bg-brand-blue/10 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 text-txt transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
+            className="p-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 text-slate-700 dark:text-txt transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
             aria-label={t.nav.themeToggle}
             title={`Theme: ${theme}`}
           >
@@ -225,7 +231,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
             ) : theme === 'light' ? (
               <Sun className="w-4 h-4 text-amber-500" />
             ) : (
-              <Monitor className="w-4 h-4 text-accent" />
+              <Monitor className="w-4 h-4 text-brand-blue dark:text-accent" />
             )}
           </button>
 
@@ -247,7 +253,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Quick Language Toggle */}
           <button
             onClick={toggleLocale}
-            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[11px] sm:text-xs font-bold rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt uppercase hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all"
+            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[11px] sm:text-xs font-bold rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt uppercase hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all"
             aria-label={t.nav.langToggle}
           >
             {locale}
@@ -256,7 +262,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Quick Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-border/60 dark:border-white/10 bg-surface-muted/50 dark:bg-white/5 text-txt hover:border-brand-blue hover:bg-brand-blue/10 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all"
+            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all"
             aria-label={t.nav.themeToggle}
           >
             {theme === 'dark' ? (
@@ -269,11 +275,11 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-blue-900/30 dark:border-brand-cyan/40 bg-blue-900/10 dark:bg-brand-cyan/15 text-blue-900 dark:text-brand-cyan hover:border-blue-950 dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-slate-200/80 dark:border-brand-cyan/40 bg-slate-100/90 dark:bg-brand-cyan/15 text-slate-700 dark:text-brand-cyan hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-blue-900 dark:text-brand-cyan" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-slate-800 dark:text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-slate-800 dark:text-brand-cyan" />}
           </button>
         </div>
       </nav>
@@ -283,13 +289,13 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         <>
           {/* Backdrop Dismiss Overlay */}
           <div
-            className="fixed inset-0 z-40 bg-bg/60 backdrop-blur-sm lg:hidden pointer-events-auto animate-in fade-in duration-200"
+            className="fixed inset-0 z-40 bg-black/40 dark:bg-black/70 backdrop-blur-sm lg:hidden pointer-events-auto animate-in fade-in duration-200"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Floating Dropdown Card */}
-          <div className="fixed top-16 sm:top-20 left-3 right-3 sm:left-4 sm:right-4 z-50 max-w-md mx-auto rounded-3xl border border-border/80 dark:border-white/10 bg-surface/95 dark:bg-brand-ink/95 backdrop-blur-2xl shadow-2xl p-4 sm:p-5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto">
+          <div className="fixed top-16 sm:top-20 left-3 right-3 sm:left-4 sm:right-4 z-50 max-w-md mx-auto rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-brand-ink/95 backdrop-blur-2xl shadow-2xl p-4 sm:p-5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto">
             <nav className="flex flex-col gap-1.5">
               {navLinks.map((link) => {
                 const Icon = link.icon;
@@ -298,11 +304,12 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                   <button
                     key={link.id}
                     onClick={() => handleNavClick(link.id)}
+                    aria-current={isActive ? 'page' : undefined}
                     className={cn(
                       "group flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all text-left border",
                       isActive
-                        ? "bg-brand-blue text-brand-white border-brand-blue font-bold shadow-sm dark:bg-brand-blue/25 dark:border-brand-blue dark:text-white"
-                        : "text-txt-muted border-transparent hover:border-brand-blue hover:bg-brand-blue hover:text-brand-white dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
+                        ? "bg-brand-blue text-white border-brand-blue font-bold shadow-sm dark:bg-brand-blue/25 dark:border-brand-blue dark:text-brand-cyan"
+                        : "text-slate-700 border-transparent hover:border-brand-blue/30 hover:bg-brand-blue/10 hover:text-brand-deep dark:text-slate-300 dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white"
                     )}
                   >
                     {Icon && (
@@ -310,8 +317,8 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                         className={cn(
                           "w-4 h-4 shrink-0 transition-colors",
                           isActive
-                            ? "text-brand-white dark:text-brand-cyan"
-                            : "text-txt-muted group-hover:text-brand-white dark:group-hover:text-brand-cyan"
+                            ? "text-white dark:text-brand-cyan"
+                            : "text-slate-500 group-hover:text-brand-deep dark:text-slate-400 dark:group-hover:text-brand-cyan"
                         )}
                       />
                     )}
@@ -321,7 +328,7 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
               })}
             </nav>
 
-            <div className="mt-4 pt-4 border-t border-border/60 dark:border-white/10 flex flex-col gap-3">
+            <div className="mt-4 pt-4 border-t border-slate-200/80 dark:border-white/10 flex flex-col gap-3">
               <Button
                 href={whatsAppUrl}
                 variant="gradient"
@@ -333,12 +340,12 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
                 <span>{t.nav.ctaWhatsApp}</span>
               </Button>
 
-              <div className="flex items-center justify-between px-3 text-xs text-txt-muted">
+              <div className="flex items-center justify-between px-3 text-xs text-slate-500 dark:text-txt-muted">
                 <span>
-                  Bahasa: <strong className="text-txt uppercase">{locale}</strong>
+                  Bahasa: <strong className="text-slate-800 dark:text-txt uppercase">{locale}</strong>
                 </span>
                 <span>
-                  Tema: <strong className="text-txt capitalize">{theme}</strong>
+                  Tema: <strong className="text-slate-800 dark:text-txt capitalize">{theme}</strong>
                 </span>
               </div>
             </div>
