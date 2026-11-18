@@ -50,12 +50,12 @@ export function FAQ({ locale, t }) {
                   aria-controls={`faq-answer-${item.id}`}
                   className="w-full min-h-[56px] px-6 py-4 flex items-center justify-between gap-4 text-left transition-colors hover:bg-surface-muted/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
-                  <span className="text-sm sm:text-base font-bold text-txt">
+                  <span className="text-sm sm:text-base font-semibold text-txt">
                     {qText}
                   </span>
                   <div
-                    className={`p-1 rounded-full bg-surface-muted text-txt transition-transform duration-200 shrink-0 ${
-                      isOpen ? 'rotate-180 text-accent' : ''
+                    className={`p-1 rounded-md bg-surface-muted text-txt-muted transition-transform duration-200 shrink-0 ${
+                      isOpen ? 'rotate-180 text-brand-deep dark:text-brand-cyan' : ''
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />

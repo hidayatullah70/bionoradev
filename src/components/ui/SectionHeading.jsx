@@ -19,7 +19,7 @@ export function SectionHeading({
     >
       {badge && (
         <div className={cn("mb-4 flex", align === 'center' ? "justify-center" : "justify-start")}>
-          <Badge variant="gradient">{badge}</Badge>
+          <Badge variant="default">{badge}</Badge>
         </div>
       )}
       <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-semibold tracking-tight text-txt">

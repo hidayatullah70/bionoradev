@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rocket, Target, Sliders, Workflow, Sparkles, ArrowRight, HelpCircle } from 'lucide-react';
+import { Rocket, Target, Sliders, Workflow, Cpu, ArrowRight, HelpCircle } from 'lucide-react';
 import { Container } from '../ui/Container';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
@@ -11,11 +11,11 @@ export function Solutions({ locale, t }) {
   const revealRef = useReveal();
 
   const solutionIcons = [
-    <Rocket key="1" className="w-5 h-5 text-cyan-400" />,
-    <Target key="2" className="w-5 h-5 text-emerald-400" />,
-    <Sliders key="3" className="w-5 h-5 text-blue-400" />,
-    <Workflow key="4" className="w-5 h-5 text-indigo-400" />,
-    <Sparkles key="5" className="w-5 h-5 text-amber-400" />,
+    <Rocket key="1" className="w-5 h-5 text-brand-deep dark:text-brand-cyan" />,
+    <Target key="2" className="w-5 h-5 text-brand-deep dark:text-brand-cyan" />,
+    <Sliders key="3" className="w-5 h-5 text-brand-deep dark:text-brand-cyan" />,
+    <Workflow key="4" className="w-5 h-5 text-brand-deep dark:text-brand-cyan" />,
+    <Cpu key="5" className="w-5 h-5 text-brand-deep dark:text-brand-cyan" />,
   ];
 
   return (
@@ -46,13 +46,13 @@ export function Solutions({ locale, t }) {
                 <div>
                   {/* Problem Banner */}
                   <div className="flex items-start gap-2 p-3 rounded-xl bg-surface-muted border border-border mb-5 text-xs text-txt-muted">
-                    <HelpCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                    <span className="italic">{item.problem}</span>
+                    <HelpCircle className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 mt-0.5" />
+                    <span>{item.problem}</span>
                   </div>
 
                   {/* Solution Title */}
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2.5 rounded-xl bg-surface-muted border border-border">
+                    <div className="p-2 rounded-lg bg-surface-muted border border-border">
                       {solutionIcons[idx]}
                     </div>
                     <h3 className="text-base font-heading font-semibold text-txt">
@@ -69,12 +69,12 @@ export function Solutions({ locale, t }) {
                 {/* WhatsApp Action */}
                 <Button
                   href={whatsAppUrl}
-                  variant="ghost"
+                  variant="secondary"
                   size="sm"
-                  className="w-full justify-between border border-border/80 hover:border-accent/40 text-xs font-semibold hover:bg-surface-muted"
+                  className="w-full justify-between text-xs font-semibold"
                 >
                   <span>{item.cta}</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-accent" />
+                  <ArrowRight className="w-3.5 h-3.5 text-txt-muted group-hover:text-txt" />
                 </Button>
               </Card>
             );

@@ -13,21 +13,21 @@ export function Button({
   type = 'button',
   ...props
 }) {
-  const baseStyles = "inline-flex items-center justify-center font-bold tracking-wider transition-colors transition-transform transition-shadow duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:cursor-not-allowed select-none";
+  const baseStyles = "inline-flex items-center justify-center font-semibold transition-colors transition-transform duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:cursor-not-allowed select-none";
 
   const variants = {
-    primary: "bg-gradient-to-r from-brand-blue to-brand-deep-blue text-white rounded-full shadow-lg shadow-brand-blue/25 hover:shadow-brand-blue/45 hover:brightness-110 active:scale-[0.98]",
-    gradient: "brand-gradient-bg text-black font-bold rounded-full relative overflow-hidden border border-blue-400/40 dark:border-cyan-300/35 shadow-[0_4px_14px_rgba(0,102,255,0.22)] dark:shadow-[0_0_20px_-2px_rgba(0,180,255,0.4)] hover:-translate-y-0.5 hover:scale-[1.02] hover:brightness-105 dark:hover:brightness-110 hover:shadow-[0_10px_25px_rgba(0,102,255,0.38)] hover:border-blue-500/70 dark:hover:shadow-[0_0_32px_rgba(0,229,255,0.75),0_0_14px_rgba(0,102,255,0.45)] dark:hover:border-cyan-200/80 active:translate-y-0 active:scale-[0.98] transition-colors transition-transform transition-shadow duration-300 ease-out select-none before:absolute before:inset-0 before:-translate-x-full hover:before:translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:transition-transform before:duration-700 before:ease-in-out before:pointer-events-none",
-    secondary: "bg-surface-muted/80 hover:bg-surface border border-border/80 hover:border-brand-blue text-txt rounded-full active:scale-[0.98]",
-    outline: "bg-transparent border border-blue-900 text-blue-900 hover:bg-blue-900 hover:text-white dark:border-brand-blue dark:text-brand-blue dark:hover:bg-brand-blue dark:hover:text-white rounded-full active:scale-[0.98]",
-    ghost: "bg-transparent hover:bg-surface-muted text-txt-muted hover:text-txt rounded-full",
+    primary: "bg-brand-blue hover:bg-brand-deep text-white rounded-xl shadow-sm hover:shadow active:scale-[0.98]",
+    gradient: "bg-brand-blue hover:bg-brand-deep dark:bg-brand-blue dark:hover:bg-brand-deep text-white rounded-xl shadow-sm hover:shadow active:scale-[0.98]",
+    secondary: "bg-surface-muted/90 hover:bg-surface border border-border hover:border-slate-300 dark:hover:border-white/20 text-txt rounded-xl active:scale-[0.98]",
+    outline: "bg-transparent border border-border hover:border-brand-blue text-txt hover:bg-surface-muted rounded-xl active:scale-[0.98]",
+    ghost: "bg-transparent hover:bg-surface-muted text-txt-muted hover:text-txt rounded-xl",
     link: "bg-transparent text-accent hover:underline p-0 h-auto font-sans font-medium",
   };
 
   const sizes = {
     sm: "text-xs px-3.5 py-1.5 gap-1.5",
-    md: "text-sm px-5 py-2.5 gap-2",
-    lg: "text-base px-6 py-3.5 gap-2.5",
+    md: "text-sm px-4 py-2 gap-2",
+    lg: "text-sm sm:text-base px-5 py-2.5 sm:px-6 sm:py-3 gap-2.5",
   };
 
   const combinedClasses = cn(

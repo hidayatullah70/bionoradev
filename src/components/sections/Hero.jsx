@@ -115,37 +115,12 @@ export function Hero({ locale, t }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Width-constrained so text does NOT overlap laptop image */}
             <div className="lg:col-span-6 xl:col-span-6 2xl:col-span-5 flex flex-col items-start text-left max-w-xl xl:max-w-2xl 2xl:max-w-xl">
-              {/* Top Badge (Kicker & Reveal Loop Indicator) */}
-              <div className="mb-6 flex flex-wrap items-center gap-2.5">
-                {/* 1. Badge Drops in 16px and fades in (0.6s) */}
-                <div
-                  key={`badge-${cycleKey}`}
-                  className="hero-badge-drop inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-surface/80 border border-slate-300/80 dark:border-brand-blue/30 backdrop-blur-md shadow-sm will-change-transform"
-                  style={{ animationDelay: '40ms' }}
-                >
-                  <Sparkles className="w-4 h-4 text-brand-blue dark:text-brand-cyan animate-pulse" />
-                  <span className="text-xs font-bold tracking-wider text-slate-900 dark:text-txt">
-                    {t.hero.badge}
-                  </span>
-                </div>
-
-                {/* Hero Reveal Auto-loop Status & Manual Replay Button */}
-                <button
-                  type="button"
-                  onClick={handleReplay}
-                  title={locale === 'id' ? 'Hero Reveal · Auto-loop 7s (Klik untuk replay)' : 'Hero Reveal · 7s auto-loop (Click to replay)'}
-                  aria-label="Replay Hero Reveal animation"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/80 hover:bg-white dark:bg-surface/50 dark:hover:bg-surface border border-slate-300/80 dark:border-white/15 text-[11px] font-medium text-slate-700 dark:text-txt-muted hover:text-brand-deep dark:hover:text-brand-cyan transition-colors transition-transform duration-200 cursor-pointer group select-none backdrop-blur-sm shadow-sm"
-                >
-                  <RotateCcw className={cn("w-3 h-3 transition-transform duration-500", isHovered ? "" : "group-hover:-rotate-90")} />
-                  <span className="hidden sm:inline font-mono text-[10px] tracking-wide">
-                    {isHovered ? (locale === 'id' ? 'Ditahan' : 'Paused') : 'Reveal 7s'}
-                  </span>
-                  <span className="relative flex h-2 w-2">
-                    <span className={cn("animate-ping absolute inline-flex h-full w-full rounded-full opacity-75", isHovered ? "bg-amber-400" : "bg-brand-cyan")} />
-                    <span className={cn("relative inline-flex rounded-full h-2 w-2", isHovered ? "bg-amber-400" : "bg-brand-cyan")} />
-                  </span>
-                </button>
+              {/* Top Studio Kicker Tag */}
+              <div className="mb-6 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/90 dark:bg-surface/80 border border-slate-200/90 dark:border-white/10 backdrop-blur-md shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue dark:bg-brand-cyan" />
+                <span className="text-xs font-semibold tracking-wide text-slate-800 dark:text-txt">
+                  {t.hero.badge}
+                </span>
               </div>
 
               {/* 2. Single H1 for SEO with Staggered Word Reveal (rises 28px from 14px blur to sharp, staggered 90ms) */}
@@ -165,14 +140,14 @@ export function Hero({ locale, t }) {
                   ))}
                 </span>
 
-                {/* Line 2 Words with Brand Accent + 3. Animated SVG Underline */}
-                <span className="relative inline-block mt-1 sm:mt-2">
+                {/* Line 2 Words with Brand Accent + 3. Accent Underline */}
+                <span className="relative inline-block mt-1 sm:mt-2 text-brand-deep dark:text-brand-cyan">
                   {line2Words.map((word, idx) => {
                     const globalIdx = line1Words.length + idx;
                     return (
                       <span
                         key={`l2-${idx}-${cycleKey}`}
-                        className="brand-gradient-text hero-word-reveal inline-block mr-[0.28em] will-change-transform"
+                        className="hero-word-reveal inline-block mr-[0.28em] will-change-transform"
                         style={{
                           animationDelay: `${120 + globalIdx * 90}ms`,
                         }}
@@ -185,29 +160,22 @@ export function Hero({ locale, t }) {
                   {/* 3. Accent Underline SVG draws from left to right */}
                   <svg
                     key={`underline-${cycleKey}`}
-                    className="absolute -bottom-1.5 sm:-bottom-2.5 left-0 w-full h-2.5 sm:h-3.5 pointer-events-none overflow-visible z-10"
-                    viewBox="0 0 320 14"
+                    className="absolute -bottom-1.5 sm:-bottom-2.5 left-0 w-full h-2 sm:h-2.5 pointer-events-none overflow-visible z-10"
+                    viewBox="0 0 320 10"
                     fill="none"
                     preserveAspectRatio="none"
                     aria-hidden="true"
                   >
                     <path
-                      d="M2 9 C 80 2, 220 2, 318 8"
-                      stroke="url(#hero-accent-underline-gradient)"
-                      strokeWidth="3.5"
+                      d="M2 6 C 80 2, 220 2, 318 6"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
                       strokeLinecap="round"
                       className="hero-underline-draw"
                       style={{
                         animationDelay: `${120 + totalWords * 90 + 50}ms`,
                       }}
                     />
-                    <defs>
-                      <linearGradient id="hero-accent-underline-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#00E5FF" />
-                        <stop offset="50%" stopColor="#00B4FF" />
-                        <stop offset="100%" stopColor="#0066FF" />
-                      </linearGradient>
-                    </defs>
                   </svg>
                 </span>
               </h1>
@@ -226,9 +194,9 @@ export function Hero({ locale, t }) {
                     return (
                       <>
                         {parts[0]}
-                        <strong className="font-bold whitespace-nowrap">
+                        <strong className="font-semibold whitespace-nowrap">
                           <span className="text-slate-900 dark:text-white">Bionora</span>
-                          <span className="text-brand-deep dark:text-brand-cyan bg-gradient-to-r from-brand-deep to-brand-blue dark:from-brand-blue dark:to-brand-cyan bg-clip-text text-transparent">
+                          <span className="text-brand-deep dark:text-brand-cyan">
                             Dev
                           </span>
                         </strong>
@@ -273,18 +241,9 @@ export function Hero({ locale, t }) {
                     href={whatsAppUrl}
                     variant="gradient"
                     size="lg"
-                    className="gap-3 group font-bold w-full sm:w-auto relative overflow-hidden"
+                    className="gap-2.5 font-semibold w-full sm:w-auto"
                   >
-                    {/* 6. Soft shine sweeps across primary button once */}
-                    <span
-                      key={`shine-${cycleKey}`}
-                      aria-hidden="true"
-                      className="hero-shine-sweep absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none"
-                      style={{
-                        animationDelay: `${120 + totalWords * 90 + 950}ms`,
-                      }}
-                    />
-                    <WhatsAppIcon3D className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" size={20} />
+                    <WhatsAppIcon3D className="w-5 h-5 shrink-0" size={18} />
                     <span>{t.hero.ctaPrimary}</span>
                   </Button>
                 </div>
@@ -334,14 +293,10 @@ export function Hero({ locale, t }) {
               ))}
             </div>
 
-            {/* Right Column: 7. Compact Dashboard Card peeking up, tilts from rotateX(28deg) 240px lower into place */}
+            {/* Right Column: Compact Product Preview Card */}
             <div className="lg:col-span-5 flex justify-start lg:justify-end w-full overflow-visible">
               <div
-                key={`dashboard-card-${cycleKey}`}
-                className="hero-card-tilt w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-white/80 dark:bg-transparent border border-slate-200/90 dark:border-white/20 p-2.5 sm:p-3 backdrop-blur-md dark:backdrop-blur-[2px] shadow-md dark:shadow-sm flex flex-col gap-2 will-change-transform"
-                style={{
-                  animationDelay: `${120 + totalWords * 90 + 260}ms`,
-                }}
+                className="w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-white/90 dark:bg-surface/90 border border-slate-200/90 dark:border-white/10 p-3 backdrop-blur-md shadow-sm flex flex-col gap-2.5"
               >
                 {/* Mini Browser Bar */}
                 <div className="flex items-center justify-between px-2.5 py-1 rounded-lg bg-slate-100/90 dark:bg-transparent border border-slate-200/90 dark:border-white/10 text-xs">
@@ -386,16 +341,16 @@ export function Hero({ locale, t }) {
                     </button>
 
                     <div className="flex items-center gap-1 text-[9px] text-slate-600 dark:text-txt-muted font-medium">
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border border-slate-200/80 dark:border-white/15">
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
                         <Monitor className="w-2.5 h-2.5 text-brand-deep dark:text-brand-cyan" />
                         <span>Responsive</span>
                       </span>
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border border-slate-200/80 dark:border-white/15">
-                        <Zap className="w-2.5 h-2.5 text-amber-500 dark:text-amber-400" />
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+                        <Zap className="w-2.5 h-2.5 text-slate-600 dark:text-slate-400" />
                         <span>Fast</span>
                       </span>
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border border-slate-200/80 dark:border-white/15">
-                        <Search className="w-2.5 h-2.5 text-emerald-600 dark:text-emerald-400" />
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+                        <Search className="w-2.5 h-2.5 text-slate-600 dark:text-slate-400" />
                         <span>SEO</span>
                       </span>
                     </div>

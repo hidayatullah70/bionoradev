@@ -198,18 +198,9 @@
   border: 1px solid var(--border);
 }
 
-.glow-ambient-cyan {
-  position: absolute;
-  filter: blur(100px);
-  background: radial-gradient(circle, rgba(0, 240, 240, 0.15) 0%, rgba(0, 128, 240, 0.05) 70%, transparent 100%);
-  pointer-events: none;
-}
-
+.glow-ambient-cyan,
 .glow-ambient-blue {
-  position: absolute;
-  filter: blur(120px);
-  background: radial-gradient(circle, rgba(0, 128, 240, 0.12) 0%, rgba(0, 0, 240, 0.04) 70%, transparent 100%);
-  pointer-events: none;
+  display: none !important;
 }
 
 /* Scroll reveal utility classes (harmonized with Framer Motion FadeUp) */
@@ -466,31 +457,20 @@
   animation: heroCopyFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* 5. Buttons Spring Overshoot */
-@keyframes heroButtonSpring {
+/* 5. Buttons Subtle Rise */
+@keyframes heroButtonRise {
   0% {
-    transform: scale(0.6);
+    transform: translateY(8px);
     opacity: 0;
   }
-
-  65% {
-    transform: scale(1.06);
-    opacity: 1;
-  }
-
-  85% {
-    transform: scale(0.98);
-    opacity: 1;
-  }
-
   100% {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 .hero-button-spring {
-  animation: heroButtonSpring 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroButtonRise 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* 6. Soft Specular Shine Sweep Across Primary CTA */
