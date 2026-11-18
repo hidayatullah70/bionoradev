@@ -1226,17 +1226,19 @@ body {
   max-width: 34rem;
 }
 
-.hallmark-hero .hero-card-tilt {
-  border-radius: 0.85rem;
-  background: color-mix(in srgb, var(--hm-surface) 88%, transparent) !important;
-  border-color: color-mix(in srgb, var(--hm-border) 80%, transparent) !important;
-  box-shadow: 0 10px 30px color-mix(in srgb, var(--hm-ink) 8%, transparent) !important;
+.hallmark-hero .hero-preview-dock {
+  border-radius: 1rem;
 }
 
-.dark .hallmark-hero .hero-card-tilt {
-  background: color-mix(in srgb, var(--hm-surface) 11%, transparent) !important;
-  border-color: color-mix(in srgb, var(--hm-accent) 42%, transparent) !important;
-  box-shadow: none !important;
+.dark .hallmark-hero .hero-preview-dock {
+  background: transparent !important;
+  border-color: rgba(0, 229, 255, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(0, 229, 255, 0.05) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.dark .hallmark-hero .hero-preview-dock div {
+  background-color: transparent !important;
 }
 
 .hallmark-hero .hero-button-spring a {

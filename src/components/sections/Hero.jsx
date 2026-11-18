@@ -296,33 +296,33 @@ export function Hero({ locale, t }) {
             {/* Right Column: Compact Product Preview Card */}
             <div className="lg:col-span-5 flex justify-start lg:justify-end w-full overflow-visible">
               <div
-                className="w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-white/90 dark:bg-surface/90 border border-slate-200/90 dark:border-white/10 p-3 backdrop-blur-md shadow-sm flex flex-col gap-2.5"
+                className="hero-preview-dock w-full max-w-sm sm:max-w-md lg:max-w-sm rounded-2xl bg-white/90 dark:bg-transparent border border-slate-200/90 dark:border-brand-cyan/50 p-3 backdrop-blur-md dark:backdrop-blur-sm shadow-sm flex flex-col gap-2.5"
               >
                 {/* Mini Browser Bar */}
-                <div className="flex items-center justify-between px-2.5 py-1 rounded-lg bg-slate-100/90 dark:bg-transparent border border-slate-200/90 dark:border-white/10 text-xs">
+                <div className="flex items-center justify-between px-2.5 py-1 rounded-lg bg-slate-100/90 dark:bg-transparent border border-slate-200/90 dark:border-brand-cyan/30 text-xs">
                   <div className="flex items-center gap-1.5">
                     <div className="w-2 h-2 rounded-full bg-red-500/80" />
                     <div className="w-2 h-2 rounded-full bg-amber-500/80" />
                     <div className="w-2 h-2 rounded-full bg-emerald-500/80" />
                   </div>
-                  <div className="text-[10px] bg-transparent px-2 py-0.5 rounded border border-slate-200/80 dark:border-white/10 text-slate-600 dark:text-txt-muted font-mono truncate max-w-[170px]">
+                  <div className="text-[10px] bg-transparent px-2 py-0.5 rounded border border-slate-200/80 dark:border-brand-cyan/25 text-slate-600 dark:text-cyan-200/80 font-mono truncate max-w-[170px]">
                     https://bionora.my.id/
                   </div>
                   <div className="w-3" />
                 </div>
 
                 {/* Compact Transparent Web Development Card */}
-                <div className="p-2.5 rounded-xl bg-slate-50/70 dark:bg-transparent border border-brand-blue/30 dark:border-brand-blue/40 flex flex-col gap-2 group">
+                <div className="p-2.5 rounded-xl bg-slate-50/70 dark:bg-transparent border border-brand-blue/30 dark:border-brand-cyan/40 flex flex-col gap-2 group">
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-7 h-7 rounded-lg bg-brand-blue/10 dark:bg-brand-blue/15 border border-brand-blue/20 dark:border-brand-blue/30 flex items-center justify-center text-brand-deep dark:text-brand-blue shrink-0 group-hover:scale-105 transition-transform">
+                      <div className="w-7 h-7 rounded-lg bg-brand-blue/10 dark:bg-brand-cyan/15 border border-brand-blue/20 dark:border-brand-cyan/30 flex items-center justify-center text-brand-deep dark:text-brand-cyan shrink-0 group-hover:scale-105 transition-transform">
                         <Code2 className="w-4 h-4" />
                       </div>
                       <div>
-                        <h3 className="font-heading font-semibold text-xs text-slate-900 dark:text-txt group-hover:text-brand-blue transition-colors">
+                        <h3 className="font-heading font-semibold text-xs text-slate-900 dark:text-white group-hover:text-brand-blue dark:group-hover:text-brand-cyan transition-colors">
                           Web Development
                         </h3>
-                        <p className="text-[10px] text-slate-600 dark:text-txt-muted leading-tight mt-0.5">
+                        <p className="text-[10px] text-slate-600 dark:text-slate-300 leading-tight mt-0.5">
                           {locale === 'id'
                             ? 'Website modern, cepat, aman & responsif.'
                             : 'Modern, fast, secure & responsive website.'}
@@ -331,7 +331,7 @@ export function Hero({ locale, t }) {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center justify-between gap-1.5 pt-1.5 border-t border-slate-200/80 dark:border-white/10">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 pt-1.5 border-t border-slate-200/80 dark:border-brand-cyan/25">
                     <button
                       onClick={() => scrollToSection('services')}
                       className="inline-flex items-center gap-1 text-[10px] font-bold text-brand-deep dark:text-brand-cyan hover:text-brand-blue transition-colors"
@@ -340,16 +340,16 @@ export function Hero({ locale, t }) {
                       <ArrowRight className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" />
                     </button>
 
-                    <div className="flex items-center gap-1 text-[9px] text-slate-600 dark:text-txt-muted font-medium">
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+                    <div className="flex items-center gap-1 text-[9px] text-slate-600 dark:text-slate-300 font-medium">
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-transparent border border-slate-200/80 dark:border-brand-cyan/30">
                         <Monitor className="w-2.5 h-2.5 text-brand-deep dark:text-brand-cyan" />
                         <span>Responsive</span>
                       </span>
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-transparent border border-slate-200/80 dark:border-brand-cyan/30">
                         <Zap className="w-2.5 h-2.5 text-slate-600 dark:text-slate-400" />
                         <span>Fast</span>
                       </span>
-                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-white/5 border border-slate-200/80 dark:border-white/10">
+                      <span className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-md bg-slate-100/90 dark:bg-transparent border border-slate-200/80 dark:border-brand-cyan/30">
                         <Search className="w-2.5 h-2.5 text-slate-600 dark:text-slate-400" />
                         <span>SEO</span>
                       </span>
@@ -359,10 +359,10 @@ export function Hero({ locale, t }) {
 
                 {/* Compact Transparent Stats & Integration Row */}
                 <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2 rounded-xl bg-slate-50/70 dark:bg-transparent border border-slate-200/80 dark:border-white/15 flex flex-col justify-between">
-                    <span className="text-[10px] text-slate-600 dark:text-txt-muted truncate">{t.hero.mockup.activeUsers}</span>
+                  <div className="p-2 rounded-xl bg-slate-50/70 dark:bg-transparent border border-slate-200/80 dark:border-brand-cyan/30 flex flex-col justify-between">
+                    <span className="text-[10px] text-slate-600 dark:text-slate-300 truncate">{t.hero.mockup.activeUsers}</span>
                     <div className="mt-1 flex items-baseline justify-between">
-                      <span className="text-sm font-semibold text-slate-900 dark:text-txt">14,280</span>
+                      <span className="text-sm font-semibold text-slate-900 dark:text-white font-mono tabular-nums">14,280</span>
                       <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400 flex items-center gap-0.5">
                         <TrendingUp className="w-2.5 h-2.5" />
                         {t.hero.mockup.weeklyGrowth}
@@ -370,14 +370,14 @@ export function Hero({ locale, t }) {
                     </div>
                   </div>
 
-                  <div className="p-2 rounded-xl bg-slate-50/70 dark:bg-transparent border border-slate-200/80 dark:border-white/15 flex items-center justify-between">
+                  <div className="p-2 rounded-xl bg-slate-50/70 dark:bg-transparent border border-slate-200/80 dark:border-brand-cyan/30 flex items-center justify-between">
                     <div className="flex items-center gap-1.5 min-w-0">
                       <div className="p-1 rounded-md bg-brand-cyan/10 shrink-0">
                         <WhatsAppIcon3D className="w-3.5 h-3.5" size={14} />
                       </div>
                       <div className="flex flex-col truncate">
-                        <span className="text-[10px] font-bold text-slate-900 dark:text-txt truncate">WhatsApp Sync</span>
-                        <span className="text-[9px] text-slate-600 dark:text-txt-muted truncate">{t.hero.mockup.fastResponse}</span>
+                        <span className="text-[10px] font-bold text-slate-900 dark:text-white truncate">WhatsApp Sync</span>
+                        <span className="text-[9px] text-slate-600 dark:text-slate-300 truncate">{t.hero.mockup.fastResponse}</span>
                       </div>
                     </div>
                     <Badge variant="cyan" className="text-[9px] px-1 py-0 shrink-0">Sync</Badge>
