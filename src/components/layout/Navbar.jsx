@@ -237,12 +237,13 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         </div>
 
         {/* Mobile Controls (< lg) */}
-        <div className="flex lg:hidden items-center gap-1 sm:gap-1.5 shrink-0">
+        <div className="flex lg:hidden items-center gap-1.5 sm:gap-2 shrink-0">
           {/* Quick Language Toggle */}
           <button
             onClick={toggleLocale}
-            className="px-1.5 py-0.5 sm:px-2 sm:py-1 text-[11px] sm:text-xs font-bold rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt uppercase hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all"
+            className="min-h-[36px] min-w-[36px] px-2.5 py-1 text-xs font-bold rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt uppercase hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 dark:hover:text-white transition-all flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
             aria-label={t.nav.langToggle}
+            title={t.nav.langToggle}
           >
             {locale}
           </button>
@@ -250,24 +251,29 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
           {/* Quick Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all"
+            className="min-h-[36px] min-w-[36px] p-2 rounded-full border border-slate-200/80 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-txt hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue dark:hover:bg-brand-blue/20 transition-all flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
             aria-label={t.nav.themeToggle}
+            title={`Theme: ${theme}`}
           >
             {theme === 'dark' ? (
-              <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-brand-cyan" />
+              <Moon className="w-4 h-4 text-brand-cyan" />
             ) : (
-              <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-500" />
+              <Sun className="w-4 h-4 text-amber-500" />
             )}
           </button>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile Menu Toggle Button (Hamburger) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1 sm:p-1.5 md:p-2 rounded-full border border-slate-200/80 dark:border-brand-cyan/40 bg-slate-100/90 dark:bg-brand-cyan/15 text-slate-700 dark:text-brand-cyan hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            className="min-h-[36px] min-w-[36px] p-2 rounded-full border border-slate-200/80 dark:border-brand-cyan/40 bg-slate-100/90 dark:bg-brand-cyan/15 text-slate-800 dark:text-brand-cyan hover:border-brand-blue/40 hover:bg-brand-blue/10 hover:text-brand-deep dark:hover:border-brand-blue transition-all flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5 text-slate-800 dark:text-txt" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5 text-slate-800 dark:text-brand-cyan" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-slate-900 dark:text-txt" />
+            ) : (
+              <Menu className="w-5 h-5 text-slate-900 dark:text-brand-cyan" />
+            )}
           </button>
         </div>
       </nav>
@@ -277,14 +283,14 @@ export function Navbar({ theme, setTheme, toggleTheme, locale, toggleLocale, t }
         <>
           {/* Backdrop Dismiss Overlay */}
           <div
-            className="fixed inset-0 z-40 bg-black/40 dark:bg-black/70 backdrop-blur-sm lg:hidden pointer-events-auto animate-in fade-in duration-200"
+            className="fixed inset-0 z-40 bg-black/50 dark:bg-black/75 backdrop-blur-sm lg:hidden pointer-events-auto animate-in fade-in duration-200"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
           {/* Floating Dropdown Card */}
-          <div className="fixed top-16 sm:top-20 left-3 right-3 sm:left-4 sm:right-4 z-50 max-w-md mx-auto rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-brand-ink/95 backdrop-blur-2xl shadow-2xl p-4 sm:p-5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto">
-            <nav className="flex flex-col gap-1.5">
+          <div className="fixed top-16 sm:top-20 left-3 right-3 sm:left-4 sm:right-4 z-50 max-w-md mx-auto rounded-3xl border border-slate-200/90 dark:border-white/10 bg-white/95 dark:bg-[#071328]/95 backdrop-blur-2xl shadow-2xl p-4 sm:p-5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <nav className="flex flex-col gap-1.5" aria-label="Mobile Navigation">
               {navLinks.map((link) => {
                 const Icon = link.icon;
                 const isActive = activeSection === link.id;
