@@ -7,6 +7,7 @@ import { cn } from '../../lib/utils';
 export function FloatingWhatsApp({ locale = 'id', t }) {
   const [showWidget, setShowWidget] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [copiedToast, setCopiedToast] = useState(false);
   const closeTimeoutRef = useRef(null);
@@ -16,13 +17,17 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const oneThirdScreen = window.innerHeight / 3;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      // Hitung persentase scroll real-time (0% hingga 100%)
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+      setScrollProgress(progress);
 
       // Widget CTA muncul setelah scroll sedikit (> 40px)
       setShowWidget(scrollY > 40);
 
-      // Tombol Back To Top muncul setelah 1/3 layar di-scroll ke bawah
-      setShowBackToTop(scrollY > oneThirdScreen);
+      // Tombol Back To Top muncul setelah mulai scroll (> 80px)
+      setShowBackToTop(scrollY > 80);
     };
 
     handleScroll();
@@ -408,7 +413,7 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
         </button>
       </div>
 
-      {/* 2. Tombol Back To Top (Terletak di BAWAH tombol Live Chat) */}
+      {/* 2. Tombol Back To Top dengan Circular Scroll Progress Ring */}
       <div
         className={cn(
           "transition-all duration-300 ease-out transform",
@@ -421,46 +426,65 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
           onClick={scrollToTop}
           tabIndex={showBackToTop ? 0 : -1}
           aria-hidden={!showBackToTop}
-          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-brand-blue/50 dark:border-cyan-400/50 shadow-[0_4px_16px_rgba(0,128,240,0.4)] dark:shadow-[0_0_22px_rgba(0,229,255,0.45)] transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50 cursor-pointer overflow-hidden shrink-0"
-          style={{
-            background:
-              'radial-gradient(circle at 35% 30%, #67e8f9 0%, #0080F0 38%, #0050c0 68%, #001f7a 88%, #001040 100%)',
-          }}
-          aria-label={locale === 'id' ? 'Kembali ke atas halaman' : 'Back to top'}
-          title={locale === 'id' ? 'Kembali ke atas' : 'Back to top'}
+          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50 cursor-pointer shrink-0 shadow-lg dark:shadow-[0_0_20px_rgba(0,229,255,0.25)]"
+          aria-label={locale === 'id' ? `Kembali ke atas (${Math.round(scrollProgress)}%)` : `Back to top (${Math.round(scrollProgress)}%)`}
+          title={locale === 'id' ? `Kembali ke atas (${Math.round(scrollProgress)}%)` : `Back to top (${Math.round(scrollProgress)}%)`}
         >
-          {/* 3D Specular Glass Gloss */}
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-1.5 top-0.5 h-3.5 sm:h-4 rounded-full pointer-events-none opacity-85"
-            style={{
-              background:
-                'linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.25) 55%, transparent 100%)',
-            }}
-          />
-
-          {/* Ambient Bottom Rim Reflection */}
-          <span
-            aria-hidden="true"
-            className="absolute inset-x-2 bottom-0.5 h-2 rounded-full pointer-events-none opacity-40"
-            style={{
-              background:
-                'radial-gradient(ellipse at bottom, rgba(255, 255, 255, 0.75) 0%, transparent 80%)',
-            }}
-          />
-
-          {/* Upward Arrow Icon */}
+          {/* Circular SVG Scroll Progress Ring */}
           <svg
-            viewBox="0 0 24 24"
-            className="w-5 h-5 sm:w-5.5 sm:h-5.5 text-white drop-shadow-[0_1.5px_2px_rgba(0,0,0,0.45)] relative z-10 transition-transform duration-200 group-hover:-translate-y-0.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none overflow-visible"
+            viewBox="0 0 48 48"
+            aria-hidden="true"
           >
-            <path d="M18 15l-6-6-6 6" />
+            <defs>
+              <linearGradient id="btt-progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#00E5FF" />
+                <stop offset="50%" stopColor="#00B4FF" />
+                <stop offset="100%" stopColor="#0066FF" />
+              </linearGradient>
+            </defs>
+
+            {/* 1. Track Circle (Lingkaran Dasar Tipis) */}
+            <circle
+              cx="24"
+              cy="24"
+              r="21"
+              fill="none"
+              stroke="currentColor"
+              className="text-slate-200 dark:text-white/15"
+              strokeWidth="2.5"
+            />
+
+            {/* 2. Active Scroll Progress Stroke (Berputar memenuhi lingkaran saat scroll) */}
+            <circle
+              cx="24"
+              cy="24"
+              r="21"
+              fill="none"
+              stroke="url(#btt-progress-gradient)"
+              strokeWidth="2.5"
+              strokeDasharray={131.95}
+              strokeDashoffset={131.95 - (scrollProgress / 100) * 131.95}
+              strokeLinecap="round"
+              className="transition-[stroke-dashoffset] duration-75 ease-out"
+            />
           </svg>
+
+          {/* Inner Button Surface (Clean Circle sesuai tema & gambar referensi) */}
+          <div className="absolute inset-[3px] rounded-full bg-white/95 dark:bg-[#071328]/95 backdrop-blur-md flex items-center justify-center border border-slate-200/60 dark:border-white/10 group-hover:bg-slate-50 dark:group-hover:bg-[#0B1A34] transition-colors">
+            {/* Upward Chevron Icon */}
+            <svg
+              viewBox="0 0 24 24"
+              className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700 group-hover:text-brand-deep dark:text-brand-cyan dark:group-hover:text-white transition-all duration-200 group-hover:-translate-y-0.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 15l-6-6-6 6" />
+            </svg>
+          </div>
         </button>
       </div>
     </aside>

@@ -237,10 +237,11 @@ Kolom kontrol mengambang vertikal di pojok kanan bawah (`fixed bottom-6 right-6 
    - Dilengkapi gelombang sonar radar konsentris (`animate-radar-1`, `animate-radar-2`, `animate-radar-3`) dan sapuan radar 360° hijau WhatsApp (`#25D366`).
    - Efek Hover Kapsul "Chat Konsultasi": Kapsul bergaris batas hijau brand (`border-2 border-[#25D366]`) yang muncul halus saat hover/focus.
    - Pemicu Muncul: Tampil halus setelah pengguna mulai menggulir halaman (`scrollY > 80px`).
-2. **Tombol CTA Back To Top 3D:**
-   - Posisi tepat di bawah tombol WhatsApp dengan ukuran identik (`w-11 h-11 sm:w-12 sm:h-12`).
-   - Desain bola 3 dimensi `brand-blue` (*glossy royal-blue sphere*) dengan border lingkaran `border-2 border-brand-blue`, kilau atas kaca, dan ikon panah chevron tebal berwarna `brand-white` (`#F5F7FA`) dengan drop shadow.
-   - **Pemicu Scroll 1/3 Layar:** Muncul secara dinamis dan mulus hanya setelah layar di-scroll ke bawah minimal **1/3 tinggi layar** (`window.innerHeight / 3`), dan menghilang halus saat kembali ke atas. Bebas dari label teks "Ke Atas" agar tampilan tetap bersih dan minimalis.
+2. **Tombol CTA Back To Top dengan Circular Scroll Progress Ring:**
+   - Posisi tepat di bawah tombol WhatsApp dengan ukuran sentuh ideal (`w-11 h-11 sm:w-12 sm:h-12`).
+   - Dilengkapi **Circular SVG Scroll Progress Ring** melingkar dinamis: track dasar halus (`stroke-slate-200` / `dark:stroke-white/15`) dengan active progress stroke berputar searah jarum jam dari jam 12 (`-90deg`) menggunakan gradien brand (`#00E5FF` ke `#0066FF`), yang bergerak mengisi lingkaran dari 0% hingga 100% saat pengguna menggulir ke bagian akhir halaman.
+   - Di tengah lingkaran terdapat tombol melayang bulat dengan ikon panah chevron ke atas (`^`), latar bersih (`bg-white/95` di mode terang dan `dark:bg-[#071328]/95` di mode gelap), dan efek hover yang responsif.
+   - **Pemicu Muncul:** Tampil halus setelah pengguna mulai menggulir halaman (`scrollY > 80px`), dan menjalankan smooth scroll ke atas saat diklik.
 
 ### 8.3 Bagian Hero (Hero Section)
 - Komposisi desktop dua kolom asimetris:
