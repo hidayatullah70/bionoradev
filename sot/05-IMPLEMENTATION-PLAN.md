@@ -63,7 +63,7 @@ Hasil yang diserahkan:
 - Tailwind CSS
 - Lucide React
 - variabel CSS global / token semantik
-- tipografi dasar dengan `Space Grotesk` SemiBold (600) untuk heading/wordmark dan `Plus Jakarta Sans` untuk body, navigasi, label, tombol, serta deskripsi
+- tipografi dasar dengan `Outfit` SemiBold (600) untuk heading/wordmark dan `Plus Jakarta Sans` untuk body, navigasi, label, tombol, serta deskripsi
 - app shell
 - `siteConfig`
 - state i18n

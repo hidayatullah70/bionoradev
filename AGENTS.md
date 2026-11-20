@@ -43,7 +43,7 @@ Jangan menambahkan:
 ## Aturan Antarmuka (UI Rules)
 - Ikuti token warna semantik.
 - Jangan menyebarkan nilai hex brand mentah di seluruh JSX.
-- Gunakan `Space Grotesk` SemiBold (600) untuk heading dan wordmark "BionoraDev"; gunakan `Plus Jakarta Sans` untuk body, navigasi, label, tombol, dan deskripsi.
+- Gunakan `Outfit` SemiBold (600) untuk heading dan wordmark "BionoraDev"; gunakan `Plus Jakarta Sans` untuk body, navigasi, label, tombol, dan deskripsi.
 - Pertahankan bahasa visual dari referensi logo BionoraDev yang diberikan.
 - Gunakan gradien secukupnya.
 - Utamakan ruang kosong (whitespace) dan hierarki daripada sekadar dekorasi.

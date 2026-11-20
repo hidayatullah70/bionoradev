@@ -1,7 +1,7 @@
 /* Hallmark · v2.0.0 · redesign: full · scope: homepage · copy: verbatim · theme: BionoraDev */
 /* Critique: the inherited page had strong material but too many simultaneous cards, pills, glows, and motion layers; this pass gives the content a calmer editorial rhythm. */
 /* Waive 38iii: the single accented hero word is the existing BionoraDev brand signature and remains once, in the hero. */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,7 +9,7 @@
 
 @layer base {
   :root {
-    --font-heading: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Outfit', ui-sans-serif, system-ui, sans-serif;
     --font-body: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
     /* Brand Palette from bionoraDevUI.jpeg */
