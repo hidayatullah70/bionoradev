@@ -426,56 +426,48 @@ export function FloatingWhatsApp({ locale = 'id', t }) {
           onClick={scrollToTop}
           tabIndex={showBackToTop ? 0 : -1}
           aria-hidden={!showBackToTop}
-          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50 cursor-pointer shrink-0 shadow-lg dark:shadow-[0_0_20px_rgba(0,229,255,0.25)]"
+          className="group relative flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full cursor-pointer shrink-0 transition-transform duration-200 hover:scale-105 active:scale-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-blue/50"
           aria-label={locale === 'id' ? `Kembali ke atas (${Math.round(scrollProgress)}%)` : `Back to top (${Math.round(scrollProgress)}%)`}
           title={locale === 'id' ? `Kembali ke atas (${Math.round(scrollProgress)}%)` : `Back to top (${Math.round(scrollProgress)}%)`}
         >
-          {/* Circular SVG Scroll Progress Ring */}
+          {/* Circular SVG Scroll Progress Ring (Lapisan Atas z-10) */}
           <svg
-            className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none overflow-visible"
+            className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none z-10 overflow-visible"
             viewBox="0 0 48 48"
             aria-hidden="true"
           >
-            <defs>
-              <linearGradient id="btt-progress-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00E5FF" />
-                <stop offset="50%" stopColor="#00B4FF" />
-                <stop offset="100%" stopColor="#0066FF" />
-              </linearGradient>
-            </defs>
-
-            {/* 1. Track Circle (Lingkaran Dasar Tipis) */}
+            {/* 1. Track Circle (Lingkaran Dasar Abu-Abu dengan Kontras Jelas) */}
             <circle
               cx="24"
               cy="24"
-              r="21"
+              r="21.5"
               fill="none"
               stroke="currentColor"
-              className="text-slate-200 dark:text-white/15"
+              className="text-slate-200 dark:text-slate-700/80"
               strokeWidth="2.5"
             />
 
-            {/* 2. Active Scroll Progress Stroke (Berputar memenuhi lingkaran saat scroll) */}
+            {/* 2. Active Scroll Progress Stroke (High-Contrast: Deep Blue di Light-Mode, Glowing Neon Cyan di Dark-Mode) */}
             <circle
               cx="24"
               cy="24"
-              r="21"
+              r="21.5"
               fill="none"
-              stroke="url(#btt-progress-gradient)"
-              strokeWidth="2.5"
-              strokeDasharray={131.95}
-              strokeDashoffset={131.95 - (scrollProgress / 100) * 131.95}
+              stroke="currentColor"
+              strokeWidth="3.5"
+              strokeDasharray={135.09}
+              strokeDashoffset={135.09 - (scrollProgress / 100) * 135.09}
               strokeLinecap="round"
-              className="transition-[stroke-dashoffset] duration-75 ease-out"
+              className="text-[#0066FF] dark:text-[#00E5FF] dark:drop-shadow-[0_0_6px_#00E5FF] transition-[stroke-dashoffset] duration-75 ease-out"
             />
           </svg>
 
-          {/* Inner Button Surface (Clean Circle sesuai tema & gambar referensi) */}
-          <div className="absolute inset-[3px] rounded-full bg-white/95 dark:bg-[#071328]/95 backdrop-blur-md flex items-center justify-center border border-slate-200/60 dark:border-white/10 group-hover:bg-slate-50 dark:group-hover:bg-[#0B1A34] transition-colors">
+          {/* Inner Button Surface (Lingkaran Tengah dengan Gap Nyata terhadap Ring Luar) */}
+          <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white dark:bg-[#0B1220] flex items-center justify-center shadow-md dark:shadow-[0_2px_12px_rgba(0,0,0,0.5)] border border-slate-200/80 dark:border-white/10 group-hover:bg-slate-50 dark:group-hover:bg-[#131F33] transition-colors">
             {/* Upward Chevron Icon */}
             <svg
               viewBox="0 0 24 24"
-              className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700 group-hover:text-brand-deep dark:text-brand-cyan dark:group-hover:text-white transition-all duration-200 group-hover:-translate-y-0.5"
+              className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-slate-800 dark:text-white group-hover:text-[#0066FF] dark:group-hover:text-[#00E5FF] transition-all duration-200 group-hover:-translate-y-0.5"
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
