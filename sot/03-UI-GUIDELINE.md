@@ -528,11 +528,11 @@ Ikon media sosial diletakkan tepat di bawah tombol CTA *"WhatsApp Langsung"* pad
 
 ### 21.1 Daftar Tautan, Warna Default & Background
 1. **Instagram**:
-   - URL: `https://www.instagram.com/prabu.nusantara/`
+   - URL: `https://www.instagram.com/bionira.id/`
    - Warna Background Default: Merah (`#E1306C` / `#E4405F`)
    - Ikon: Kamera Putih (`#FFFFFF`)
 2. **YouTube**:
-   - URL: `https://www.youtube.com/@BionoraDev`
+   - URL: `https://www.youtube.com/@bionoraid`
    - Warna Background Default: Merah YouTube (`#FF0000`)
    - Ikon: Kotak Merah dengan Panah Putih (`#FFFFFF`)
 3. **TikTok**:

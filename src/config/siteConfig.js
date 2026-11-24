@@ -35,15 +35,15 @@ export const siteConfig = {
     {
       id: "instagram",
       name: "Instagram",
-      label: "Instagram (@prabu.nusantara)",
-      url: "https://www.instagram.com/prabu.nusantara/",
+      label: "Instagram (@bionira.id)",
+      url: "https://www.instagram.com/bionira.id/",
       color: "#E4405F",
     },
     {
       id: "youtube",
       name: "YouTube",
-      label: "YouTube (@BionoraDev)",
-      url: "https://www.youtube.com/@BionoraDev",
+      label: "YouTube (@bionoraid)",
+      url: "https://www.youtube.com/@bionoraid",
       color: "#FF0000",
     },
     {
